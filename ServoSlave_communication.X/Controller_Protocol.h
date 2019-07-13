@@ -57,7 +57,7 @@ typedef union {
 } Processed;
 
 /*受信用記憶領域確保*/
-#define number_of_rxdata0 5
+#define number_of_rxdata0 6
 //#define number_of_rxdata1 8
 //#define number_of_rxdata2 8
 

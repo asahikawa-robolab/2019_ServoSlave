@@ -77,8 +77,8 @@ unsigned char Store_Datas(Untreated *Buffer, unsigned char received_data, int nu
 void Send_StartSignal(void (*transmission)(unsigned char), void (*txinterrupt_control)(bool), bool TXIEbit) {
     if (!TXIEbit) {
         transmission('S');
-        txinterrupt_control(enable);
         not_of_before_data = 0x05;
+        txinterrupt_control(enable);
     }
 }
 

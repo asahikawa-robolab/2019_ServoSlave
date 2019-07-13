@@ -7,12 +7,13 @@
 
 /*Configuration Bits*/
 
+
 // PIC16F18325 Configuration Bit Settings
 
 // 'C' source line config statements
 
 // CONFIG1
-#pragma config FEXTOSC = HS     // FEXTOSC External Oscillator mode Selection bits (HS (crystal oscillator) above 4 MHz)
+#pragma config FEXTOSC = OFF    // FEXTOSC External Oscillator mode Selection bits (Oscillator not enabled)
 #pragma config RSTOSC = HFINT32 // Power-up default value for COSC bits (HFINTOSC with 2x PLL (32MHz))
 #pragma config CLKOUTEN = OFF   // Clock Out Enable bit (CLKOUT function is disabled; I/O or oscillator function on OSC2)
 #pragma config CSWEN = OFF      // Clock Switch Enable bit (The NOSC and NDIV bits cannot be changed by user software)
@@ -39,6 +40,8 @@
 
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
+
+
 
 /*include files*/
 #include <xc.h>
@@ -81,6 +84,9 @@ void Write_data(Processed);
 #define servo2_data RxData0[2]
 #define servo3_data RxData0[3]
 #define servo4_data RxData0[4]
+#define EmergencyStop RxData0[5].all_data
+#define stop 0x0
+#define start 0x1
 
 //*define per bit*/
 #define SERVO_DATA_WRITE_bit0 LATAbits.LATA0
@@ -94,7 +100,8 @@ void Write_data(Processed);
 
 /*variables*/
 //*servo address*/
-Processed address = {.all_data = 0b001};
+Processed address;
+Processed zero;
 
 /*flags*/
 //*current status*/
@@ -123,7 +130,6 @@ int main(int argc, char** argv) {
     while (1) {
         if (Receive_flag == reception_complete) {
             Reception_from_master_main();
-
             SetData();
 
         }
@@ -139,6 +145,8 @@ void SetData() {
 }
 
 void ChangeAddress() {
+    Processed None;
+    None.all_data = 0b000;
 
     /*アドレス変更*/
 
@@ -153,17 +161,17 @@ void ChangeAddress() {
     } else {
         /*none以外なら
          LATをnoneに*/
-        Write_Address(none);
+        Write_Address(None);
 
         /*フラグチェンジ*/
         address_status = none;
 
         /*アドレスをインクリメント*/
-        address++;
+        address.all_data++;
 
         /*4までいったら1に戻る*/
-        if (address >= 5) {
-            address = 0b001;
+        if (address.all_data >= 0b101) {
+            address.all_data = 0b001;
         }
 
     }
@@ -179,14 +187,18 @@ void Write_Address(Processed address) {
 void ChangeData(void) {
     /*データ変更*/
 
-    if (address == 1) {
-        Write_data(servo1_data);
-    } else if (address == 2) {
-        Write_data(servo2_data);
-    } else if (address == 3) {
-        Write_data(servo3_data);
-    } else if (address == 4) {
-        Write_data(servo4_data);
+    if (address.all_data == 1) {
+        if (EmergencyStop == stop)Write_data(zero);
+        else Write_data(servo1_data);
+    } else if (address.all_data == 2) {
+        if (EmergencyStop == stop)Write_data(zero);
+        else Write_data(servo2_data);
+    } else if (address.all_data == 3) {
+        if (EmergencyStop == stop)Write_data(zero);
+        else Write_data(servo3_data);
+    } else if (address.all_data == 4) {
+        if (EmergencyStop == stop)Write_data(zero);
+        else Write_data(servo4_data);
     } else;
 
 }
@@ -200,7 +212,7 @@ void Write_data(Processed servo_data) {
     SERVO_DATA_WRITE_bit4 = servo_data.data4;
     SERVO_DATA_WRITE_bit5 = servo_data.data5;
     SERVO_DATA_WRITE_bit6 = servo_data.data6;
-    //SERVO_DATA_WRITE_bit7 = ((servo_data & 0b10000000) >> 7);
+    //SERVO_DATA_WRITE_bit7 = servo_data.data7;  //8bitになったらコメントアウトすること
 
 }
 
@@ -214,22 +226,49 @@ void Initialize() {
     Oscillator_Initialize();
     Pin_Initialize();
     UART_Initialize();
+    Initialize_Parameters();
+    address.all_data = 0b001; //アドレス初期設定
+    zero.all_data = 0xFF; //脱力状態命令
 }
 
 void Oscillator_Initialize() {
-    OSCCON1 = 0x60;
+    OSCCON1 = 0x00;
     OSCFRQ = 0x06; //16MHz
     while (PLLR == 0); //Wait for PLL to stablize 
 }
 
 void Pin_Initialize() {
-    ANSELA = 0x00;
+    ANSELA = 0x00; //全てデジタル入出力
 
     TRISAbits.TRISA5 = 1; //UART RX
-    TRISC = 0x00;
+
+    TRISAbits.TRISA0 = 0;
+    TRISAbits.TRISA1 = 0;
+    TRISAbits.TRISA2 = 0;
+    TRISCbits.TRISC0 = 0;
+    TRISCbits.TRISC1 = 0;
+    TRISCbits.TRISC2 = 0;
+    TRISCbits.TRISC4 = 0;
+
+    TRISCbits.TRISC5 = 0;
+    TRISCbits.TRISC3 = 0;
+    TRISAbits.TRISA4 = 0;
+
 
     /*PPS*/
+    bool state = GIE;
+    GIE = 0;
+    PPSLOCK = 0x55;
+    PPSLOCK = 0xAA;
+    PPSLOCKbits.PPSLOCKED = 0x00; // unlock PPS
+
     RXPPS = 0x5;
+
+    PPSLOCK = 0x55;
+    PPSLOCK = 0xAA;
+    PPSLOCKbits.PPSLOCKED = 0x01; // lock PPS
+
+    GIE = state;
 }
 
 void UART_Initialize() {
@@ -244,6 +283,7 @@ void UART_Initialize() {
 
     /*enable UART RX interrupt*/
     RC1STAbits.SPEN = enable; //enable serial port
+    RC1STAbits.CREN = enable;
     TX1STAbits.SYNC = disable;
 
     /*enable interrupts*/

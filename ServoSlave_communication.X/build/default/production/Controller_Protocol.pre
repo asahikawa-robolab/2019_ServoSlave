@@ -58,8 +58,8 @@ unsigned errors : 2;
 } Processed;
 
 # 78
-Untreated Buffer0[5 * 2 + 3];
-Processed RxData0[5];
+Untreated Buffer0[6 * 2 + 3];
+Processed RxData0[6];
 
 # 100
 void Initialize_Parameters(void);
@@ -134,8 +134,8 @@ return 0;
 void Send_StartSignal(void (*transmission)(unsigned char), void (*txinterrupt_control)(bool), bool TXIEbit) {
 if (!TXIEbit) {
 transmission('S');
-txinterrupt_control(1);
 not_of_before_data = 0x05;
+txinterrupt_control(1);
 }
 }
 

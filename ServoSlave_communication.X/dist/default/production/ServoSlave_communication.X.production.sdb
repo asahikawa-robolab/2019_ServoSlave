@@ -13,7 +13,7 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"24 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
+"24 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
 [v _EUSART_ERROR_from_master EUSART_ERROR_from_master `(uc  1 e 1 0 ]
 "36
 [v _Reception_from_master Reception_from_master `(v  1 e 1 0 ]
@@ -21,40 +21,42 @@
 [v _slave_address_check slave_address_check `(uc  1 e 1 0 ]
 "90
 [v _Reception_from_master_main Reception_from_master_main `(v  1 e 1 0 ]
-"20 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
+"20 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
 [v _Organize_Datas Organize_Datas `(v  1 e 1 0 ]
 "34
 [v _Store_Datas Store_Datas `(uc  1 e 1 0 ]
-"114 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
+"116
+[v _Initialize_Parameters Initialize_Parameters `(v  1 e 1 0 ]
+"121 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"135
-[v _SetData SetData `(v  1 e 1 0 ]
 "141
+[v _SetData SetData `(v  1 e 1 0 ]
+"147
 [v _ChangeAddress ChangeAddress `(v  1 e 1 0 ]
-"173
+"181
 [v _Write_Address Write_Address `(v  1 e 1 0 ]
-"179
+"187
 [v _ChangeData ChangeData `(v  1 e 1 0 ]
-"194
+"206
 [v _Write_data Write_data `(v  1 e 1 0 ]
-"207
-[v _INTERRUPT_HANDLER INTERRUPT_HANDLER `II(v  1 e 1 0 ]
-"213
-[v _Initialize Initialize `(v  1 e 1 0 ]
 "219
-[v _Oscillator_Initialize Oscillator_Initialize `(v  1 e 1 0 ]
+[v _INTERRUPT_HANDLER INTERRUPT_HANDLER `II(v  1 e 1 0 ]
 "225
+[v _Initialize Initialize `(v  1 e 1 0 ]
+"234
+[v _Oscillator_Initialize Oscillator_Initialize `(v  1 e 1 0 ]
+"240
 [v _Pin_Initialize Pin_Initialize `(v  1 e 1 0 ]
-"235
+"274
 [v _UART_Initialize UART_Initialize `(v  1 e 1 0 ]
-[s S269 . 1 `uc 1 INTEDG 1 0 :1:0 
+[s S298 . 1 `uc 1 INTEDG 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
 "364 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f18325.h
-[u S274 . 1 `S269 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES274  1 e 1 @11 ]
+[u S303 . 1 `S298 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES303  1 e 1 @11 ]
 [s S122 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 BCL1IF 1 0 :1:2 
@@ -67,7 +69,7 @@
 "534
 [u S131 . 1 `S122 1 . 1 0 ]
 [v _PIR1bits PIR1bits `VES131  1 e 1 @17 ]
-[s S164 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S168 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -75,11 +77,19 @@
 `uc 1 TRISA5 1 0 :1:5 
 ]
 "1514
-[u S171 . 1 `S164 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES171  1 e 1 @140 ]
-"1544
-[v _TRISC TRISC `VEuc  1 e 1 @142 ]
-[s S183 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[u S175 . 1 `S168 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES175  1 e 1 @140 ]
+[s S185 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 TRISC3 1 0 :1:3 
+`uc 1 TRISC4 1 0 :1:4 
+`uc 1 TRISC5 1 0 :1:5 
+]
+"1559
+[u S192 . 1 `S185 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES192  1 e 1 @142 ]
+[s S212 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 BCL1IE 1 0 :1:2 
 `uc 1 SSP1IE 1 0 :1:3 
@@ -89,8 +99,8 @@
 `uc 1 TMR1GIE 1 0 :1:7 
 ]
 "1644
-[u S192 . 1 `S183 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES192  1 e 1 @145 ]
+[u S221 . 1 `S212 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES221  1 e 1 @145 ]
 [s S100 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
@@ -119,7 +129,7 @@
 [v _SP1BRGL SP1BRGL `VEuc  1 e 1 @411 ]
 "3080
 [v _SP1BRGH SP1BRGH `VEuc  1 e 1 @412 ]
-[s S248 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S277 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -129,9 +139,9 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "3160
-[u S257 . 1 `S248 1 . 1 0 ]
-[v _RC1STAbits RC1STAbits `VES257  1 e 1 @413 ]
-[s S206 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S286 . 1 `S277 1 . 1 0 ]
+[v _RC1STAbits RC1STAbits `VES286  1 e 1 @413 ]
+[s S235 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -141,9 +151,9 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "3340
-[u S215 . 1 `S206 1 . 1 0 ]
-[v _TX1STAbits TX1STAbits `VES215  1 e 1 @414 ]
-[s S227 . 1 `uc 1 ABDEN 1 0 :1:0 
+[u S244 . 1 `S235 1 . 1 0 ]
+[v _TX1STAbits TX1STAbits `VES244  1 e 1 @414 ]
+[s S256 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -153,37 +163,46 @@
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "3528
-[u S236 . 1 `S227 1 . 1 0 ]
-[v _BAUD1CONbits BAUD1CONbits `VES236  1 e 1 @415 ]
+[u S265 . 1 `S256 1 . 1 0 ]
+[v _BAUD1CONbits BAUD1CONbits `VES265  1 e 1 @415 ]
 "11927
 [v _OSCCON1 OSCCON1 `VEuc  1 e 1 @2329 ]
 "12268
 [v _OSCFRQ OSCFRQ `VEuc  1 e 1 @2335 ]
+"12314
+[v _PPSLOCK PPSLOCK `VEuc  1 e 1 @3599 ]
+[s S204 . 1 `uc 1 PPSLOCKED 1 0 :1:0 
+]
+"12324
+[u S206 . 1 `S204 1 . 1 0 ]
+[v _PPSLOCKbits PPSLOCKbits `VES206  1 e 1 @3599 ]
 "13322
 [v _RXPPS RXPPS `VEuc  1 e 1 @3620 ]
+"19870
+[v _GIE GIE `VEb  1 e 0 @95 ]
 "21286
 [v _PLLR PLLR `VEb  1 e 0 @18656 ]
-"17 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
+"17 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
 [v _Receive_flag Receive_flag `uc  1 e 1 0 ]
 "22
 [v _slave_different_flag slave_different_flag `uc  1 e 1 0 ]
-"15 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
+"15 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
 [v _not_of_before_data not_of_before_data `uc  1 e 1 0 ]
-[s S477 . 4 `i 1 num 2 0 `i 1 count 2 2 ]
+[s S623 . 4 `i 1 num 2 0 `i 1 count 2 2 ]
 "16
-[v _OP OP `[1]S477  1 e 4 0 ]
-[s S480 . 4 `i 1 Buffer_count 2 0 `uc 1 Start_signal_has_come 1 2 `uc 1 S_flag 1 3 ]
+[v _OP OP `[1]S623  1 e 4 0 ]
+[s S626 . 4 `i 1 Buffer_count 2 0 `uc 1 Start_signal_has_come 1 2 `uc 1 S_flag 1 3 ]
 "17
-[v _StP StP `[1]S480  1 e 4 0 ]
-[s S484 . 5 `i 1 data_send_count 2 0 `i 1 last_signal 2 2 `uc 1 byte_data_complete 1 4 ]
+[v _StP StP `[1]S626  1 e 4 0 ]
+[s S630 . 5 `i 1 data_send_count 2 0 `i 1 last_signal 2 2 `uc 1 byte_data_complete 1 4 ]
 "18
-[v _SeP SeP `[1]S484  1 e 5 0 ]
+[v _SeP SeP `[1]S630  1 e 5 0 ]
 [s S22 . 1 `uc 1 lower_data 1 0 :4:0 
 `uc 1 upper_data 1 0 :4:4 
 ]
-"78 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.h
+"78 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.h
 [u S25 . 1 `S22 1 . 1 0 `uc 1 all_data 1 0 ]
-[v _Buffer0 Buffer0 `[13]S25  1 e 13 0 ]
+[v _Buffer0 Buffer0 `[15]S25  1 e 15 0 ]
 [s S28 . 2 `uc 1 lower_data 1 0 :4:0 
 `uc 1 upper_data 1 0 :4:4 
 `uc 1 UD_error 1 1 :1:0 
@@ -202,52 +221,104 @@
 [s S42 . 2 `uc 1 all_data 1 0 `uc 1 errors 1 1 :2:0 
 ]
 [u S45 . 2 `S28 1 . 2 0 `S33 1 . 1 0 `S42 1 . 2 0 ]
-[v _RxData0 RxData0 `[5]S45  1 e 10 0 ]
-"97 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-[v _address address `i  1 e 2 0 ]
-"101
+[v _RxData0 RxData0 `[6]S45  1 e 12 0 ]
+"103 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+[v _address address `S45  1 e 2 0 ]
+"104
+[v _zero zero `S45  1 e 2 0 ]
+"108
 [v _address_status address_status `uc  1 e 1 0 ]
-"114
+"121
 [v _main main `(i  1 e 2 0 ]
-{
-"133
-} 0
-"135
-[v _SetData SetData `(v  1 e 1 0 ]
 {
 "139
 } 0
-"179
+"141
+[v _SetData SetData `(v  1 e 1 0 ]
+{
+"145
+} 0
+"187
 [v _ChangeData ChangeData `(v  1 e 1 0 ]
 {
-"192
+"204
 } 0
-"194
+"206
 [v _Write_data Write_data `(v  1 e 1 0 ]
 {
-[v Write_data@servo_data servo_data `uc  1 a 1 wreg ]
-[v Write_data@servo_data servo_data `uc  1 a 1 wreg ]
-"196
-[v Write_data@servo_data servo_data `uc  1 a 1 10 ]
-"205
+[s S28 . 2 `uc 1 lower_data 1 0 :4:0 
+`uc 1 upper_data 1 0 :4:4 
+`uc 1 UD_error 1 1 :1:0 
+`uc 1 LD_error 1 1 :1:1 
+]
+[s S33 . 1 `uc 1 data0 1 0 :1:0 
+`uc 1 data1 1 0 :1:1 
+`uc 1 data2 1 0 :1:2 
+`uc 1 data3 1 0 :1:3 
+`uc 1 data4 1 0 :1:4 
+`uc 1 data5 1 0 :1:5 
+`uc 1 data6 1 0 :1:6 
+`uc 1 data7 1 0 :1:7 
+]
+[s S42 . 2 `uc 1 all_data 1 0 `uc 1 errors 1 1 :2:0 
+]
+[u S45 . 2 `S28 1 . 2 0 `S33 1 . 1 0 `S42 1 . 2 0 ]
+[v Write_data@servo_data servo_data `S45  1 p 2 8 ]
+"217
 } 0
-"141
+"147
 [v _ChangeAddress ChangeAddress `(v  1 e 1 0 ]
 {
-"171
+[s S28 . 2 `uc 1 lower_data 1 0 :4:0 
+`uc 1 upper_data 1 0 :4:4 
+`uc 1 UD_error 1 1 :1:0 
+`uc 1 LD_error 1 1 :1:1 
+]
+"148
+[s S33 . 1 `uc 1 data0 1 0 :1:0 
+`uc 1 data1 1 0 :1:1 
+`uc 1 data2 1 0 :1:2 
+`uc 1 data3 1 0 :1:3 
+`uc 1 data4 1 0 :1:4 
+`uc 1 data5 1 0 :1:5 
+`uc 1 data6 1 0 :1:6 
+`uc 1 data7 1 0 :1:7 
+]
+[s S42 . 2 `uc 1 all_data 1 0 `uc 1 errors 1 1 :2:0 
+]
+[u S45 . 2 `S28 1 . 2 0 `S33 1 . 1 0 `S42 1 . 2 0 ]
+[v ChangeAddress@None None `S45  1 a 2 11 ]
+"179
 } 0
-"173
+"181
 [v _Write_Address Write_Address `(v  1 e 1 0 ]
 {
-[v Write_Address@address address `i  1 p 2 8 ]
-"177
+[s S28 . 2 `uc 1 lower_data 1 0 :4:0 
+`uc 1 upper_data 1 0 :4:4 
+`uc 1 UD_error 1 1 :1:0 
+`uc 1 LD_error 1 1 :1:1 
+]
+[s S33 . 1 `uc 1 data0 1 0 :1:0 
+`uc 1 data1 1 0 :1:1 
+`uc 1 data2 1 0 :1:2 
+`uc 1 data3 1 0 :1:3 
+`uc 1 data4 1 0 :1:4 
+`uc 1 data5 1 0 :1:5 
+`uc 1 data6 1 0 :1:6 
+`uc 1 data7 1 0 :1:7 
+]
+[s S42 . 2 `uc 1 all_data 1 0 `uc 1 errors 1 1 :2:0 
+]
+[u S45 . 2 `S28 1 . 2 0 `S33 1 . 1 0 `S42 1 . 2 0 ]
+[v Write_Address@address address `S45  1 p 2 8 ]
+"185
 } 0
-"90 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
+"90 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
 [v _Reception_from_master_main Reception_from_master_main `(v  1 e 1 0 ]
 {
 "102
 } 0
-"20 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
+"20 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
 [v _Organize_Datas Organize_Datas `(v  1 e 1 0 ]
 {
 [s S28 . 2 `uc 1 lower_data 1 0 :4:0 
@@ -281,32 +352,54 @@
 [v Organize_Datas@RxData RxData `*.4S45  1 a 1 18 ]
 "32
 } 0
-"213 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
+"225 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
 [v _Initialize Initialize `(v  1 e 1 0 ]
 {
-"217
+"232
 } 0
-"235
+"274
 [v _UART_Initialize UART_Initialize `(v  1 e 1 0 ]
 {
-"256
+"296
 } 0
-"225
+"240
 [v _Pin_Initialize Pin_Initialize `(v  1 e 1 0 ]
 {
-"233
+"259
+[v Pin_Initialize@state state `uc  1 a 1 8 ]
+"272
 } 0
-"219
+"234
 [v _Oscillator_Initialize Oscillator_Initialize `(v  1 e 1 0 ]
+{
+"238
+} 0
+"116 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+[v _Initialize_Parameters Initialize_Parameters `(v  1 e 1 0 ]
+{
+"117
+[v Initialize_Parameters@i i `i  1 s 2 i ]
+"124
+} 0
+"4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+{
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+"6
+[v ___bmul@product product `uc  1 a 1 10 ]
+"4
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+[v ___bmul@multiplicand multiplicand `uc  1 p 1 8 ]
+"6
+[v ___bmul@multiplier multiplier `uc  1 a 1 11 ]
+"51
+} 0
+"219 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+[v _INTERRUPT_HANDLER INTERRUPT_HANDLER `II(v  1 e 1 0 ]
 {
 "223
 } 0
-"207
-[v _INTERRUPT_HANDLER INTERRUPT_HANDLER `II(v  1 e 1 0 ]
-{
-"211
-} 0
-"36 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
+"36 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
 [v _Reception_from_master Reception_from_master `(v  1 e 1 0 ]
 {
 [v Reception_from_master@slave_address slave_address `uc  1 a 1 wreg ]
@@ -332,7 +425,7 @@
 [v slave_address_check@data_count data_count `uc  1 a 1 5 ]
 "88
 } 0
-"34 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
+"34 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
 [v _Store_Datas Store_Datas `(uc  1 e 1 0 ]
 {
 [s S22 . 1 `uc 1 lower_data 1 0 :4:0 
@@ -348,7 +441,7 @@
 [v Store_Datas@Buffer Buffer `*.4S25  1 a 1 9 ]
 "75
 } 0
-"24 C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
+"24 C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
 [v _EUSART_ERROR_from_master EUSART_ERROR_from_master `(uc  1 e 1 0 ]
 {
 "27

@@ -11,44 +11,46 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$dist/default/production\ServoSlave_communication.X.production.obj
-cinit CODE 0 10 10 1C 2
-text1 CODE 0 521 521 6 2
-text2 CODE 0 452 452 27 2
-text3 CODE 0 315 315 90 2
-text4 CODE 0 427 427 2B 2
-text5 CODE 0 3EC 3EC 3B 2
-text6 CODE 0 4C1 4C1 20 2
-text7 CODE 0 1B8 1B8 15D 2
-text8 CODE 0 501 501 9 2
-text9 CODE 0 4E1 4E1 11 2
-text10 CODE 0 50A 50A 9 2
-text11 CODE 0 513 513 8 2
-text13 CODE 0 3A5 3A5 47 2
-text14 CODE 0 49D 49D 24 2
-text15 CODE 0 2C 2C 18C 2
-text16 CODE 0 4F2 4F2 F 2
-maintext CODE 0 479 479 24 2
-cstackCOMMON COMMON 1 70 70 D 1
-cstackBANK0 BANK0 1 48 48 19 1
-intentry CODE 0 4 4 A 2
-bssBANK0 BANK0 1 20 20 28 1
-idataBANK0 CODE 0 527 527 4 2
-dataBANK0 BANK0 1 61 61 4 1
-clrtext CODE 0 51B 51B 6 2
-bssCOMMON COMMON 1 7D 7D 1 1
-$C:\Users\pguz1\AppData\Local\Temp\s5io.obj
+$C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
 reset_vec CODE 0 0 0 2 2
 end_init CODE 0 E E 2 2
 config CONFIG 0 8007 8007 4 2
+$dist/default/production\ServoSlave_communication.X.production.obj
+cinit CODE 0 10 10 13 2
+text1 CODE 0 566 566 6 2
+text2 CODE 0 36C 36C 5B 2
+text3 CODE 0 40E 40E 39 2
+text4 CODE 0 4B7 4B7 23 2
+text5 CODE 0 4FA 4FA 19 2
+text6 CODE 0 4DA 4DA 20 2
+text7 CODE 0 1AF 1AF 15D 2
+text8 CODE 0 513 513 13 2
+text9 CODE 0 526 526 12 2
+text10 CODE 0 447 447 28 2
+text11 CODE 0 559 559 7 2
+text12 CODE 0 30C 30C 60 2
+text13 CODE 0 538 538 12 2
+text15 CODE 0 3C7 3C7 47 2
+text16 CODE 0 493 493 24 2
+text17 CODE 0 23 23 18C 2
+text18 CODE 0 54A 54A F 2
+maintext CODE 0 46F 46F 24 2
+cstackCOMMON COMMON 1 70 70 D 1
+cstackBANK0 BANK0 1 51 51 15 1
+cstackBANK1 BANK1 1 A0 A0 4 1
+intentry CODE 0 4 4 A 2
+bssBANK0 BANK0 1 20 20 31 1
+idataBANK0 CODE 0 56C 56C 2 2
+dataBANK0 BANK0 1 66 66 2 1
+clrtext CODE 0 560 560 6 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 65-6F 1
-RAM A0-EF 1
+RAM 68-6F 1
+RAM A4-EF 1
 RAM 120-16F 1
 RAM 1A0-1EF 1
 RAM 220-26F 1
@@ -60,8 +62,8 @@ RAM 4A0-4EF 1
 RAM 520-56F 1
 RAM 5A0-5EF 1
 RAM 620-64F 1
-BANK0 65-6F 1
-BANK1 A0-EF 1
+BANK0 68-6F 1
+BANK1 A4-EF 1
 BANK2 120-16F 1
 BANK3 1A0-1EF 1
 BANK4 220-26F 1
@@ -71,9 +73,9 @@ BANK7 3A0-3EF 1
 BANK8 420-46F 1
 BANK9 4A0-4EF 1
 CONST 2-3 2
-CONST 52B-1FFF 2
+CONST 56E-1FFF 2
 ENTRY 2-3 2
-ENTRY 52B-1FFF 2
+ENTRY 56E-1FFF 2
 IDLOC 8000-8003 2
 SFR10 500-51F 1
 SFR11 580-59F 1
@@ -97,9 +99,9 @@ SFR28 E00-E6F 1
 SFR29 E80-EEF 1
 SFR30 F00-F6F 1
 SFR31 F80-FEF 1
-STACK 2045-23EF 1
+STACK 2054-23EF 1
 CODE 2-3 2
-CODE 52B-1FFF 2
+CODE 56E-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-11F 1
@@ -114,11 +116,12 @@ BANK10 520-56F 1
 BANK11 5A0-5EF 1
 BANK12 620-64F 1
 BIGRAM 2000-23EF 1
+COMMON 7D-7D 1
 EEDATA F000-F0FF 2
 STRCODE 2-3 2
-STRCODE 52B-1FFF 2
+STRCODE 56E-1FFF 2
 STRING 2-3 2
-STRING 52B-1FFF 2
+STRING 56E-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -133,195 +136,230 @@ STRING 52B-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\ServoSlave_communication.X.production.obj
-10 cinit CODE >2238:C:\Users\pguz1\AppData\Local\Temp\s5io.
-10 cinit CODE >2241:C:\Users\pguz1\AppData\Local\Temp\s5io.
-10 cinit CODE >2300:C:\Users\pguz1\AppData\Local\Temp\s5io.
-13 cinit CODE >2301:C:\Users\pguz1\AppData\Local\Temp\s5io.
-14 cinit CODE >2302:C:\Users\pguz1\AppData\Local\Temp\s5io.
-17 cinit CODE >2303:C:\Users\pguz1\AppData\Local\Temp\s5io.
-18 cinit CODE >2304:C:\Users\pguz1\AppData\Local\Temp\s5io.
-1B cinit CODE >2305:C:\Users\pguz1\AppData\Local\Temp\s5io.
-1C cinit CODE >2306:C:\Users\pguz1\AppData\Local\Temp\s5io.
-1F cinit CODE >2307:C:\Users\pguz1\AppData\Local\Temp\s5io.
-20 cinit CODE >2324:C:\Users\pguz1\AppData\Local\Temp\s5io.
-21 cinit CODE >2328:C:\Users\pguz1\AppData\Local\Temp\s5io.
-22 cinit CODE >2329:C:\Users\pguz1\AppData\Local\Temp\s5io.
-23 cinit CODE >2330:C:\Users\pguz1\AppData\Local\Temp\s5io.
-24 cinit CODE >2331:C:\Users\pguz1\AppData\Local\Temp\s5io.
-25 cinit CODE >2332:C:\Users\pguz1\AppData\Local\Temp\s5io.
-26 cinit CODE >2333:C:\Users\pguz1\AppData\Local\Temp\s5io.
-28 cinit CODE >2339:C:\Users\pguz1\AppData\Local\Temp\s5io.
-28 cinit CODE >2341:C:\Users\pguz1\AppData\Local\Temp\s5io.
-29 cinit CODE >2342:C:\Users\pguz1\AppData\Local\Temp\s5io.
-2A cinit CODE >2343:C:\Users\pguz1\AppData\Local\Temp\s5io.
-4 intentry CODE >207:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4 intentry CODE >223:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-6 intentry CODE >208:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-9 intentry CODE >209:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-C intentry CODE >211:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4F2 text16 CODE >24:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4F2 text16 CODE >25:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4F7 text16 CODE >27:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4FB text16 CODE >29:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4FC text16 CODE >30:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4FD text16 CODE >31:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4FF text16 CODE >33:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-2C text15 CODE >34:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-2D text15 CODE >35:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-35 text15 CODE >36:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-43 text15 CODE >37:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-51 text15 CODE >38:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-5E text15 CODE >39:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-5F text15 CODE >40:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-60 text15 CODE >41:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-70 text15 CODE >42:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-86 text15 CODE >43:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-95 text15 CODE >44:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-AB text15 CODE >45:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-B5 text15 CODE >46:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-BC text15 CODE >47:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-CA text15 CODE >48:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-CD text15 CODE >50:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-DD text15 CODE >52:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-FE text15 CODE >53:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-10E text15 CODE >54:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-11B text15 CODE >55:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-11D text15 CODE >58:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-133 text15 CODE >59:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-148 text15 CODE >61:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-15F text15 CODE >62:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-16E text15 CODE >63:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-17B text15 CODE >64:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-17D text15 CODE >67:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-19A text15 CODE >68:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-1A9 text15 CODE >69:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-1B6 text15 CODE >73:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-49D text14 CODE >74:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-49E text14 CODE >75:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4A2 text14 CODE >76:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4A6 text14 CODE >77:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4B7 text14 CODE >79:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4BB text14 CODE >80:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4BD text14 CODE >83:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4BE text14 CODE >84:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4BF text14 CODE >86:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3A5 text13 CODE >36:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3A7 text13 CODE >38:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3A8 text13 CODE >53:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3C0 text13 CODE >56:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3C2 text13 CODE >57:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3C3 text13 CODE >58:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3CB text13 CODE >59:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3CC text13 CODE >60:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3CD text13 CODE >61:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3DD text13 CODE >62:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3E1 text13 CODE >65:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3E9 text13 CODE >66:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3EA text13 CODE >67:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-513 text11 CODE >219:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-513 text11 CODE >220:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-516 text11 CODE >221:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-518 text11 CODE >222:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-50A text10 CODE >225:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-50A text10 CODE >226:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-50C text10 CODE >228:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-50E text10 CODE >229:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-50F text10 CODE >232:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-512 text10 CODE >233:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4E1 text9 CODE >235:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4E1 text9 CODE >237:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4E3 text9 CODE >240:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4E5 text9 CODE >241:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4E7 text9 CODE >242:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4E8 text9 CODE >243:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4E9 text9 CODE >246:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4EA text9 CODE >247:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4EB text9 CODE >250:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4EC text9 CODE >251:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4ED text9 CODE >252:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4EF text9 CODE >255:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-4F1 text9 CODE >256:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-501 text8 CODE >213:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-501 text8 CODE >214:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-504 text8 CODE >215:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-507 text8 CODE >216:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-509 text8 CODE >217:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-1B8 text7 CODE >20:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-1BA text7 CODE >22:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-1CA text7 CODE >23:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-1F3 text7 CODE >24:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-220 text7 CODE >25:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-24C text7 CODE >26:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-28D text7 CODE >27:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-29F text7 CODE >28:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-2E1 text7 CODE >29:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-2F3 text7 CODE >30:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-304 text7 CODE >23:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Controller_Protocol.c
-4C1 text6 CODE >90:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4C1 text6 CODE >91:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4C5 text6 CODE >93:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4C8 text6 CODE >94:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4D7 text6 CODE >95:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4DA text6 CODE >97:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4DE text6 CODE >99:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-4E0 text6 CODE >100:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\communication.c
-3EC text5 CODE >173:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-3EC text5 CODE >174:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-3FA text5 CODE >175:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-40F text5 CODE >176:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-426 text5 CODE >177:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-427 text4 CODE >141:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-427 text4 CODE >145:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-42B text4 CODE >148:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-431 text4 CODE >151:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-434 text4 CODE >153:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-435 text4 CODE >156:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-43B text4 CODE >159:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-43D text4 CODE >162:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-441 text4 CODE >165:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-44C text4 CODE >166:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-451 text4 CODE >167:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-315 text3 CODE >194:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-317 text3 CODE >196:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-322 text3 CODE >197:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-32F text3 CODE >198:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-343 text3 CODE >199:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-355 text3 CODE >200:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-368 text3 CODE >201:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-37C text3 CODE >202:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-38F text3 CODE >203:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-3A4 text3 CODE >205:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-452 text2 CODE >179:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-452 text2 CODE >182:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-457 text2 CODE >183:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-45A text2 CODE >184:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-461 text2 CODE >185:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-464 text2 CODE >186:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-46B text2 CODE >187:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-46E text2 CODE >188:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-475 text2 CODE >189:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-478 text2 CODE >190:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-521 text1 CODE >135:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-521 text1 CODE >137:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-524 text1 CODE >138:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-526 text1 CODE >139:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-479 maintext CODE >114:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-479 maintext CODE >115:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-47C maintext CODE >118:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-480 maintext CODE >119:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-48F maintext CODE >120:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-492 maintext CODE >124:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-496 maintext CODE >125:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-499 maintext CODE >127:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-49C maintext CODE >123:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\main.c
-51B clrtext CODE >2313:C:\Users\pguz1\AppData\Local\Temp\s5io.
-51B clrtext CODE >2314:C:\Users\pguz1\AppData\Local\Temp\s5io.
-51C clrtext CODE >2315:C:\Users\pguz1\AppData\Local\Temp\s5io.
-51C clrtext CODE >2316:C:\Users\pguz1\AppData\Local\Temp\s5io.
-51D clrtext CODE >2317:C:\Users\pguz1\AppData\Local\Temp\s5io.
-51E clrtext CODE >2318:C:\Users\pguz1\AppData\Local\Temp\s5io.
-51F clrtext CODE >2319:C:\Users\pguz1\AppData\Local\Temp\s5io.
-520 clrtext CODE >2320:C:\Users\pguz1\AppData\Local\Temp\s5io.
+10 cinit CODE >2240:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+10 cinit CODE >2243:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+10 cinit CODE >2299:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+13 cinit CODE >2300:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+14 cinit CODE >2301:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+17 cinit CODE >2302:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+18 cinit CODE >2319:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+19 cinit CODE >2320:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+1A cinit CODE >2321:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+1B cinit CODE >2322:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+1C cinit CODE >2323:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+1D cinit CODE >2324:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+1F cinit CODE >2330:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+1F cinit CODE >2332:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+20 cinit CODE >2333:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+21 cinit CODE >2334:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+4 intentry CODE >51:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+4 intentry CODE >219:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+6 intentry CODE >220:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+9 intentry CODE >221:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+C intentry CODE >223:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+54A text18 CODE >24:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+54A text18 CODE >25:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+54F text18 CODE >27:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+553 text18 CODE >29:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+554 text18 CODE >30:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+555 text18 CODE >31:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+557 text18 CODE >33:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+23 text17 CODE >34:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+24 text17 CODE >35:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+2C text17 CODE >36:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+3A text17 CODE >37:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+48 text17 CODE >38:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+55 text17 CODE >39:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+56 text17 CODE >40:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+57 text17 CODE >41:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+67 text17 CODE >42:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+7D text17 CODE >43:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+8C text17 CODE >44:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+A2 text17 CODE >45:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+AC text17 CODE >46:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+B3 text17 CODE >47:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+C1 text17 CODE >48:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+C4 text17 CODE >50:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+D4 text17 CODE >52:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+F5 text17 CODE >53:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+105 text17 CODE >54:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+112 text17 CODE >55:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+114 text17 CODE >58:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+12A text17 CODE >59:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+13F text17 CODE >61:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+156 text17 CODE >62:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+165 text17 CODE >63:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+172 text17 CODE >64:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+174 text17 CODE >67:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+191 text17 CODE >68:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+1A0 text17 CODE >69:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+1AD text17 CODE >73:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+493 text16 CODE >74:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+494 text16 CODE >75:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+498 text16 CODE >76:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+49C text16 CODE >77:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4AD text16 CODE >79:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4B1 text16 CODE >80:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4B3 text16 CODE >83:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4B4 text16 CODE >84:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4B5 text16 CODE >86:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+3C7 text15 CODE >36:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+3C9 text15 CODE >38:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+3CA text15 CODE >53:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+3E2 text15 CODE >56:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+3E4 text15 CODE >57:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+3E5 text15 CODE >58:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+3ED text15 CODE >59:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+3EE text15 CODE >60:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+3EF text15 CODE >61:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+3FF text15 CODE >62:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+403 text15 CODE >65:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+40B text15 CODE >66:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+40C text15 CODE >67:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+538 text13 CODE >4:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+53A text13 CODE >6:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+53B text13 CODE >43:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+53D text13 CODE >44:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+541 text13 CODE >45:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+543 text13 CODE >46:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+545 text13 CODE >47:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+548 text13 CODE >50:C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+30C text12 CODE >116:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+30C text12 CODE >119:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+33A text12 CODE >120:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+348 text12 CODE >121:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+358 text12 CODE >122:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+366 text12 CODE >120:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+559 text11 CODE >234:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+559 text11 CODE >235:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+55B text11 CODE >236:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+55D text11 CODE >237:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+447 text10 CODE >240:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+447 text10 CODE >241:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+449 text10 CODE >243:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+44B text10 CODE >245:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+44C text10 CODE >246:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+44D text10 CODE >247:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+44E text10 CODE >248:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+44F text10 CODE >249:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+450 text10 CODE >250:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+451 text10 CODE >251:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+452 text10 CODE >253:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+453 text10 CODE >254:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+454 text10 CODE >255:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+455 text10 CODE >259:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+45A text10 CODE >260:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+45B text10 CODE >261:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+45E text10 CODE >262:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+460 text10 CODE >263:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+461 text10 CODE >265:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+463 text10 CODE >267:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+465 text10 CODE >268:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+467 text10 CODE >269:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+468 text10 CODE >271:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+46E text10 CODE >272:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+526 text9 CODE >274:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+526 text9 CODE >276:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+528 text9 CODE >279:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+52A text9 CODE >280:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+52C text9 CODE >281:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+52D text9 CODE >282:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+52E text9 CODE >285:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+52F text9 CODE >286:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+530 text9 CODE >287:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+531 text9 CODE >290:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+532 text9 CODE >291:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+533 text9 CODE >292:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+535 text9 CODE >295:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+537 text9 CODE >296:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+513 text8 CODE >225:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+513 text8 CODE >226:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+516 text8 CODE >227:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+519 text8 CODE >228:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+51C text8 CODE >229:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+51E text8 CODE >230:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+521 text8 CODE >231:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+525 text8 CODE >232:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+1AF text7 CODE >20:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+1B1 text7 CODE >22:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+1C1 text7 CODE >23:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+1EA text7 CODE >24:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+217 text7 CODE >25:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+243 text7 CODE >26:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+284 text7 CODE >27:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+296 text7 CODE >28:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+2D8 text7 CODE >29:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+2EA text7 CODE >30:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+2FB text7 CODE >23:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\Controller_Protocol.c
+4DA text6 CODE >90:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4DA text6 CODE >91:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4DE text6 CODE >93:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4E1 text6 CODE >94:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4F0 text6 CODE >95:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4F3 text6 CODE >97:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4F7 text6 CODE >99:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4F9 text6 CODE >100:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\communication.c
+4FA text5 CODE >181:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4FA text5 CODE >182:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+502 text5 CODE >183:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+50A text5 CODE >184:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+512 text5 CODE >185:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4B7 text4 CODE >147:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4B7 text4 CODE >149:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4B9 text4 CODE >153:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4BC text4 CODE >156:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4C2 text4 CODE >159:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4C5 text4 CODE >161:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4C6 text4 CODE >164:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4CD text4 CODE >167:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4CF text4 CODE >170:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4D3 text4 CODE >173:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4D7 text4 CODE >174:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+4D9 text4 CODE >175:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+40E text3 CODE >206:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+40E text3 CODE >208:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+416 text3 CODE >209:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+41E text3 CODE >210:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+426 text3 CODE >211:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+42E text3 CODE >212:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+436 text3 CODE >213:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+43E text3 CODE >214:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+446 text3 CODE >217:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+36C text2 CODE >187:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+36C text2 CODE >190:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+370 text2 CODE >191:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+37A text2 CODE >192:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+381 text2 CODE >193:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+387 text2 CODE >194:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+391 text2 CODE >195:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+398 text2 CODE >196:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+39E text2 CODE >197:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+3A8 text2 CODE >198:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+3AF text2 CODE >199:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+3B5 text2 CODE >200:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+3BF text2 CODE >201:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+3C6 text2 CODE >202:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+566 text1 CODE >141:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+566 text1 CODE >143:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+569 text1 CODE >144:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+56B text1 CODE >145:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+46F maintext CODE >121:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+46F maintext CODE >122:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+472 maintext CODE >125:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+476 maintext CODE >126:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+485 maintext CODE >127:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+488 maintext CODE >131:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+48C maintext CODE >132:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+48F maintext CODE >133:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+492 maintext CODE >130:C:\Users\pguz1\Desktop\2019_ServoSlave_Communication_PIC16F18325\ServoSlave_communication.X\main.c
+560 clrtext CODE >2308:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+560 clrtext CODE >2309:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+561 clrtext CODE >2310:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+561 clrtext CODE >2311:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+562 clrtext CODE >2312:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+563 clrtext CODE >2313:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+564 clrtext CODE >2314:C:\Users\pguz1\AppData\Local\Temp\s6ic.
+565 clrtext CODE >2315:C:\Users\pguz1\AppData\Local\Temp\s6ic.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -337,62 +375,66 @@ FE text15 CODE >53:C:\Users\pguz1\MPLABXProjects\ServoSlave_communication.X\Cont
 ___latbits 2 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __LdataBANK0 0 0 ABS 0 dataBANK0 -
 __Hspace_0 800B 0 ABS 0 - -
-__Hspace_1 7E 0 ABS 0 - -
+__Hspace_1 A4 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __HidataBANK0 0 0 ABS 0 idataBANK0 -
-_Receive_flag 64 0 BANK0 1 dataBANK0 dist/default/production\ServoSlave_communication.X.production.obj
-_Reception_from_master 74A 0 CODE 0 text13 dist/default/production\ServoSlave_communication.X.production.obj
+_Receive_flag 67 0 BANK0 1 dataBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+_Reception_from_master 78E 0 CODE 0 text15 dist/default/production\ServoSlave_communication.X.production.obj
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
-_Reception_from_master_main 982 0 CODE 0 text6 dist/default/production\ServoSlave_communication.X.production.obj
+_Reception_from_master_main 9B4 0 CODE 0 text6 dist/default/production\ServoSlave_communication.X.production.obj
 _OP 29 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
-Write_Address@address 50 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+Write_Address@address 59 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __Hstrings 0 0 ABS 0 strings -
 _PLLR 48E0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\pguz1\AppData\Local\Temp\s5io.obj
-_main 8F2 0 CODE 0 maintext dist/default/production\ServoSlave_communication.X.production.obj
+___sp 0 0 STACK 2 stack C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
+_main 8DE 0 CODE 0 maintext dist/default/production\ServoSlave_communication.X.production.obj
+_zero 2F 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 btemp 7E 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-start 1C 0 CODE 0 init C:\Users\pguz1\AppData\Local\Temp\s5io.obj
-_SetData A42 0 CODE 0 text1 dist/default/production\ServoSlave_communication.X.production.obj
+start 1C 0 CODE 0 init C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
+_SetData ACC 0 CODE 0 text1 dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_BOREN$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-__end_of_Oscillator_Initialize A36 0 CODE 0 text11 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_Oscillator_Initialize AC0 0 CODE 0 text11 dist/default/production\ServoSlave_communication.X.production.obj
 Store_Datas@EUSART_ERROR 77 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
-__HbssCOMMON 0 0 ABS 0 bssCOMMON -
-Organize_Datas@RxData 5A 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+Organize_Datas@RxData 63 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_DEBUG$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 slave_address_check@data_count 75 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
-_Buffer0 31 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+_Buffer0 36 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __LidataBANK0 0 0 ABS 0 idataBANK0 -
 __Hpowerup 0 0 CODE 0 powerup -
-__end_of_EUSART_ERROR_from_master A02 0 CODE 0 text16 dist/default/production\ServoSlave_communication.X.production.obj
-_Oscillator_Initialize A26 0 CODE 0 text11 dist/default/production\ServoSlave_communication.X.production.obj
-intlevel0 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s5io.obj
-intlevel1 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s5io.obj
-intlevel2 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s5io.obj
-intlevel3 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s5io.obj
-intlevel4 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s5io.obj
-intlevel5 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s5io.obj
-_not_of_before_data 7D 0 COMMON 1 bssCOMMON dist/default/production\ServoSlave_communication.X.production.obj
-__LbssCOMMON 0 0 ABS 0 bssCOMMON -
+ChangeAddress@None 5C 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_EUSART_ERROR_from_master AB2 0 CODE 0 text18 dist/default/production\ServoSlave_communication.X.production.obj
+_Oscillator_Initialize AB2 0 CODE 0 text11 dist/default/production\ServoSlave_communication.X.production.obj
+intlevel0 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
+intlevel1 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
+intlevel2 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
+intlevel3 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
+intlevel4 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
+intlevel5 0 0 ENTRY 0 functab C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
+_not_of_before_data 33 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+___bmul@multiplicand 59 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 wtemp0 7E 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 slave_address_check@sample_data 76 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
 __Hfunctab 0 0 ENTRY 0 functab -
 _RC1STAbits 19D 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 slave_address_check@slave_flag 71 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
-Organize_Datas@bus_number 53 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+Organize_Datas@bus_number 5C 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __Hclrtext 0 0 ABS 0 clrtext -
 _ANSELA 18C 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_BORV$HIGH 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
+__end_of___bmul A94 0 CODE 0 text13 dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_Store_Datas 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-Organize_Datas@number_of_data 51 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+Organize_Datas@number_of_data 5A 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __Lmaintext 0 0 ABS 0 maintext -
+___bmul@multiplier 5C 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+__CFG_FEXTOSC$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_INTERRUPT_HANDLER 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-_slave_different_flag 63 0 BANK0 1 dataBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+_slave_different_flag 66 0 BANK0 1 dataBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 Store_Datas@received_data 72 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
-_address 61 0 BANK0 1 dataBANK0 dist/default/production\ServoSlave_communication.X.production.obj
-Reception_from_master@Receive_data_count 2F 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
-Write_data@servo_data 52 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+_address 31 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+Reception_from_master@Receive_data_count 34 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+Write_data@servo_data 59 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_Pin_Initialize 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_PPS1WAY$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_FCMEN$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
@@ -400,15 +442,18 @@ __CFG_MCLRE$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.p
 start_initialization 20 0 CODE 0 cinit dist/default/production\ServoSlave_communication.X.production.obj
 _OSCFRQ 91F 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 _TRISAbits 8C 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
+_TRISCbits 8E 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 _RC1REG 199 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_STVREN$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-_ChangeData 8A4 0 CODE 0 text2 dist/default/production\ServoSlave_communication.X.production.obj
-clear_ram0 A36 0 CODE 0 clrtext dist/default/production\ServoSlave_communication.X.production.obj
-__pcstackBANK0 48 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
-__end_of_UART_Initialize 9E4 0 CODE 0 text9 dist/default/production\ServoSlave_communication.X.production.obj
-_Initialize A02 0 CODE 0 text8 dist/default/production\ServoSlave_communication.X.production.obj
-_Write_data 62A 0 CODE 0 text3 dist/default/production\ServoSlave_communication.X.production.obj
-___int_sp 0 0 STACK 2 stack C:\Users\pguz1\AppData\Local\Temp\s5io.obj
+_ChangeData 6D8 0 CODE 0 text2 dist/default/production\ServoSlave_communication.X.production.obj
+Pin_Initialize@state 59 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+clear_ram0 AC0 0 CODE 0 clrtext dist/default/production\ServoSlave_communication.X.production.obj
+__pcstackBANK0 51 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+__pcstackBANK1 A0 0 BANK1 1 cstackBANK1 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_UART_Initialize A70 0 CODE 0 text9 dist/default/production\ServoSlave_communication.X.production.obj
+_Initialize A26 0 CODE 0 text8 dist/default/production\ServoSlave_communication.X.production.obj
+_Write_data 81C 0 CODE 0 text3 dist/default/production\ServoSlave_communication.X.production.obj
+___int_sp 0 0 STACK 2 stack C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -419,8 +464,8 @@ __Hbank6 0 0 ABS 0 bank6 -
 __Hbank7 0 0 ABS 0 bank7 -
 __Hbank8 0 0 ABS 0 bank8 -
 __Hbank9 0 0 ABS 0 bank9 -
-_Organize_Datas 370 0 CODE 0 text7 dist/default/production\ServoSlave_communication.X.production.obj
-__Hcinit 58 0 CODE 0 cinit -
+_Organize_Datas 35E 0 CODE 0 text7 dist/default/production\ServoSlave_communication.X.production.obj
+__Hcinit 46 0 CODE 0 cinit -
 __Hidloc 0 0 IDLOC 0 idloc -
 __Hsfr10 0 0 ABS 0 sfr10 -
 __Hsfr11 0 0 ABS 0 sfr11 -
@@ -508,8 +553,8 @@ __Lsfr30 0 0 ABS 0 sfr30 -
 __Lsfr31 0 0 ABS 0 sfr31 -
 __Lstack 0 0 STACK 2 stack -
 Store_Datas@Buffer 79 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
-Reception_from_master@error_complete 4F 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
-_Write_Address 7D8 0 CODE 0 text5 dist/default/production\ServoSlave_communication.X.production.obj
+Reception_from_master@error_complete 58 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+_Write_Address 9F4 0 CODE 0 text5 dist/default/production\ServoSlave_communication.X.production.obj
 _INTCONbits B 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
@@ -539,38 +584,46 @@ __Lsfr7 0 0 ABS 0 sfr7 -
 __Lsfr8 0 0 ABS 0 sfr8 -
 __Lsfr9 0 0 ABS 0 sfr9 -
 __Ltext 0 0 ABS 0 text -
+___bmul A70 0 CODE 0 text13 dist/default/production\ServoSlave_communication.X.production.obj
 Initialize_Parameters@i 2D 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
-_UART_Initialize 9C2 0 CODE 0 text9 dist/default/production\ServoSlave_communication.X.production.obj
+__LcstackBANK1 0 0 ABS 0 cstackBANK1 -
+_UART_Initialize A4C 0 CODE 0 text9 dist/default/production\ServoSlave_communication.X.production.obj
 int$flags 7E 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 __end_of_INTERRUPT_HANDLER 1C 0 CODE 0 intentry dist/default/production\ServoSlave_communication.X.production.obj
-__end_of_ChangeData 8F2 0 CODE 0 text2 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_ChangeData 78E 0 CODE 0 text2 dist/default/production\ServoSlave_communication.X.production.obj
+_GIE 5F 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 _SeP 20 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 _StP 25 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __S0 800B 0 ABS 0 - -
-__S1 7E 0 ABS 0 - -
+__S1 A4 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-__end_of_Initialize A14 0 CODE 0 text8 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_Initialize A4C 0 CODE 0 text8 dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_SetData 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_slave_address_check 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-__end_of_Write_data 74A 0 CODE 0 text3 dist/default/production\ServoSlave_communication.X.production.obj
-__end_of_Organize_Datas 62A 0 CODE 0 text7 dist/default/production\ServoSlave_communication.X.production.obj
-_ChangeAddress 84E 0 CODE 0 text4 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_Write_data 88E 0 CODE 0 text3 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_Organize_Datas 618 0 CODE 0 text7 dist/default/production\ServoSlave_communication.X.production.obj
+_ChangeAddress 96E 0 CODE 0 text4 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_Initialize_Parameters 6D8 0 CODE 0 text12 dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_Oscillator_Initialize 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-_Store_Datas 58 0 CODE 0 text15 dist/default/production\ServoSlave_communication.X.production.obj
+_Store_Datas 46 0 CODE 0 text17 dist/default/production\ServoSlave_communication.X.production.obj
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\pguz1\AppData\Local\Temp\s5io.obj
-__pdataBANK0 61 0 BANK0 1 dataBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+reset_vec 0 0 CODE 0 reset_vec C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
+__pdataBANK0 66 0 BANK0 1 dataBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+__size_of___bmul 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
+_Initialize_Parameters 618 0 CODE 0 text12 dist/default/production\ServoSlave_communication.X.production.obj
 _PIE1bits 91 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-__ptext10 A14 0 CODE 0 text10 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext11 A26 0 CODE 0 text11 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext13 74A 0 CODE 0 text13 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext14 93A 0 CODE 0 text14 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext15 58 0 CODE 0 text15 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext16 9E4 0 CODE 0 text16 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext10 88E 0 CODE 0 text10 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext11 AB2 0 CODE 0 text11 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext12 618 0 CODE 0 text12 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext13 A70 0 CODE 0 text13 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext15 78E 0 CODE 0 text15 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext16 926 0 CODE 0 text16 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext17 46 0 CODE 0 text17 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext18 A94 0 CODE 0 text18 dist/default/production\ServoSlave_communication.X.production.obj
 __Lbank10 0 0 ABS 0 bank10 -
 __Lbank11 0 0 ABS 0 bank11 -
 __Lbank12 0 0 ABS 0 bank12 -
@@ -593,9 +646,9 @@ __Lbank28 0 0 BANK28 1 bank28 -
 __Lbank29 0 0 BANK29 1 bank29 -
 __Lbank30 0 0 BANK30 1 bank30 -
 __Lbank31 0 0 BANK31 1 bank31 -
-__pmaintext 8F2 0 CODE 0 maintext dist/default/production\ServoSlave_communication.X.production.obj
+__pmaintext 8DE 0 CODE 0 maintext dist/default/production\ServoSlave_communication.X.production.obj
 __Lbigram 0 0 ABS 0 bigram -
-_slave_address_check 93A 0 CODE 0 text14 dist/default/production\ServoSlave_communication.X.production.obj
+_slave_address_check 926 0 CODE 0 text16 dist/default/production\ServoSlave_communication.X.production.obj
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 1000E 0 CONFIG 0 config -
 __CFG_CP$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
@@ -605,88 +658,90 @@ _LATCbits 10E 0 ABS 0 - dist/default/production\ServoSlave_communication.X.produ
 Store_Datas@number_of_receive_data 73 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_Write_Address 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_UART_Initialize 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-__end_of_Reception_from_master_main 9C2 0 CODE 0 text6 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_Reception_from_master_main 9F4 0 CODE 0 text6 dist/default/production\ServoSlave_communication.X.production.obj
 _INTERRUPT_HANDLER 8 0 CODE 0 intentry dist/default/production\ServoSlave_communication.X.production.obj
-stackhi 23EF 0 ABS 0 - C:\Users\pguz1\AppData\Local\Temp\s5io.obj
-stacklo 2045 0 ABS 0 - C:\Users\pguz1\AppData\Local\Temp\s5io.obj
+stackhi 23EF 0 ABS 0 - C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
+stacklo 2054 0 ABS 0 - C:\Users\pguz1\AppData\Local\Temp\s6ic.obj
 _OSCCON1 919 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-Reception_from_master@slave_address 4E 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+Reception_from_master@slave_address 57 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_LVP$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-_EUSART_ERROR_from_master 9E4 0 CODE 0 text16 dist/default/production\ServoSlave_communication.X.production.obj
+_EUSART_ERROR_from_master A94 0 CODE 0 text18 dist/default/production\ServoSlave_communication.X.production.obj
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
-__end_of_SetData A4E 0 CODE 0 text1 dist/default/production\ServoSlave_communication.X.production.obj
-__pbssCOMMON 7D 0 COMMON 1 bssCOMMON dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_SetData AD8 0 CODE 0 text1 dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_LPBOREN$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__HcstackBANK1 0 0 ABS 0 cstackBANK1 -
 _PIR1bits 11 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __Lend_init 1C 0 CODE 0 end_init -
 __CFG_CSWEN$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 __size_of_ChangeAddress 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-end_of_initialization 50 0 CODE 0 cinit dist/default/production\ServoSlave_communication.X.production.obj
-__end_of_Write_Address 84E 0 CODE 0 text5 dist/default/production\ServoSlave_communication.X.production.obj
+end_of_initialization 3E 0 CODE 0 cinit dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_Write_Address A26 0 CODE 0 text5 dist/default/production\ServoSlave_communication.X.production.obj
 __Hintentry 1C 0 CODE 0 intentry -
 __CFG_RSTOSC$HFINT32 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 _TX1STAbits 19E 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
+_PPSLOCKbits E0F 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 4 0 CODE 0 reset_vec -
 _BAUD1CONbits 19F 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-_Pin_Initialize A14 0 CODE 0 text10 dist/default/production\ServoSlave_communication.X.production.obj
+_Pin_Initialize 88E 0 CODE 0 text10 dist/default/production\ServoSlave_communication.X.production.obj
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
-__ptext1 A42 0 CODE 0 text1 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext2 8A4 0 CODE 0 text2 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext3 62A 0 CODE 0 text3 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext4 84E 0 CODE 0 text4 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext5 7D8 0 CODE 0 text5 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext6 982 0 CODE 0 text6 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext7 370 0 CODE 0 text7 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext8 A02 0 CODE 0 text8 dist/default/production\ServoSlave_communication.X.production.obj
-__ptext9 9C2 0 CODE 0 text9 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext1 ACC 0 CODE 0 text1 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext2 6D8 0 CODE 0 text2 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext3 81C 0 CODE 0 text3 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext4 96E 0 CODE 0 text4 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext5 9F4 0 CODE 0 text5 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext6 9B4 0 CODE 0 text6 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext7 35E 0 CODE 0 text7 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext8 A26 0 CODE 0 text8 dist/default/production\ServoSlave_communication.X.production.obj
+__ptext9 A4C 0 CODE 0 text9 dist/default/production\ServoSlave_communication.X.production.obj
 Store_Datas@bus_number 75 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_ChangeData 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-__end_of_ChangeAddress 8A4 0 CODE 0 text4 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_ChangeAddress 9B4 0 CODE 0 text4 dist/default/production\ServoSlave_communication.X.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec -
-__end_of_slave_address_check 982 0 CODE 0 text14 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_slave_address_check 96E 0 CODE 0 text16 dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_Initialize 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_Write_data 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_CLKOUTEN$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-__end_of__initialization 50 0 CODE 0 cinit dist/default/production\ServoSlave_communication.X.production.obj
+__end_of__initialization 3E 0 CODE 0 cinit dist/default/production\ServoSlave_communication.X.production.obj
 __Lfunctab 0 0 ENTRY 0 functab -
-__pidataBANK0 A4E 0 CODE 0 idataBANK0 dist/default/production\ServoSlave_communication.X.production.obj
-_address_status 30 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
-__CFG_FEXTOSC$HS 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
+__pidataBANK0 AD8 0 CODE 0 idataBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+_address_status 35 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 _SP1BRGH 19C 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 _SP1BRGL 19B 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __Lclrtext 0 0 ABS 0 clrtext -
-__end_of_Pin_Initialize A26 0 CODE 0 text10 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_Pin_Initialize 8DE 0 CODE 0 text10 dist/default/production\ServoSlave_communication.X.production.obj
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
 __Hend_init 20 0 CODE 0 end_init -
-__end_of_main 93A 0 CODE 0 maintext dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_main 926 0 CODE 0 maintext dist/default/production\ServoSlave_communication.X.production.obj
 _RXPPS E24 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-_TRISC 8E 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_RxData0 3E 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
-Organize_Datas@Buffer 50 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+_RxData0 45 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+Organize_Datas@Buffer 59 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_CPD$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_EUSART_ERROR_from_master 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __pintentry 8 0 CODE 0 intentry dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_Reception_from_master_main 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __HdataBANK0 0 0 ABS 0 dataBANK0 -
-__end_of_Store_Datas 370 0 CODE 0 text15 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_Store_Datas 35E 0 CODE 0 text17 dist/default/production\ServoSlave_communication.X.production.obj
 __initialization 20 0 CODE 0 cinit dist/default/production\ServoSlave_communication.X.production.obj
+___bmul@product 5B 0 BANK0 1 cstackBANK0 dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __size_of_Organize_Datas 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 EUSART_ERROR_from_master@waste_data 71 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
 __pbssBANK0 20 0 BANK0 1 bssBANK0 dist/default/production\ServoSlave_communication.X.production.obj
+_PPSLOCK E0F 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 __CFG_WRT$OFF 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
-__end_of_Reception_from_master 7D8 0 CODE 0 text13 dist/default/production\ServoSlave_communication.X.production.obj
+__end_of_Reception_from_master 81C 0 CODE 0 text15 dist/default/production\ServoSlave_communication.X.production.obj
 slave_address_check@slave_address 70 0 COMMON 1 cstackCOMMON dist/default/production\ServoSlave_communication.X.production.obj
+__size_of_Initialize_Parameters 0 0 ABS 0 - dist/default/production\ServoSlave_communication.X.production.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -712,8 +767,9 @@ slave_address_check@slave_address 70 0 COMMON 1 cstackCOMMON dist/default/produc
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cstackCOMMON 1 70 70 E 1
-intentry 0 4 8 527 2
+cstackCOMMON 1 70 70 D 1
+cstackBANK1 1 A0 A0 4 1
+intentry 0 4 8 56A 2
 reset_vec 0 0 0 2 2
-bssBANK0 1 20 20 45 1
+bssBANK0 1 20 20 48 1
 config 0 8007 1000E 4 2
