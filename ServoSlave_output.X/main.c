@@ -54,9 +54,9 @@
 /*pin*/
 //#define SERVO_ADDRESS (PORTC&0b00000111)
 #define SERVO_ADDRESS_bit0 PORTCbits.RC0
-#define SERVO_ADDRESS_bit1 PORTAbits.RA7
-#define SERVO_ADDRESS_bit2 PORTCbits.RC1
-#define SERVO_DATA (PORTA&(0b01111111))
+#define SERVO_ADDRESS_bit1 PORTCbits.RC1
+#define SERVO_ADDRESS_bit2 PORTCbits.RC2
+#define SERVO_DATA PORTA
 
 #define SERVO_OUTPUT_1 LATCbits.LATC3
 #define SERVO_OUTPUT_2 LATCbits.LATC6
@@ -66,7 +66,7 @@
 #define debug_LED0 LATBbits.LATB0
 #define debug_LED1 LATCbits.LATC7
 
-#define stop 0x7F  //角度のデータが8bitになったら、　0xFF　に変えること
+#define stop 0xFF  //角度のデータが8bitになったら、　0xFF　に変えること
 
 //基本フラグ
 #define on 1
@@ -187,7 +187,7 @@ void Calc_Duty() {
     /*変換式*/
 
     debug_LED0 = PORTAbits.RA0;
-    debug_LED1=PORTAbits.RA1;
+    debug_LED1 = PORTAbits.RA1;
     for (i = 1; i < 5; i++) {
         servo_duty[i] = ((servo_raw_data[i] * degree_sec) * sec_duty);
     }
@@ -226,9 +226,7 @@ void Pin_Initialize() {
     /*address*/
     TRISCbits.TRISC0 = 1;
     TRISCbits.TRISC1 = 1;
-
-    /*nothing*/
-    TRISCbits.TRISC2 = 0;
+    TRISCbits.TRISC2 = 1;
 
     /*output*/
     TRISCbits.TRISC3 = 0;

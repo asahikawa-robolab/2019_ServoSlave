@@ -17,7 +17,7 @@
 
 #pragma config WRT = OFF
 #pragma config VCAPEN = OFF
-#pragma config PLLEN = OFF
+#pragma config PLLEN = ON
 #pragma config STVREN = OFF
 #pragma config BORV = HI
 #pragma config LVP = OFF
@@ -4970,6 +4970,76 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
+# 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdbool.h"
+typedef unsigned char bool;
+
+# 13
+typedef unsigned char bool;
+
+# 7 "Controller_Protocol.h"
+typedef struct {
+int num;
+int count;
+} Organize_Parameter;
+
+typedef struct {
+int Buffer_count;
+bool Start_signal_has_come;
+bool S_flag;
+} Store_Parameter;
+
+typedef struct {
+int data_send_count;
+int last_signal;
+bool byte_data_complete;
+} Send_Parameter;
+
+typedef union {
+
+struct {
+unsigned lower_data : 4;
+unsigned upper_data : 4;
+};
+unsigned char all_data;
+} Untreated;
+
+typedef union {
+
+struct {
+unsigned lower_data : 4;
+unsigned upper_data : 4;
+unsigned UD_error : 1;
+unsigned LD_error : 1;
+};
+
+struct {
+unsigned data0 : 1;
+unsigned data1 : 1;
+unsigned data2 : 1;
+unsigned data3 : 1;
+unsigned data4 : 1;
+unsigned data5 : 1;
+unsigned data6 : 1;
+unsigned data7 : 1;
+};
+
+struct {
+unsigned char all_data;
+unsigned errors : 2;
+};
+} Processed;
+
+# 78
+Untreated Buffer0[6 * 2 + 3];
+Processed RxData0[6];
+
+# 100
+void Initialize_Parameters(void);
+void Organize_Datas(Processed *, Untreated *, int, int);
+unsigned char Store_Datas(Untreated *, unsigned char, int, int, bool(*)(void));
+void Send_StartSignal(void (*)(unsigned char), void (*)(bool), bool);
+void Send_Till_EndSignal(unsigned char *, void (*)(bool), void (*)(bool), int, int);
+
 # 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdint.h"
 typedef signed char int8_t;
 
@@ -5059,157 +5129,200 @@ typedef uint16_t uintptr_t;
 # 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
 
-# 91 "main.c"
+# 55 "communication.h"
+void Reception_from_master(uint8_t);
+void Reception_from_master_main(void);
+bool EUSART_ERROR_from_master(void);
+uint8_t slave_address_check(uint8_t, uint8_t, uint8_t);
+
+# 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdbool.h"
+typedef unsigned char bool;
+
+# 49 "main.c"
 void Initialize();
 void Oscillator_Initialize();
 void Pin_Initialize();
-void Timer_Initialize();
+void UART_Initialize();
+void interrupt INTERRUPT_HANDLER();
+void SetData();
+void ChangeAddress();
+void ChangeData();
+void Write_Address(Processed);
+void Write_data(Processed);
+
+# 94
+Processed address;
+Processed zero;
 
 
-void Renew_Raw_Data();
-void Calc_Duty();
-void Servo_Output_OFF();
+
+bool address_status = 0b000;
 
 
-int Timer1_time = 64536;
-bool data_renew[4] = {0, 0, 0, 0};
-bool EmergencyStop = 0;
+extern bool Receive_flag;
 
-
-unsigned char servo_raw_data[5];
-unsigned int servo_duty[5];
-
-# 114
+# 112
 int main(int argc, char** argv) {
 Initialize();
 
 
-while (1) {
-Renew_Raw_Data();
-if (
-data_renew[0] ==
-data_renew[1] ==
-data_renew[2] ==
-data_renew[3]
-)break;
-}
-Calc_Duty();
-
-
-LATCbits.LATC3 = 1;
-LATCbits.LATC6 = 1;
-LATCbits.LATC5 = 1;
-LATCbits.LATC4 = 1;
+while (Receive_flag != 0);
+Organize_Datas(RxData0, Buffer0, 6, 0);
+Receive_flag = 1;
 
 
 while (1) {
+if (Receive_flag == 0) {
+Reception_from_master_main();
+SetData();
 
-TMR1 = 64536;
-T1CONbits.TMR1ON = 1;
-while (!PIR1bits.TMR1IF);
-
-
-PIR1bits.TMR1IF = 0;
-TMR1 = 61736;
-
-while (!PIR1bits.TMR1IF) {
-
-Servo_Output_OFF();
+}
 }
 
-
-PIR1bits.TMR1IF = 0;
-TMR1 = 30336;
-do {
-Renew_Raw_Data();
-Calc_Duty();
-} while (!PIR1bits.TMR1IF);
-PIR1bits.TMR1IF = 0;
-
-LATCbits.LATC3 = 1;
-LATCbits.LATC6 = 1;
-LATCbits.LATC5 = 1;
-LATCbits.LATC4 = 1;
-}
 return (0);
 }
 
-void Renew_Raw_Data() {
+void SetData() {
+LATCbits.LATC4^=1;
 
-# 175
-if (PORTA == 0xFF) {
-EmergencyStop = 1;
+ChangeAddress();
+ChangeData();
+}
+
+void ChangeAddress() {
+Processed None;
+None.all_data = 0b000;
+
+
+
+if (address_status == 0b000) {
+
+# 148
+Write_Address(address);
+
+
+address_status = 1;
+
 } else {
-EmergencyStop = 0;
-servo_raw_data[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] = PORTA;
+
+# 156
+Write_Address(None);
+
+
+address_status = 0b000;
+
+
+address.all_data++;
+
+
+if (address.all_data >= 0b101) {
+address.all_data = 0b001;
 }
 
-data_renew[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] ^= 1;
 }
 
-void Calc_Duty() {
-int i;
-
-
-LATBbits.LATB0 = PORTAbits.RA0;
-LATCbits.LATC7 = PORTAbits.RA1;
-for (i = 1; i < 5; i++) {
-servo_duty[i] = ((servo_raw_data[i] * 1056E-8) * 2000000);
-}
 }
 
-void Servo_Output_OFF() {
-if (TMR1 >= (61736 + servo_duty[1]) && (!EmergencyStop)) LATCbits.LATC3 = 0;
-if (TMR1 >= (61736 + servo_duty[2]) && (!EmergencyStop)) LATCbits.LATC6 = 0;
-if (TMR1 >= (61736 + servo_duty[3]) && (!EmergencyStop)) LATCbits.LATC5 = 0;
-if (TMR1 >= (61736 + servo_duty[4]) && (!EmergencyStop)) LATCbits.LATC4 = 0;
-else;
+void Write_Address(Processed address) {
+LATBbits.LATB1 = address.data0;
+LATBbits.LATB0 = address.data1;
+LATCbits.LATC5 = address.data2;
 }
 
-# 208
+void ChangeData(void) {
+
+
+if (address.all_data == 1) {
+if (RxData0[5].all_data == 0x0)Write_data(zero);
+else Write_data(RxData0[1]);
+} else if (address.all_data == 2) {
+if (RxData0[5].all_data == 0x0)Write_data(zero);
+else Write_data(RxData0[2]);
+} else if (address.all_data == 3) {
+if (RxData0[5].all_data == 0x0)Write_data(zero);
+else Write_data(RxData0[3]);
+} else if (address.all_data == 4) {
+if (RxData0[5].all_data == 0x0)Write_data(zero);
+else Write_data(RxData0[4]);
+} else;
+
+}
+
+void Write_data(Processed servo_data) {
+
+LATAbits.LATA0 = servo_data.data0;
+LATAbits.LATA1 = servo_data.data1;
+LATAbits.LATA2 = servo_data.data2;
+LATAbits.LATA3 = servo_data.data3;
+LATBbits.LATB5 = servo_data.data4;
+LATBbits.LATB4 = servo_data.data5;
+LATBbits.LATB2 = servo_data.data6;
+LATBbits.LATB3 = servo_data.data7;
+
+}
+
+void interrupt INTERRUPT_HANDLER() {
+if (PIR1bits.RCIF) {
+Reception_from_master(0xC0);
+} else;
+}
+
 void Initialize() {
 Oscillator_Initialize();
 Pin_Initialize();
-Timer_Initialize();
+UART_Initialize();
+Initialize_Parameters();
+address.all_data = 0b001;
+zero.all_data = 0xFF;
 }
 
 void Oscillator_Initialize() {
-OSCCON = 0x73;
+OSCCON = 0xF0;
 }
 
 void Pin_Initialize() {
-
-
 ANSELA = 0x00;
 ANSELB = 0x00;
 
-TRISA = 0xFF;
+TRISCbits.TRISC7 = 1;
 
+TRISAbits.TRISA0 = 0;
+TRISAbits.TRISA1 = 0;
+TRISAbits.TRISA2 = 0;
+TRISAbits.TRISA3 = 0;
+TRISBbits.TRISB5 = 0;
+TRISBbits.TRISB4 = 0;
+TRISBbits.TRISB2 = 0;
+TRISBbits.TRISB3 = 0;
 
-TRISCbits.TRISC0 = 1;
-TRISCbits.TRISC1 = 1;
-TRISCbits.TRISC2 = 1;
-
-
-TRISCbits.TRISC3 = 0;
-TRISCbits.TRISC4 = 0;
-TRISCbits.TRISC5 = 0;
-TRISCbits.TRISC6 = 0;
-
-
+TRISBbits.TRISB1 = 0;
 TRISBbits.TRISB0 = 0;
-TRISCbits.TRISC7 = 0;
+TRISCbits.TRISC5 = 0;
+
+TRISCbits.TRISC4=0;
 }
 
-void Timer_Initialize() {
+void UART_Initialize() {
+
+PIE1bits.RCIE = 0;
 
 
-T1CON = 0x00;
+SPBRGH = 0x00;
+SPBRGL = 0x8A;
+TXSTAbits.BRGH = 1;
+BAUDCONbits.BRG16 = 1;
 
 
-INTCONbits.GIE = 0;
-INTCONbits.PEIE = 0;
+RCSTAbits.SPEN = 1;
+RCSTAbits.CREN = 1;
+TXSTAbits.SYNC = 0;
 
-PIE1bits.TMR1IE = 0;
+
+INTCONbits.GIE = 1;
+INTCONbits.PEIE = 1;
+PIE1bits.RCIE = 1;
+
+
+RCSTAbits.CREN = 1;
 }
 

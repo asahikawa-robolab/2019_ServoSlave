@@ -1,26 +1,5 @@
 
-# 1 "main.c"
-
-
-# 15
-#pragma config FOSC = INTOSC
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config CLKOUTEN = OFF
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-
-
-#pragma config WRT = OFF
-#pragma config VCAPEN = OFF
-#pragma config PLLEN = OFF
-#pragma config STVREN = OFF
-#pragma config BORV = HI
-#pragma config LVP = OFF
+# 1 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\pic\__eeprom.c"
 
 # 18 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -4834,382 +4813,175 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 4 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\__size_t.h"
-typedef unsigned size_t;
-
-# 7 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdio.h"
-struct __prbuf
+# 5 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\pic\__eeprom.c"
+void
+__eecpymem(volatile unsigned char *to, __eeprom unsigned char * from, unsigned char size)
 {
-char * ptr;
-void (* func)(char);
-};
+volatile unsigned char *cp = to;
 
-# 29 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\errno.h"
-extern int errno;
+while (EECON1bits.WR) continue;
+EEADR = (unsigned char)from;
+while(size--) {
+while (EECON1bits.WR) continue;
 
-# 12 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\conio.h"
-extern void init_uart(void);
+EECON1 &= 0x7F;
 
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 23
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 88 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 7 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdlib.h"
-typedef unsigned short wchar_t;
-
-# 15
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
-
-# 65
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-
-# 73
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-
-# 85
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-
-
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-# 104
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-
-# 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdint.h"
-typedef signed char int8_t;
-
-# 20
-typedef signed int int16_t;
-
-# 28
-typedef __int24 int24_t;
+EECON1bits.RD = 1;
+*cp++ = EEDATA;
+++EEADR;
+}
 
 # 36
-typedef signed long int int32_t;
-
-# 52
-typedef unsigned char uint8_t;
-
-# 58
-typedef unsigned int uint16_t;
-
-# 65
-typedef __uint24 uint24_t;
-
-# 72
-typedef unsigned long int uint32_t;
-
-# 88
-typedef signed char int_least8_t;
-
-# 96
-typedef signed int int_least16_t;
-
-# 109
-typedef __int24 int_least24_t;
-
-# 118
-typedef signed long int int_least32_t;
-
-# 136
-typedef unsigned char uint_least8_t;
-
-# 143
-typedef unsigned int uint_least16_t;
-
-# 154
-typedef __uint24 uint_least24_t;
-
-# 162
-typedef unsigned long int uint_least32_t;
-
-# 181
-typedef signed char int_fast8_t;
-
-# 188
-typedef signed int int_fast16_t;
-
-# 200
-typedef __int24 int_fast24_t;
-
-# 208
-typedef signed long int int_fast32_t;
-
-# 224
-typedef unsigned char uint_fast8_t;
-
-# 230
-typedef unsigned int uint_fast16_t;
-
-# 240
-typedef __uint24 uint_fast24_t;
-
-# 247
-typedef unsigned long int uint_fast32_t;
-
-# 268
-typedef int32_t intmax_t;
-
-# 282
-typedef uint32_t uintmax_t;
-
-# 289
-typedef int16_t intptr_t;
-
-
-
-
-typedef uint16_t uintptr_t;
-
-# 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
-# 91 "main.c"
-void Initialize();
-void Oscillator_Initialize();
-void Pin_Initialize();
-void Timer_Initialize();
-
-
-void Renew_Raw_Data();
-void Calc_Duty();
-void Servo_Output_OFF();
-
-
-int Timer1_time = 64536;
-bool data_renew[4] = {0, 0, 0, 0};
-bool EmergencyStop = 0;
-
-
-unsigned char servo_raw_data[5];
-unsigned int servo_duty[5];
-
-# 114
-int main(int argc, char** argv) {
-Initialize();
-
-
-while (1) {
-Renew_Raw_Data();
-if (
-data_renew[0] ==
-data_renew[1] ==
-data_renew[2] ==
-data_renew[3]
-)break;
-}
-Calc_Duty();
-
-
-LATCbits.LATC3 = 1;
-LATCbits.LATC6 = 1;
-LATCbits.LATC5 = 1;
-LATCbits.LATC4 = 1;
-
-
-while (1) {
-
-TMR1 = 64536;
-T1CONbits.TMR1ON = 1;
-while (!PIR1bits.TMR1IF);
-
-
-PIR1bits.TMR1IF = 0;
-TMR1 = 61736;
-
-while (!PIR1bits.TMR1IF) {
-
-Servo_Output_OFF();
 }
 
+void
+__memcpyee(__eeprom unsigned char * to, const unsigned char *from, unsigned char size)
+{
+const unsigned char *ptr =from;
 
-PIR1bits.TMR1IF = 0;
-TMR1 = 30336;
-do {
-Renew_Raw_Data();
-Calc_Duty();
-} while (!PIR1bits.TMR1IF);
-PIR1bits.TMR1IF = 0;
+while (EECON1bits.WR) continue;
+EEADR = (unsigned char)to - 1U;
 
-LATCbits.LATC3 = 1;
-LATCbits.LATC6 = 1;
-LATCbits.LATC5 = 1;
-LATCbits.LATC4 = 1;
+EECON1 &= 0x7F;
+
+while(size--) {
+while (EECON1bits.WR) {
+continue;
 }
-return (0);
+EEDATA = *ptr++;
+++EEADR;
+STATUSbits.CARRY = 0;
+if (INTCONbits.GIE) {
+STATUSbits.CARRY = 1;
 }
-
-void Renew_Raw_Data() {
-
-# 175
-if (PORTA == 0xFF) {
-EmergencyStop = 1;
-} else {
-EmergencyStop = 0;
-servo_raw_data[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] = PORTA;
-}
-
-data_renew[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] ^= 1;
-}
-
-void Calc_Duty() {
-int i;
-
-
-LATBbits.LATB0 = PORTAbits.RA0;
-LATCbits.LATC7 = PORTAbits.RA1;
-for (i = 1; i < 5; i++) {
-servo_duty[i] = ((servo_raw_data[i] * 1056E-8) * 2000000);
-}
-}
-
-void Servo_Output_OFF() {
-if (TMR1 >= (61736 + servo_duty[1]) && (!EmergencyStop)) LATCbits.LATC3 = 0;
-if (TMR1 >= (61736 + servo_duty[2]) && (!EmergencyStop)) LATCbits.LATC6 = 0;
-if (TMR1 >= (61736 + servo_duty[3]) && (!EmergencyStop)) LATCbits.LATC5 = 0;
-if (TMR1 >= (61736 + servo_duty[4]) && (!EmergencyStop)) LATCbits.LATC4 = 0;
-else;
-}
-
-# 208
-void Initialize() {
-Oscillator_Initialize();
-Pin_Initialize();
-Timer_Initialize();
-}
-
-void Oscillator_Initialize() {
-OSCCON = 0x73;
-}
-
-void Pin_Initialize() {
-
-
-ANSELA = 0x00;
-ANSELB = 0x00;
-
-TRISA = 0xFF;
-
-
-TRISCbits.TRISC0 = 1;
-TRISCbits.TRISC1 = 1;
-TRISCbits.TRISC2 = 1;
-
-
-TRISCbits.TRISC3 = 0;
-TRISCbits.TRISC4 = 0;
-TRISCbits.TRISC5 = 0;
-TRISCbits.TRISC6 = 0;
-
-
-TRISBbits.TRISB0 = 0;
-TRISCbits.TRISC7 = 0;
-}
-
-void Timer_Initialize() {
-
-
-T1CON = 0x00;
-
-
 INTCONbits.GIE = 0;
-INTCONbits.PEIE = 0;
+EECON1bits.WREN = 1;
+EECON2 = 0x55;
+EECON2 = 0xAA;
+EECON1bits.WR = 1;
+EECON1bits.WREN = 0;
+if (STATUSbits.CARRY) {
+INTCONbits.GIE = 1;
+}
+}
 
-PIE1bits.TMR1IE = 0;
+# 101
+}
+
+unsigned char
+__eetoc(__eeprom void *addr)
+{
+unsigned char data;
+__eecpymem((unsigned char *) &data,addr,1);
+return data;
+}
+
+unsigned int
+__eetoi(__eeprom void *addr)
+{
+unsigned int data;
+__eecpymem((unsigned char *) &data,addr,2);
+return data;
+}
+
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__eetom(__eeprom void *addr)
+{
+__uint24 data;
+__eecpymem((unsigned char *) &data,addr,3);
+return data;
+}
+#pragma warning pop
+
+unsigned long
+__eetol(__eeprom void *addr)
+{
+unsigned long data;
+__eecpymem((unsigned char *) &data,addr,4);
+return data;
+}
+
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__eetoo(__eeprom void *addr)
+{
+unsigned long long data;
+__eecpymem((unsigned char *) &data,addr,8);
+return data;
+}
+#pragma warning pop
+
+unsigned char
+__ctoee(__eeprom void *addr, unsigned char data)
+{
+__memcpyee(addr,(unsigned char *) &data,1);
+return data;
+}
+
+unsigned int
+__itoee(__eeprom void *addr, unsigned int data)
+{
+__memcpyee(addr,(unsigned char *) &data,2);
+return data;
+}
+
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__mtoee(__eeprom void *addr, __uint24 data)
+{
+__memcpyee(addr,(unsigned char *) &data,3);
+return data;
+}
+#pragma warning pop
+
+unsigned long
+__ltoee(__eeprom void *addr, unsigned long data)
+{
+__memcpyee(addr,(unsigned char *) &data,4);
+return data;
+}
+
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__otoee(__eeprom void *addr, unsigned long long data)
+{
+__memcpyee(addr,(unsigned char *) &data,8);
+return data;
+}
+#pragma warning pop
+
+float
+__eetoft(__eeprom void *addr)
+{
+float data;
+__eecpymem((unsigned char *) &data,addr,3);
+return data;
+}
+
+double
+__eetofl(__eeprom void *addr)
+{
+double data;
+__eecpymem((unsigned char *) &data,addr,4);
+return data;
+}
+
+float
+__fttoee(__eeprom void *addr, float data)
+{
+__memcpyee(addr,(unsigned char *) &data,3);
+return data;
+}
+
+double
+__fltoee(__eeprom void *addr, double data)
+{
+__memcpyee(addr,(unsigned char *) &data,4);
+return data;
 }
 
