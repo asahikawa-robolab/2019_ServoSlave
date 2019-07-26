@@ -5059,7 +5059,7 @@ typedef uint16_t uintptr_t;
 # 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
 
-# 91 "main.c"
+# 97 "main.c"
 void Initialize();
 void Oscillator_Initialize();
 void Pin_Initialize();
@@ -5079,7 +5079,7 @@ bool EmergencyStop = 0;
 unsigned char servo_raw_data[5];
 unsigned int servo_duty[5];
 
-# 114
+# 120
 int main(int argc, char** argv) {
 Initialize();
 
@@ -5104,13 +5104,13 @@ LATCbits.LATC4 = 1;
 
 while (1) {
 
-TMR1 = 64536;
+TMR1 = 63736;
 T1CONbits.TMR1ON = 1;
 while (!PIR1bits.TMR1IF);
 
 
 PIR1bits.TMR1IF = 0;
-TMR1 = 61736;
+TMR1 = 63136;
 
 while (!PIR1bits.TMR1IF) {
 
@@ -5119,7 +5119,7 @@ Servo_Output_OFF();
 
 
 PIR1bits.TMR1IF = 0;
-TMR1 = 30336;
+TMR1 = 29736;
 do {
 Renew_Raw_Data();
 Calc_Duty();
@@ -5136,7 +5136,7 @@ return (0);
 
 void Renew_Raw_Data() {
 
-# 175
+# 181
 if (PORTA == 0xFF) {
 EmergencyStop = 1;
 } else {
@@ -5154,19 +5154,19 @@ int i;
 LATBbits.LATB0 = PORTAbits.RA0;
 LATCbits.LATC7 = PORTAbits.RA1;
 for (i = 1; i < 5; i++) {
-servo_duty[i] = ((servo_raw_data[i] * 1056E-8) * 2000000);
+servo_duty[i] = ((servo_raw_data[i] * 667E-8) * 2000000);
 }
 }
 
 void Servo_Output_OFF() {
-if (TMR1 >= (61736 + servo_duty[1]) && (!EmergencyStop)) LATCbits.LATC3 = 0;
-if (TMR1 >= (61736 + servo_duty[2]) && (!EmergencyStop)) LATCbits.LATC6 = 0;
-if (TMR1 >= (61736 + servo_duty[3]) && (!EmergencyStop)) LATCbits.LATC5 = 0;
-if (TMR1 >= (61736 + servo_duty[4]) && (!EmergencyStop)) LATCbits.LATC4 = 0;
+if (TMR1 >= (63136 + servo_duty[1]) && (!EmergencyStop)) LATCbits.LATC3 = 0;
+if (TMR1 >= (63136 + servo_duty[2]) && (!EmergencyStop)) LATCbits.LATC6 = 0;
+if (TMR1 >= (63136 + servo_duty[3]) && (!EmergencyStop)) LATCbits.LATC5 = 0;
+if (TMR1 >= (63136 + servo_duty[4]) && (!EmergencyStop)) LATCbits.LATC4 = 0;
 else;
 }
 
-# 208
+# 214
 void Initialize() {
 Oscillator_Initialize();
 Pin_Initialize();

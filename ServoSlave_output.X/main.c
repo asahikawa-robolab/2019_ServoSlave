@@ -44,10 +44,24 @@
 
 /*defines*/
 //*timer1*/
+/* 900us-2100us 180[deg] Hitec */
+#define degree_sec 667E-8 /* sec/degree 、仕様から算出 */
+#define time_900us 63736 
+#define time_1_2ms 63136
+#define time_17_9ms 29736
+
+/* 500us-2.4ms 180[deg] sanwa erg-vb etc. */
+//#define degree_sec 1056E-8 /* sec/degree 、仕様から算出 */
 #define time_500us 64536 //1
-#define time_19_5ms 0
 #define time_1_9ms 61736 //2
 #define time_17_6ms 30336 //3
+
+/* 700us-2300us 270[deg] KONDO  */
+//#define degree_sec 5926E-3
+#define time_700us 64136
+#define time_1_6ms 62336
+#define time_17_7ms 30136
+
 #define timer1_ON T1CONbits.TMR1ON
 #define timer_InterruptFlag PIR1bits.TMR1IF
 
@@ -82,7 +96,6 @@
 #define false 0
 
 /*関数マクロ*/
-#define degree_sec 1056E-8 /* sec/degree 、仕様から算出 */
 #define sec_duty 2000000 //Fosc*pre/4 = 8000000/4
 #define SERVO_ADDRESS ((SERVO_ADDRESS_bit2 << 2) | (SERVO_ADDRESS_bit1 << 1) | (SERVO_ADDRESS_bit0))
 
@@ -135,13 +148,13 @@ int main(int argc, char** argv) {
     /*メインループ*/
     while (1) {
         /*　はじめに500usはかる　*/
-        TMR1 = time_500us; // Timer1ON(time_500us);
+        TMR1 = time_900us; 
         timer1_ON = on;
         while (!timer_InterruptFlag);
 
         /*　残りの1.9msは指定されたデューティを超えるか監視しながら*/
         timer_InterruptFlag = CLEAR;
-        TMR1 = time_1_9ms;
+        TMR1 = time_1_2ms;
 
         while (!timer_InterruptFlag) {
             /*関数から戻ってくるごとに判定する*/
@@ -150,7 +163,7 @@ int main(int argc, char** argv) {
 
         /*出力がOFFの間に次の目標角度読み込み・計算*/
         timer_InterruptFlag = CLEAR;
-        TMR1 = time_17_6ms;
+        TMR1 = time_17_9ms;
         do {
             Renew_Raw_Data();
             Calc_Duty();
@@ -194,10 +207,10 @@ void Calc_Duty() {
 }
 
 void Servo_Output_OFF() {
-    if (TMR1 >= (time_1_9ms + servo_duty[1]) && (!EmergencyStop)) SERVO_OUTPUT_1 = off;
-    if (TMR1 >= (time_1_9ms + servo_duty[2]) && (!EmergencyStop)) SERVO_OUTPUT_2 = off;
-    if (TMR1 >= (time_1_9ms + servo_duty[3]) && (!EmergencyStop)) SERVO_OUTPUT_3 = off;
-    if (TMR1 >= (time_1_9ms + servo_duty[4]) && (!EmergencyStop)) SERVO_OUTPUT_4 = off;
+    if (TMR1 >= (time_1_2ms + servo_duty[1]) && (!EmergencyStop)) SERVO_OUTPUT_1 = off;
+    if (TMR1 >= (time_1_2ms + servo_duty[2]) && (!EmergencyStop)) SERVO_OUTPUT_2 = off;
+    if (TMR1 >= (time_1_2ms + servo_duty[3]) && (!EmergencyStop)) SERVO_OUTPUT_3 = off;
+    if (TMR1 >= (time_1_2ms + servo_duty[4]) && (!EmergencyStop)) SERVO_OUTPUT_4 = off;
     else;
 }
 

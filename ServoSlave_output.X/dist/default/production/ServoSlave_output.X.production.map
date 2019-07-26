@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.00\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\ServoSlave_output.X.production.sym \
   --cmf=dist/default/production\ServoSlave_output.X.production.cmf -z \
-  -Q16F1933 -oC:\Users\pguz1\AppData\Local\Temp\s3r4.2 \
+  -Q16F1933 -oC:\Users\pguz1\AppData\Local\Temp\s10.2 \
   -Mdist/default/production/ServoSlave_output.X.production.map -E1 -ver=XC8 \
   -ASTACK=0203Dh-020efh -pstack=STACK -ACODE=00h-07FFhx2 \
   -ASTRCODE=00h-0FFFh -ASTRING=00h-0FFhx16 -ACONST=00h-0FFhx16 \
@@ -27,7 +27,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=08007h-08008h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=08000h-08003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/0F000h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\pguz1\AppData\Local\Temp\s3r4.obj \
+  -DENTRY=2 -k C:\Users\pguz1\AppData\Local\Temp\s10.obj \
   dist/default/production\ServoSlave_output.X.production.obj 
 
 Object code version is 3.11
@@ -37,7 +37,7 @@ Machine type is 16F1933
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\pguz1\AppData\Local\Temp\s3r4.obj
+C:\Users\pguz1\AppData\Local\Temp\s10.obj
                 end_init                              2        2        2        0       0
                 reset_vec                             0        0        2        0       0
                 config                             8007     8007        2    1000E       0
@@ -653,7 +653,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 114 in file "main.c"
+		line 120 in file "main.c"
  Parameters:    Size  Location     Type
   argc            2   36[BANK0 ] int 
   argv            2   38[BANK0 ] PTR PTR unsigned char 
@@ -686,7 +686,7 @@ Total ram usage:        4 bytes
 
  *************** function _Servo_Output_OFF *****************
  Defined at:
-		line 196 in file "main.c"
+		line 202 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -715,7 +715,7 @@ Total ram usage:       13 bytes
 
  *************** function _Renew_Raw_Data *****************
  Defined at:
-		line 168 in file "main.c"
+		line 174 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -744,7 +744,7 @@ Total ram usage:        4 bytes
 
  *************** function _Initialize *****************
  Defined at:
-		line 208 in file "main.c"
+		line 214 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -776,7 +776,7 @@ Total ram usage:        0 bytes
 
  *************** function _Timer_Initialize *****************
  Defined at:
-		line 242 in file "main.c"
+		line 248 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -805,7 +805,7 @@ Total ram usage:        0 bytes
 
  *************** function _Pin_Initialize *****************
  Defined at:
-		line 218 in file "main.c"
+		line 224 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -834,7 +834,7 @@ Total ram usage:        0 bytes
 
  *************** function _Oscillator_Initialize *****************
  Defined at:
-		line 214 in file "main.c"
+		line 220 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -863,7 +863,7 @@ Total ram usage:        0 bytes
 
  *************** function _Calc_Duty *****************
  Defined at:
-		line 185 in file "main.c"
+		line 191 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
