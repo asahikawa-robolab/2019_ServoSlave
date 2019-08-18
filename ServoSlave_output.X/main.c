@@ -41,63 +41,26 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include "macros.h"
 
 /*defines*/
-//*timer1*/
-/* 900us-2100us 180[deg] Hitec */
-#define degree_sec 667E-8 /* sec/degree 、仕様から算出 */
-#define time_900us 63736 
-#define time_1_2ms 63136
-#define time_17_9ms 29736
+#define num_comb 6 /* サーボの種類の組み合わせ(combination)の数 */
+#define num_port 4
+#define num_type 3
 
-/* 500us-2.4ms 180[deg] sanwa erg-vb etc. */
-//#define degree_sec 1056E-8 /* sec/degree 、仕様から算出 */
-#define time_500us 64536 //1
-#define time_1_9ms 61736 //2
-#define time_17_6ms 30336 //3
+typedef struct {
+    double conv; /* deg->sec　の変換(conversion)の係数 */
+    int min; /* duty最小値 */
+} type;
 
-/* 700us-2300us 270[deg] KONDO  */
-//#define degree_sec 5926E-3
-#define time_700us 64136
-#define time_1_6ms 62336
-#define time_17_7ms 30136
+type port[num_port];
+type param[num_type];
 
-#define timer1_ON T1CONbits.TMR1ON
-#define timer_InterruptFlag PIR1bits.TMR1IF
 
-/*pin*/
-//#define SERVO_ADDRESS (PORTC&0b00000111)
-#define SERVO_ADDRESS_bit0 PORTCbits.RC0
-#define SERVO_ADDRESS_bit1 PORTCbits.RC1
-#define SERVO_ADDRESS_bit2 PORTCbits.RC2
-#define SERVO_DATA PORTA
-
-#define SERVO_OUTPUT_1 LATCbits.LATC3
-#define SERVO_OUTPUT_2 LATCbits.LATC6
-#define SERVO_OUTPUT_3 LATCbits.LATC5
-#define SERVO_OUTPUT_4 LATCbits.LATC4
-
-#define debug_LED0 LATBbits.LATB0
-#define debug_LED1 LATCbits.LATC7
-
-#define stop 0xFF  //角度のデータが8bitになったら、　0xFF　に変えること
-
-//基本フラグ
-#define on 1
-#define off 0
-
-#define enable 1
-#define disable 0
-
-#define SET 1
-#define CLEAR 0
-
-#define true 1
-#define false 0
+/* 0:Hitec 1:sanwa 2:KONDO */
 
 /*関数マクロ*/
 #define sec_duty 2000000 //Fosc*pre/4 = 8000000/4
-#define SERVO_ADDRESS ((SERVO_ADDRESS_bit2 << 2) | (SERVO_ADDRESS_bit1 << 1) | (SERVO_ADDRESS_bit0))
 
 /*prototype declarations*/
 //*initializes*/
@@ -110,13 +73,13 @@ void Timer_Initialize();
 void Renew_Raw_Data();
 void Calc_Duty();
 void Servo_Output_OFF();
+void Servo_Initialize();
 
 /*flags*/
 int Timer1_time = time_500us;
 bool data_renew[4] = {0, 0, 0, 0};
-bool EmergencyStop = off;
 
-/*values&array*/
+/* values & array */
 unsigned char servo_raw_data[5];
 unsigned int servo_duty[5]; // 5:number of servo + 1
 
@@ -147,27 +110,17 @@ int main(int argc, char** argv) {
 
     /*メインループ*/
     while (1) {
-        /*　はじめに500usはかる　*/
-        TMR1 = time_900us; 
-        timer1_ON = on;
-        while (!timer_InterruptFlag);
 
-        /*　残りの1.9msは指定されたデューティを超えるか監視しながら*/
-        timer_InterruptFlag = CLEAR;
-        TMR1 = time_1_2ms;
+        TMR1 = time_20ms;
+        timer1_ON = on;
 
         while (!timer_InterruptFlag) {
-            /*関数から戻ってくるごとに判定する*/
             Servo_Output_OFF();
+            if (TMR1 >= calc_OK) {
+                Renew_Raw_Data();
+                Calc_Duty();
+            }
         }
-
-        /*出力がOFFの間に次の目標角度読み込み・計算*/
-        timer_InterruptFlag = CLEAR;
-        TMR1 = time_17_9ms;
-        do {
-            Renew_Raw_Data();
-            Calc_Duty();
-        } while (!timer_InterruptFlag);
         timer_InterruptFlag = CLEAR;
 
         SERVO_OUTPUT_1 = on;
@@ -183,14 +136,7 @@ void Renew_Raw_Data() {
      * ・変換かける
      * ・レジスタ代入*/
 
-
-    //        debug_LED0 ^= 1;
-    if (SERVO_DATA == stop) {
-        EmergencyStop = on;
-    } else {
-        EmergencyStop = off;
-        servo_raw_data[SERVO_ADDRESS] = SERVO_DATA;
-    }
+    servo_raw_data[SERVO_ADDRESS] = SERVO_DATA;
 
     data_renew[SERVO_ADDRESS] ^= 1;
 }
@@ -199,18 +145,31 @@ void Calc_Duty() {
     int i;
     /*変換式*/
 
-    debug_LED0 = PORTAbits.RA0;
-    debug_LED1 = PORTAbits.RA1;
+
     for (i = 1; i < 5; i++) {
-        servo_duty[i] = ((servo_raw_data[i] * degree_sec) * sec_duty);
+
+        servo_duty[i] = ((servo_raw_data[i] * port[i - 1].conv) * sec_duty);
     }
+    //     servo_duty[1] = ((servo_raw_data[1] * port[1 - 1].conv) * sec_duty);
 }
 
 void Servo_Output_OFF() {
-    if (TMR1 >= (time_1_2ms + servo_duty[1]) && (!EmergencyStop)) SERVO_OUTPUT_1 = off;
-    if (TMR1 >= (time_1_2ms + servo_duty[2]) && (!EmergencyStop)) SERVO_OUTPUT_2 = off;
-    if (TMR1 >= (time_1_2ms + servo_duty[3]) && (!EmergencyStop)) SERVO_OUTPUT_3 = off;
-    if (TMR1 >= (time_1_2ms + servo_duty[4]) && (!EmergencyStop)) SERVO_OUTPUT_4 = off;
+    //    if (TMR1 >= (time_1_9ms + servo_duty[1])) SERVO_OUTPUT_1 = off;
+    //    if (TMR1 >= (time_1_9ms + servo_duty[2])) SERVO_OUTPUT_2 = off;
+    //    if (TMR1 >= (time_1_9ms + servo_duty[3])) SERVO_OUTPUT_3 = off;
+    //    if (TMR1 >= (time_1_9ms + servo_duty[4])) SERVO_OUTPUT_4 = off;
+    //    else;
+
+    //        if (TMR1 >= (time_20ms + time_500us + servo_duty[1])) SERVO_OUTPUT_1 = off;
+    //        if (TMR1 >= (time_20ms + time_500us + servo_duty[2])) SERVO_OUTPUT_2 = off;
+    //        if (TMR1 >= (time_20ms + time_500us + servo_duty[3])) SERVO_OUTPUT_3 = off;
+    //        if (TMR1 >= (time_20ms + time_500us + servo_duty[4])) SERVO_OUTPUT_4 = off;
+
+    if (TMR1 >= (time_20ms + port[0].min + servo_duty[1])) SERVO_OUTPUT_1 = off;
+    if (TMR1 >= (time_20ms + port[1].min + servo_duty[2])) SERVO_OUTPUT_2 = off;
+    if (TMR1 >= (time_20ms + port[2].min + servo_duty[3])) SERVO_OUTPUT_3 = off;
+    if (TMR1 >= (time_20ms + port[3].min + servo_duty[4])) SERVO_OUTPUT_4 = off;
+
     else;
 }
 
@@ -222,6 +181,7 @@ void Initialize() {
     Oscillator_Initialize();
     Pin_Initialize();
     Timer_Initialize();
+    Servo_Initialize();
 }
 
 void Oscillator_Initialize() {
@@ -235,6 +195,7 @@ void Pin_Initialize() {
     ANSELB = 0x00;
 
     TRISA = 0xFF;
+    TRISB = 0xFF; /* パラメータ選択用DIPスイッチ入力 */
 
     /*address*/
     TRISCbits.TRISC0 = 1;
@@ -248,7 +209,6 @@ void Pin_Initialize() {
     TRISCbits.TRISC6 = 0;
 
     /*debug*/
-    TRISBbits.TRISB0 = 0;
     TRISCbits.TRISC7 = 0;
 }
 
@@ -262,5 +222,39 @@ void Timer_Initialize() {
     INTCONbits.PEIE = disable;
 
     PIE1bits.TMR1IE = disable;
+}
+
+void Servo_Initialize() {
+    const int num[2][num_comb] = {
+        {0, 0, 0, 1, 1, 2},
+        {0, 1, 2, 1, 2, 2}
+    };
+
+    /* サーボの種類ごとに異なるパラメータの定義 */
+    param[0].conv = 667E-8; /* hitec */
+    param[0].min = time_900us;
+
+    param[1].conv = 1056E-8; /* sanwa */
+    param[1].min = time_500us;
+
+    param[2].conv = 5926E-9; /* kondo */
+    param[2].min = time_700us;
+
+
+    /* DIPスイッチによるパラメータの選択 */
+    port[0].conv = param[num[0][SERVO_TYPE_0_1]].conv;
+    port[0].min = param[num[0][SERVO_TYPE_0_1]].min;
+
+    port[1].conv = param[num[1][SERVO_TYPE_0_1]].conv;
+    port[1].min = param[num[1][SERVO_TYPE_0_1]].min;
+
+    port[2].conv = param[num[0][SERVO_TYPE_2_3]].conv;
+    port[2].min = param[num[0][SERVO_TYPE_2_3]].min;
+
+    port[3].conv = param[num[1][SERVO_TYPE_2_3]].conv;
+    port[3].min = param[num[1][SERVO_TYPE_2_3]].min;
+
+    if(num[0][SERVO_TYPE_0_1]==2)debug_LED1=1;
+    else debug_LED1=0;
 }
 

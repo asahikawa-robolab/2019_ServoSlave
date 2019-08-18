@@ -5,9 +5,9 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.00\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\ServoSlave_output.X.production.sym \
   --cmf=dist/default/production\ServoSlave_output.X.production.cmf -z \
-  -Q16F1933 -oC:\Users\pguz1\AppData\Local\Temp\s10.2 \
+  -Q16F1933 -oC:\Users\pguz1\AppData\Local\Temp\sbi8.2 \
   -Mdist/default/production/ServoSlave_output.X.production.map -E1 -ver=XC8 \
-  -ASTACK=0203Dh-020efh -pstack=STACK -ACODE=00h-07FFhx2 \
+  -ASTACK=02064h-020efh -pstack=STACK -ACODE=00h-07FFhx2 \
   -ASTRCODE=00h-0FFFh -ASTRING=00h-0FFhx16 -ACONST=00h-0FFhx16 \
   -AENTRY=00h-0FFhx16 -ACOMMON=070h-07Fh -ABANK0=020h-06Fh \
   -ABANK1=0A0h-0EFh -ABANK2=0120h-016Fh -ABIGRAM=02000h-020EFh \
@@ -27,7 +27,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=08007h-08008h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=08000h-08003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/0F000h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\pguz1\AppData\Local\Temp\s10.obj \
+  -DENTRY=2 -k C:\Users\pguz1\AppData\Local\Temp\sbi8.obj \
   dist/default/production\ServoSlave_output.X.production.obj 
 
 Object code version is 3.11
@@ -37,55 +37,61 @@ Machine type is 16F1933
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\pguz1\AppData\Local\Temp\s10.obj
+C:\Users\pguz1\AppData\Local\Temp\sbi8.obj
                 end_init                              2        2        2        0       0
                 reset_vec                             0        0        2        0       0
                 config                             8007     8007        2    1000E       0
 dist/default/production\ServoSlave_output.X.production.obj
-                cinit                               7ED      7ED       13      FDA       0
-                text11                              575      575       64      AEA       0
-                text10                              660      660       B4      CC0       0
-                text9                               5D9      5D9       87      BB2       0
-                text8                               484      484       1A      908       0
-                text7                               524      524       51      A48       0
-                text6                               45A      45A        4      8B4       0
-                text5                               474      474       10      8E8       0
-                text4                               464      464        7      8C8       0
-                text3                               46B      46B        9      8D6       0
-                text2                               49E      49E       43      93C       0
-                text1                               714      714       D9      E28       0
-                maintext                            4E1      4E1       43      9C2       0
-                cstackBANK0                          20       20       28       20       1
+                cinit                               7E6      7E6       1A      FCC       0
+                text13                              38E      38E       11      71C       0
+                text12                              442      442       64      884       0
+                text11                              612      612       B4      C24       0
+                text10                              58B      58B       87      B16       0
+                text9                               3B0      3B0       1A      760       0
+                text8                               4A6      4A6       64      94C       0
+                text7                               371      371        4      6E2       0
+                text6                               39F      39F       11      73E       0
+                text5                               6C6      6C6      120      D8C       0
+                text4                               37B      37B        7      6F6       0
+                text3                               382      382        C      704       0
+                text2                               3CA      3CA       3C      794       0
+                text1                               50A      50A       81      A14       0
+                maintext                            406      406       3C      80C       0
+                cstackBANK0                          20       20       2B       20       1
                 cstackCOMMON                         70       70        D       70       1
-                clrtext                             45E      45E        6      8BC       0
-                dataBANK0                            5B       5B        2       20       1
-                bssBANK0                             48       48       13       20       1
-                bssCOMMON                            7D       7D        1       70       1
-                idataBANK0                          458      458        2      8B0       0
+                clrtext                             375      375        6      6EA       0
+                bssBANK1                             A0       A0       14       A0       1
+                dataBANK0                            6D       6D        2       20       1
+                bssBANK0                             4B       4B       22       20       1
+                stringtext1                         800      800       18     1000       0
+                idataBANK0                          36F      36F        2      6DE       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
 
         CLASS   CODE           
                 end_init                              2        2        2         0
-                cinit                               7ED      7ED       13         0
+                cinit                               7E6      7E6       1A         0
                 reset_vec                             0        0        2         0
-                text11                              575      575       64         0
-                text10                              660      660       B4         0
-                text9                               5D9      5D9       87         0
-                text8                               484      484       1A         0
-                text7                               524      524       51         0
-                text6                               45A      45A        4         0
-                text5                               474      474       10         0
-                text4                               464      464        7         0
-                text3                               46B      46B        9         0
-                text2                               49E      49E       43         0
-                text1                               714      714       D9         0
-                maintext                            4E1      4E1       43         0
-                clrtext                             45E      45E        6         0
-                idataBANK0                          458      458        2         0
+                text13                              38E      38E       11         0
+                text12                              442      442       64         0
+                text11                              612      612       B4         0
+                text10                              58B      58B       87         0
+                text9                               3B0      3B0       1A         0
+                text8                               4A6      4A6       64         0
+                text7                               371      371        4         0
+                text6                               39F      39F       11         0
+                text5                               6C6      6C6      120         0
+                text4                               37B      37B        7         0
+                text3                               382      382        C         0
+                text2                               3CA      3CA       3C         0
+                text1                               50A      50A       81         0
+                maintext                            406      406       3C         0
+                clrtext                             375      375        6         0
+                idataBANK0                          36F      36F        2         0
 
         CLASS   STRCODE        
+                stringtext1                         800      800       18         0
 
         CLASS   STRING         
 
@@ -95,14 +101,14 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   COMMON         
                 cstackCOMMON                         70       70        D         1
-                bssCOMMON                            7D       7D        1         1
 
         CLASS   BANK0          
-                cstackBANK0                          20       20       28         1
-                dataBANK0                            5B       5B        2         1
-                bssBANK0                             48       48       13         1
+                cstackBANK0                          20       20       2B         1
+                dataBANK0                            6D       6D        2         1
+                bssBANK0                             4B       4B       22         1
 
         CLASS   BANK1          
+                bssBANK1                             A0       A0       14         1
 
         CLASS   BANK2          
 
@@ -247,43 +253,48 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000004  000004         0       0  CODE        2
-                cstackBANK0                    000020  00003D  00005D        20       1  BANK0       1
-                cstackCOMMON                   000070  00000E  00007E        70       1  COMMON      1
-                idataBANK0                     000458  000002  00045A       8B0       0  CODE        2
-                text6                          00045A  000004  00045E       8B4       0  CODE        2
-                clrtext                        00045E  000006  000464       8BC       0  CODE        2
-                text4                          000464  000007  00046B       8C8       0  CODE        2
-                text3                          00046B  000009  000474       8D6       0  CODE        2
-                text5                          000474  000010  000484       8E8       0  CODE        2
-                text8                          000484  00001A  00049E       908       0  CODE        2
-                text2                          00049E  000043  0004E1       93C       0  CODE        2
-                maintext                       0004E1  000043  000524       9C2       0  CODE        2
-                text7                          000524  000051  000575       A48       0  CODE        2
-                text11                         000575  000064  0005D9       AEA       0  CODE        2
-                text9                          0005D9  000087  000660       BB2       0  CODE        2
-                text10                         000660  0000B4  000714       CC0       0  CODE        2
-                text1                          000714  0000D9  0007ED       E28       0  CODE        2
-                cinit                          0007ED  000013  000800       FDA       0  CODE        2
+                cstackBANK0                    000020  00004F  00006F        20       1  BANK0       1
+                cstackCOMMON                   000070  00000D  00007D        70       1  COMMON      1
+                bssBANK1                       0000A0  000014  0000B4        A0       1  BANK1       1
+                idataBANK0                     00036F  000002  000371       6DE       0  CODE        2
+                text7                          000371  000004  000375       6E2       0  CODE        2
+                clrtext                        000375  000006  00037B       6EA       0  CODE        2
+                text4                          00037B  000007  000382       6F6       0  CODE        2
+                text3                          000382  00000C  00038E       704       0  CODE        2
+                text13                         00038E  000011  00039F       71C       0  CODE        2
+                text6                          00039F  000011  0003B0       73E       0  CODE        2
+                text9                          0003B0  00001A  0003CA       760       0  CODE        2
+                text2                          0003CA  00003C  000406       794       0  CODE        2
+                maintext                       000406  00003C  000442       80C       0  CODE        2
+                text12                         000442  000064  0004A6       884       0  CODE        2
+                text8                          0004A6  000064  00050A       94C       0  CODE        2
+                text1                          00050A  000081  00058B       A14       0  CODE        2
+                text10                         00058B  000087  000612       B16       0  CODE        2
+                text11                         000612  0000B4  0006C6       C24       0  CODE        2
+                text5                          0006C6  000120  0007E6       D8C       0  CODE        2
+                cinit                          0007E6  00001A  000800       FCC       0  CODE        2
+                stringtext1                    000800  000018  000818      1000       0  STRCODE     2
                 config                         008007  000002  008009     1000E       0  CONFIG      2
 
 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
-        BANK0            0005D-0006F              13           1
-        BANK1            000A0-000EF              50           1
+        BANK0            0006F-0006F               1           1
+        BANK1            000B4-000EF              3C           1
         BANK2            00120-0016F              50           1
         BIGRAM           02000-020EF              F0           1
-        CODE             00004-00457             454           2
-                         00800-00FFF             800
-        CONST            00004-00457             100           2
-                         00800-00FFF             100
+        CODE             00004-0036E             36B           2
+                         00818-00FFF             7E8
+        COMMON           0007D-0007D               1           1
+        CONST            00004-0036E             100           2
+                         00818-00FFF             100
         EEDATA           0F000-0F0FF             100           2
-        ENTRY            00004-00457             100           2
-                         00800-00FFF             100
+        ENTRY            00004-0036E             100           2
+                         00818-00FFF             100
         IDLOC            08000-08003               4           2
-        RAM              0005D-0006F              13           1
-                         000A0-000EF              50
+        RAM              0006F-0006F               1           1
+                         000B4-000EF              3C
                          00120-0016F              50
         SFR0             00000-0001F              20           1
         SFR1             00080-0009F              20           1
@@ -317,11 +328,11 @@ UNUSED ADDRESS RANGES
         SFR7             00380-003EF              70           1
         SFR8             00400-0046F              70           1
         SFR9             00480-004EF              70           1
-        STACK            0203D-020EF              B3           1
-        STRCODE          00004-00457             454           2
-                         00800-00FFF             800
-        STRING           00004-00457             100           2
-                         00800-00FFF             100
+        STACK            02064-020EF              8C           1
+        STRCODE          00004-0036E             36B           2
+                         00818-00FFF             7E8
+        STRING           00004-0036E             100           2
+                         00818-00FFF             100
 
                                   Symbol Table
 
@@ -329,32 +340,34 @@ UNUSED ADDRESS RANGES
 ?___ftpack                      cstackCOMMON 00070
 ?___fttol                       cstackBANK0  00034
 ?___lbtoft                      cstackCOMMON 00078
-Calc_Duty@i                     cstackBANK0  00042
+Calc_Duty@i                     cstackBANK0  00045
+Servo_Initialize@F2760          stringtext1  00800
+Servo_Initialize@num            cstackBANK0  00020
 _ANSELA                         (abs)        0018C
 _ANSELB                         (abs)        0018D
-_Calc_Duty                      text7        00524
-_EmergencyStop                  bssCOMMON    0007D
+_Calc_Duty                      text8        004A6
+_Calc_Duty$818                  cstackBANK0  00042
 _INTCONbits                     (abs)        0000B
-_Initialize                     text3        0046B
-_LATBbits                       (abs)        0010D
+_Initialize                     text3        00382
 _LATCbits                       (abs)        0010E
 _OSCCON                         (abs)        00099
-_Oscillator_Initialize          text6        0045A
+_Oscillator_Initialize          text7        00371
 _PIE1bits                       (abs)        00091
 _PIR1bits                       (abs)        00011
 _PORTA                          (abs)        0000C
-_PORTAbits                      (abs)        0000C
+_PORTB                          (abs)        0000D
 _PORTCbits                      (abs)        0000E
-_Pin_Initialize                 text5        00474
-_Renew_Raw_Data                 text2        0049E
-_Servo_Output_OFF               text1        00714
+_Pin_Initialize                 text6        0039F
+_Renew_Raw_Data                 text2        003CA
+_Servo_Initialize               text5        006C6
+_Servo_Output_OFF               text1        0050A
 _T1CON                          (abs)        00018
 _T1CONbits                      (abs)        00018
 _TMR1                           (abs)        00016
 _TRISA                          (abs)        0008C
-_TRISBbits                      (abs)        0008D
+_TRISB                          (abs)        0008D
 _TRISCbits                      (abs)        0008E
-_Timer_Initialize               text4        00464
+_Timer_Initialize               text4        0037B
 __CFG_BOREN$OFF                 (abs)        00000
 __CFG_BORV$HI                   (abs)        00000
 __CFG_CLKOUTEN$OFF              (abs)        00000
@@ -406,7 +419,7 @@ __Hbank8                        bank8        00000
 __Hbank9                        bank9        00000
 __Hbigram                       bigram       00000
 __HbssBANK0                     bssBANK0     00000
-__HbssCOMMON                    bssCOMMON    00000
+__HbssBANK1                     bssBANK1     00000
 __Hcinit                        cinit        00800
 __Hclrtext                      clrtext      00000
 __Hcode                         code         00000
@@ -459,11 +472,12 @@ __Hsfr7                         sfr7         00000
 __Hsfr8                         sfr8         00000
 __Hsfr9                         sfr9         00000
 __Hspace_0                      (abs)        08009
-__Hspace_1                      (abs)        0007E
+__Hspace_1                      (abs)        000B4
 __Hspace_2                      (abs)        00000
 __Hspace_3                      (abs)        00000
 __Hstack                        stack        00000
 __Hstrings                      strings      00000
+__Hstringtext1                  stringtext1  00000
 __Htext                         text         00000
 __Labs1                         abs1         00000
 __Lbank0                        bank0        00000
@@ -500,8 +514,8 @@ __Lbank8                        bank8        00000
 __Lbank9                        bank9        00000
 __Lbigram                       bigram       00000
 __LbssBANK0                     bssBANK0     00000
-__LbssCOMMON                    bssCOMMON    00000
-__Lcinit                        cinit        007ED
+__LbssBANK1                     bssBANK1     00000
+__Lcinit                        cinit        007E6
 __Lclrtext                      clrtext      00000
 __Lcode                         code         00000
 __Lcommon                       common       00000
@@ -558,82 +572,97 @@ __Lspace_2                      (abs)        00000
 __Lspace_3                      (abs)        00000
 __Lstack                        stack        00000
 __Lstrings                      strings      00000
+__Lstringtext1                  stringtext1  00000
 __Ltext                         text         00000
 __S0                            (abs)        08009
-__S1                            (abs)        0007E
+__S1                            (abs)        000B4
 __S2                            (abs)        00000
 __S3                            (abs)        00000
-___ftmul                        text10       00660
+___bmul                         text13       0038E
+___bmul@multiplicand            cstackCOMMON 00070
+___bmul@multiplier              cstackCOMMON 00073
+___bmul@product                 cstackCOMMON 00072
+___ftmul                        text11       00612
 ___ftmul@cntr                   cstackBANK0  00032
 ___ftmul@exp                    cstackBANK0  0002E
 ___ftmul@f1                     cstackBANK0  00024
 ___ftmul@f2                     cstackBANK0  00027
 ___ftmul@f3_as_product          cstackBANK0  0002F
 ___ftmul@sign                   cstackBANK0  00033
-___ftpack                       text11       00575
+___ftpack                       text12       00442
 ___ftpack@arg                   cstackCOMMON 00070
 ___ftpack@exp                   cstackCOMMON 00073
 ___ftpack@sign                  cstackCOMMON 00074
-___fttol                        text9        005D9
+___fttol                        text10       0058B
 ___fttol@exp1                   cstackBANK0  00041
 ___fttol@f1                     cstackBANK0  00034
 ___fttol@lval                   cstackBANK0  0003D
 ___fttol@sign1                  cstackBANK0  0003C
 ___int_sp                       stack        00000
 ___latbits                      (abs)        00001
-___lbtoft                       text8        00484
+___lbtoft                       text9        003B0
 ___lbtoft@c                     cstackCOMMON 0007B
 ___sp                           stack        00000
-__end_of_Calc_Duty              text7        00575
-__end_of_Initialize             text3        00474
-__end_of_Oscillator_Initialize  text6        0045E
-__end_of_Pin_Initialize         text5        00484
-__end_of_Renew_Raw_Data         text2        004E1
-__end_of_Servo_Output_OFF       text1        007ED
-__end_of_Timer_Initialize       text4        0046B
-__end_of___ftmul                text10       00714
-__end_of___ftpack               text11       005D9
-__end_of___fttol                text9        00660
-__end_of___lbtoft               text8        0049E
+__end_ofServo_Initialize@F2760  stringtext1  00818
+__end_of_Calc_Duty              text8        0050A
+__end_of_Initialize             text3        0038E
+__end_of_Oscillator_Initialize  text7        00375
+__end_of_Pin_Initialize         text6        003B0
+__end_of_Renew_Raw_Data         text2        00406
+__end_of_Servo_Initialize       text5        007E6
+__end_of_Servo_Output_OFF       text1        0058B
+__end_of_Timer_Initialize       text4        00382
+__end_of___bmul                 text13       0039F
+__end_of___ftmul                text11       006C6
+__end_of___ftpack               text12       004A6
+__end_of___fttol                text10       00612
+__end_of___lbtoft               text9        003CA
 __end_of__initialization        cinit        007FD
-__end_of_main                   maintext     00524
-__initialization                cinit        007ED
-__pbssBANK0                     bssBANK0     00048
-__pbssCOMMON                    bssCOMMON    0007D
+__end_of_main                   maintext     00442
+__initialization                cinit        007E6
+__pbssBANK0                     bssBANK0     0004B
+__pbssBANK1                     bssBANK1     000A0
 __pcstackBANK0                  cstackBANK0  00020
 __pcstackCOMMON                 cstackCOMMON 00070
-__pdataBANK0                    dataBANK0    0005B
-__pidataBANK0                   idataBANK0   00458
-__pmaintext                     maintext     004E1
-__ptext1                        text1        00714
-__ptext10                       text10       00660
-__ptext11                       text11       00575
-__ptext2                        text2        0049E
-__ptext3                        text3        0046B
-__ptext4                        text4        00464
-__ptext5                        text5        00474
-__ptext6                        text6        0045A
-__ptext7                        text7        00524
-__ptext8                        text8        00484
-__ptext9                        text9        005D9
+__pdataBANK0                    dataBANK0    0006D
+__pidataBANK0                   idataBANK0   0036F
+__pmaintext                     maintext     00406
+__pstringtext1                  stringtext1  00800
+__ptext1                        text1        0050A
+__ptext10                       text10       0058B
+__ptext11                       text11       00612
+__ptext12                       text12       00442
+__ptext13                       text13       0038E
+__ptext2                        text2        003CA
+__ptext3                        text3        00382
+__ptext4                        text4        0037B
+__ptext5                        text5        006C6
+__ptext6                        text6        0039F
+__ptext7                        text7        00371
+__ptext8                        text8        004A6
+__ptext9                        text9        003B0
 __size_of_Calc_Duty             (abs)        00000
 __size_of_Initialize            (abs)        00000
 __size_of_Oscillator_Initialize (abs)        00000
 __size_of_Pin_Initialize        (abs)        00000
 __size_of_Renew_Raw_Data        (abs)        00000
+__size_of_Servo_Initialize      (abs)        00000
 __size_of_Servo_Output_OFF      (abs)        00000
 __size_of_Timer_Initialize      (abs)        00000
+__size_of___bmul                (abs)        00000
 __size_of___ftmul               (abs)        00000
 __size_of___ftpack              (abs)        00000
 __size_of___fttol               (abs)        00000
 __size_of___lbtoft              (abs)        00000
 __size_of_main                  (abs)        00000
-_data_renew                     bssBANK0     00052
-_main                           maintext     004E1
-_servo_duty                     bssBANK0     00048
-_servo_raw_data                 bssBANK0     00056
+_data_renew                     bssBANK0     00069
+_main                           maintext     00406
+_param                          bssBANK0     0004B
+_port                           bssBANK1     000A0
+_servo_duty                     bssBANK0     0005A
+_servo_raw_data                 bssBANK0     00064
 btemp                           (abs)        0007E
-clear_ram0                      clrtext      0045E
+clear_ram0                      clrtext      00375
 end_of_initialization           cinit        007FD
 intlevel0                       functab      00000
 intlevel1                       functab      00000
@@ -643,9 +672,9 @@ intlevel4                       functab      00000
 intlevel5                       functab      00000
 reset_vec                       reset_vec    00000
 stackhi                         (abs)        020EF
-stacklo                         (abs)        0203D
+stacklo                         (abs)        02064
 start                           init         00002
-start_initialization            cinit        007ED
+start_initialization            cinit        007E6
 wtemp0                          (abs)        0007E
 
 
@@ -653,16 +682,16 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 120 in file "main.c"
+		line 90 in file "main.c"
  Parameters:    Size  Location     Type
-  argc            2   36[BANK0 ] int 
-  argv            2   38[BANK0 ] PTR PTR unsigned char 
+  argc            2   39[BANK0 ] int 
+  argv            2   41[BANK0 ] PTR PTR unsigned char 
  Auto vars:     Size  Location     Type
 		None
  Return value:  Size  Location     Type
-                  2   36[BANK0 ] int 
+                  2   39[BANK0 ] int 
  Registers used:
-		wreg, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -686,7 +715,7 @@ Total ram usage:        4 bytes
 
  *************** function _Servo_Output_OFF *****************
  Defined at:
-		line 202 in file "main.c"
+		line 156 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -694,7 +723,7 @@ Total ram usage:        4 bytes
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, status,2, status,0
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -702,9 +731,9 @@ Total ram usage:        4 bytes
  Data sizes:     COMMON   BANK0   BANK1   BANK2
       Params:         0       0       0       0
       Locals:         0       0       0       0
-      Temps:         13       0       0       0
-      Totals:        13       0       0       0
-Total ram usage:       13 bytes
+      Temps:          4       0       0       0
+      Totals:         4       0       0       0
+Total ram usage:        4 bytes
  Hardware stack levels used:    1
  This function calls:
 		Nothing
@@ -715,7 +744,7 @@ Total ram usage:       13 bytes
 
  *************** function _Renew_Raw_Data *****************
  Defined at:
-		line 174 in file "main.c"
+		line 134 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -744,7 +773,7 @@ Total ram usage:        4 bytes
 
  *************** function _Initialize *****************
  Defined at:
-		line 214 in file "main.c"
+		line 180 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -752,7 +781,7 @@ Total ram usage:        4 bytes
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, status,2, status,0, pclath, cstack
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -764,10 +793,11 @@ Total ram usage:        4 bytes
       Totals:         0       0       0       0
 Total ram usage:        0 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:    1
+ Hardware stack levels required when called:    2
  This function calls:
 		_Oscillator_Initialize
 		_Pin_Initialize
+		_Servo_Initialize
 		_Timer_Initialize
  This function is called by:
 		_main
@@ -776,7 +806,7 @@ Total ram usage:        0 bytes
 
  *************** function _Timer_Initialize *****************
  Defined at:
-		line 248 in file "main.c"
+		line 215 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -803,9 +833,39 @@ Total ram usage:        0 bytes
  This function uses a non-reentrant model
 
 
+ *************** function _Servo_Initialize *****************
+ Defined at:
+		line 227 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  num            24    0[BANK0 ] const int [6][2]
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMMON   BANK0   BANK1   BANK2
+      Params:         0       0       0       0
+      Locals:         0      24       0       0
+      Temps:          2       0       0       0
+      Totals:         2      24       0       0
+Total ram usage:       26 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		___bmul
+ This function is called by:
+		_Initialize
+ This function uses a non-reentrant model
+
+
  *************** function _Pin_Initialize *****************
  Defined at:
-		line 224 in file "main.c"
+		line 191 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -834,7 +894,7 @@ Total ram usage:        0 bytes
 
  *************** function _Oscillator_Initialize *****************
  Defined at:
-		line 220 in file "main.c"
+		line 187 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -863,11 +923,11 @@ Total ram usage:        0 bytes
 
  *************** function _Calc_Duty *****************
  Defined at:
-		line 191 in file "main.c"
+		line 144 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
-  i               2   34[BANK0 ] int 
+  i               2   37[BANK0 ] int 
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
@@ -878,13 +938,14 @@ Total ram usage:        0 bytes
 		Unchanged: 
  Data sizes:     COMMON   BANK0   BANK1   BANK2
       Params:         0       0       0       0
-      Locals:         0       2       0       0
+      Locals:         0       5       0       0
       Temps:          1       0       0       0
-      Totals:         1       2       0       0
-Total ram usage:        3 bytes
+      Totals:         1       5       0       0
+Total ram usage:        6 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    2
  This function calls:
+		___bmul
 		___ftmul
 		___fttol
 		___lbtoft
@@ -1020,44 +1081,83 @@ Total ram usage:        8 bytes
  This function uses a non-reentrant model
 
 
+ *************** function ___bmul *****************
+ Defined at:
+		line 4 in file "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c"
+ Parameters:    Size  Location     Type
+  multiplier      1    wreg     unsigned char 
+  multiplicand    1    0[COMMON] unsigned char 
+ Auto vars:     Size  Location     Type
+  multiplier      1    3[COMMON] unsigned char 
+  product         1    2[COMMON] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMMON   BANK0   BANK1   BANK2
+      Params:         1       0       0       0
+      Locals:         2       0       0       0
+      Temps:          1       0       0       0
+      Totals:         4       0       0       0
+Total ram usage:        4 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_Calc_Duty
+		_Servo_Initialize
+ This function uses a non-reentrant model
+
+
 
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\float.c
-		___ftpack      		CODE           	0575	0000	101
+		___ftpack      		CODE           	0442	0000	101
 
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\float.c estimated size: 101
 
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\ftmul.c
-		___ftmul       		CODE           	0660	0000	181
+		___ftmul       		CODE           	0612	0000	181
 
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\ftmul.c estimated size: 181
 
-shared
-		__initialization		CODE           	07ED	0000	17
+C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c
+		___bmul        		CODE           	038E	0000	18
 
-shared estimated size: 17
+C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\Umul8.c estimated size: 18
+
+shared
+		Servo_Initialize@F2760		STRCODE        	0800	0000	25
+		__initialization		CODE           	07E6	0000	24
+
+shared estimated size: 49
 
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\fttol.c
-		___fttol       		CODE           	05D9	0000	136
+		___fttol       		CODE           	058B	0000	136
 
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\fttol.c estimated size: 136
 
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\lbtoft.c
-		___lbtoft      		CODE           	0484	0000	27
+		___lbtoft      		CODE           	03B0	0000	27
 
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\lbtoft.c estimated size: 27
 
 main.c
-		_Pin_Initialize		CODE           	0474	0000	17
-		_Oscillator_Initialize		CODE           	045A	0000	5
-		_Servo_Output_OFF		CODE           	0714	0000	218
-		_Timer_Initialize		CODE           	0464	0000	8
-		_Calc_Duty     		CODE           	0524	0000	82
-		_main          		CODE           	04E1	0000	68
-		_Renew_Raw_Data		CODE           	049E	0000	68
-		_Initialize    		CODE           	046B	0000	10
+		_Pin_Initialize		CODE           	039F	0000	18
+		_Oscillator_Initialize		CODE           	0371	0000	5
+		_Servo_Output_OFF		CODE           	050A	0000	130
+		_Timer_Initialize		CODE           	037B	0000	8
+		_Calc_Duty     		CODE           	04A6	0000	101
+		_main          		CODE           	0406	0000	61
+		_Servo_Initialize		CODE           	06C6	0000	289
+		_Renew_Raw_Data		CODE           	03CA	0000	61
+		_Initialize    		CODE           	0382	0000	13
 
-main.c estimated size: 476
+main.c estimated size: 686
 

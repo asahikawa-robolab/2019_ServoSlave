@@ -5059,7 +5059,16 @@ typedef uint16_t uintptr_t;
 # 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
 
-# 97 "main.c"
+# 51 "main.c"
+typedef struct {
+double conv;
+int min;
+} type;
+
+type port[4];
+type param[3];
+
+# 67
 void Initialize();
 void Oscillator_Initialize();
 void Pin_Initialize();
@@ -5069,17 +5078,17 @@ void Timer_Initialize();
 void Renew_Raw_Data();
 void Calc_Duty();
 void Servo_Output_OFF();
+void Servo_Initialize();
 
 
-int Timer1_time = 64536;
+int Timer1_time = 1000;
 bool data_renew[4] = {0, 0, 0, 0};
-bool EmergencyStop = 0;
 
 
 unsigned char servo_raw_data[5];
 unsigned int servo_duty[5];
 
-# 120
+# 90
 int main(int argc, char** argv) {
 Initialize();
 
@@ -5104,26 +5113,16 @@ LATCbits.LATC4 = 1;
 
 while (1) {
 
-TMR1 = 63736;
+TMR1 = 25536;
 T1CONbits.TMR1ON = 1;
-while (!PIR1bits.TMR1IF);
-
-
-PIR1bits.TMR1IF = 0;
-TMR1 = 63136;
 
 while (!PIR1bits.TMR1IF) {
-
 Servo_Output_OFF();
-}
-
-
-PIR1bits.TMR1IF = 0;
-TMR1 = 29736;
-do {
+if (TMR1 >= 45536) {
 Renew_Raw_Data();
 Calc_Duty();
-} while (!PIR1bits.TMR1IF);
+}
+}
 PIR1bits.TMR1IF = 0;
 
 LATCbits.LATC3 = 1;
@@ -5136,13 +5135,8 @@ return (0);
 
 void Renew_Raw_Data() {
 
-# 181
-if (PORTA == 0xFF) {
-EmergencyStop = 1;
-} else {
-EmergencyStop = 0;
+# 139
 servo_raw_data[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] = PORTA;
-}
 
 data_renew[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] ^= 1;
 }
@@ -5151,26 +5145,31 @@ void Calc_Duty() {
 int i;
 
 
-LATBbits.LATB0 = PORTAbits.RA0;
-LATCbits.LATC7 = PORTAbits.RA1;
+
 for (i = 1; i < 5; i++) {
-servo_duty[i] = ((servo_raw_data[i] * 667E-8) * 2000000);
+
+servo_duty[i] = ((servo_raw_data[i] * port[i - 1].conv) * 2000000);
 }
+
 }
 
 void Servo_Output_OFF() {
-if (TMR1 >= (63136 + servo_duty[1]) && (!EmergencyStop)) LATCbits.LATC3 = 0;
-if (TMR1 >= (63136 + servo_duty[2]) && (!EmergencyStop)) LATCbits.LATC6 = 0;
-if (TMR1 >= (63136 + servo_duty[3]) && (!EmergencyStop)) LATCbits.LATC5 = 0;
-if (TMR1 >= (63136 + servo_duty[4]) && (!EmergencyStop)) LATCbits.LATC4 = 0;
+
+# 168
+if (TMR1 >= (25536 + port[0].min + servo_duty[1])) LATCbits.LATC3 = 0;
+if (TMR1 >= (25536 + port[1].min + servo_duty[2])) LATCbits.LATC6 = 0;
+if (TMR1 >= (25536 + port[2].min + servo_duty[3])) LATCbits.LATC5 = 0;
+if (TMR1 >= (25536 + port[3].min + servo_duty[4])) LATCbits.LATC4 = 0;
+
 else;
 }
 
-# 214
+# 180
 void Initialize() {
 Oscillator_Initialize();
 Pin_Initialize();
 Timer_Initialize();
+Servo_Initialize();
 }
 
 void Oscillator_Initialize() {
@@ -5184,6 +5183,7 @@ ANSELA = 0x00;
 ANSELB = 0x00;
 
 TRISA = 0xFF;
+TRISB = 0xFF;
 
 
 TRISCbits.TRISC0 = 1;
@@ -5197,7 +5197,6 @@ TRISCbits.TRISC5 = 0;
 TRISCbits.TRISC6 = 0;
 
 
-TRISBbits.TRISB0 = 0;
 TRISCbits.TRISC7 = 0;
 }
 
@@ -5211,5 +5210,39 @@ INTCONbits.GIE = 0;
 INTCONbits.PEIE = 0;
 
 PIE1bits.TMR1IE = 0;
+}
+
+void Servo_Initialize() {
+const int num[2][6] = {
+{0, 0, 0, 1, 1, 2},
+{0, 1, 2, 1, 2, 2}
+};
+
+
+param[0].conv = 667E-8;
+param[0].min = 1800;
+
+param[1].conv = 1056E-8;
+param[1].min = 1000;
+
+param[2].conv = 5926E-9;
+param[2].min = 1400;
+
+
+
+port[0].conv = param[num[0][(PORTB&0b00000111)]].conv;
+port[0].min = param[num[0][(PORTB&0b00000111)]].min;
+
+port[1].conv = param[num[1][(PORTB&0b00000111)]].conv;
+port[1].min = param[num[1][(PORTB&0b00000111)]].min;
+
+port[2].conv = param[num[0][((PORTB&0b00111000)>>3)]].conv;
+port[2].min = param[num[0][((PORTB&0b00111000)>>3)]].min;
+
+port[3].conv = param[num[1][((PORTB&0b00111000)>>3)]].conv;
+port[3].min = param[num[1][((PORTB&0b00111000)>>3)]].min;
+
+if(num[0][(PORTB&0b00000111)]==2)LATCbits.LATC7=1;
+else LATCbits.LATC7=0;
 }
 
