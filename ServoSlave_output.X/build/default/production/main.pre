@@ -5059,8 +5059,9 @@ typedef uint16_t uintptr_t;
 # 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
 
-# 51 "main.c"
-typedef struct {
+# 50 "main.c"
+typedef struct
+{
 double conv;
 int min;
 } type;
@@ -5068,32 +5069,31 @@ int min;
 type port[4];
 type param[3];
 
-# 67
+# 63
 void Initialize();
 void Oscillator_Initialize();
 void Pin_Initialize();
 void Timer_Initialize();
-
-
 void Renew_Raw_Data();
 void Calc_Duty();
 void Servo_Output_OFF();
 void Servo_Initialize();
 
 
-int Timer1_time = 1000;
 bool data_renew[4] = {0, 0, 0, 0};
 
 
 unsigned char servo_raw_data[5];
 unsigned int servo_duty[5];
 
-# 90
-int main(int argc, char** argv) {
+# 89
+int main(int argc, char** argv)
+{
 Initialize();
 
 
-while (1) {
+while (1)
+{
 Renew_Raw_Data();
 if (
 data_renew[0] ==
@@ -5111,18 +5111,26 @@ LATCbits.LATC5 = 1;
 LATCbits.LATC4 = 1;
 
 
-while (1) {
+while (1)
+{
 
 TMR1 = 25536;
 T1CONbits.TMR1ON = 1;
 
-while (!PIR1bits.TMR1IF) {
+while (!PIR1bits.TMR1IF)
+{
+
 Servo_Output_OFF();
-if (TMR1 >= 45536) {
+
+
+if (TMR1 >= 45536)
+{
+
 Renew_Raw_Data();
 Calc_Duty();
 }
 }
+
 PIR1bits.TMR1IF = 0;
 
 LATCbits.LATC3 = 1;
@@ -5133,29 +5141,31 @@ LATCbits.LATC4 = 1;
 return (0);
 }
 
-void Renew_Raw_Data() {
+void Renew_Raw_Data()
+{
 
-# 139
 servo_raw_data[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] = PORTA;
+
 
 data_renew[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] ^= 1;
 }
 
-void Calc_Duty() {
+void Calc_Duty()
+{
 int i;
 
 
 
-for (i = 1; i < 5; i++) {
-
+for (i = 1; i < 5; i++)
+{
 servo_duty[i] = ((servo_raw_data[i] * port[i - 1].conv) * 2000000);
 }
 
 }
 
-void Servo_Output_OFF() {
+void Servo_Output_OFF()
+{
 
-# 168
 if (TMR1 >= (25536 + port[0].min + servo_duty[1])) LATCbits.LATC3 = 0;
 if (TMR1 >= (25536 + port[1].min + servo_duty[2])) LATCbits.LATC6 = 0;
 if (TMR1 >= (25536 + port[2].min + servo_duty[3])) LATCbits.LATC5 = 0;
@@ -5165,18 +5175,21 @@ else;
 }
 
 # 180
-void Initialize() {
+void Initialize()
+{
 Oscillator_Initialize();
 Pin_Initialize();
 Timer_Initialize();
 Servo_Initialize();
 }
 
-void Oscillator_Initialize() {
+void Oscillator_Initialize()
+{
 OSCCON = 0x73;
 }
 
-void Pin_Initialize() {
+void Pin_Initialize()
+{
 
 
 ANSELA = 0x00;
@@ -5200,7 +5213,8 @@ TRISCbits.TRISC6 = 0;
 TRISCbits.TRISC7 = 0;
 }
 
-void Timer_Initialize() {
+void Timer_Initialize()
+{
 
 
 T1CON = 0x00;
@@ -5212,7 +5226,8 @@ INTCONbits.PEIE = 0;
 PIE1bits.TMR1IE = 0;
 }
 
-void Servo_Initialize() {
+void Servo_Initialize()
+{
 const int num[2][6] = {
 {0, 0, 0, 1, 1, 2},
 {0, 1, 2, 1, 2, 2}
@@ -5242,7 +5257,8 @@ port[2].min = param[num[0][((PORTB&0b00111000)>>3)]].min;
 port[3].conv = param[num[1][((PORTB&0b00111000)>>3)]].conv;
 port[3].min = param[num[1][((PORTB&0b00111000)>>3)]].min;
 
-if(num[0][(PORTB&0b00000111)]==2)LATCbits.LATC7=1;
-else LATCbits.LATC7=0;
+
+if (num[0][(PORTB&0b00000111)] == 2)LATCbits.LATC7 = 1;
+else LATCbits.LATC7 = 0;
 }
 

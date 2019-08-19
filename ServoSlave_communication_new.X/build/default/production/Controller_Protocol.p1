@@ -76,11 +76,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Controller_Protocol.h: 56: };
 [; ;Controller_Protocol.h: 57: } Processed;
 "78 Controller_Protocol.h
-[v _Buffer0 `S4 ~T0 @X0 + * -> 6 `i -> 2 `i -> 3 `i e ]
-[; ;Controller_Protocol.h: 78: Untreated Buffer0[6 * 2 + 3];
+[v _Buffer0 `S4 ~T0 @X0 + * -> 5 `i -> 2 `i -> 3 `i e ]
+[; ;Controller_Protocol.h: 78: Untreated Buffer0[5 * 2 + 3];
 "79
-[v _RxData0 `S6 ~T0 @X0 -> 6 `i e ]
-[; ;Controller_Protocol.h: 79: Processed RxData0[6];
+[v _RxData0 `S6 ~T0 @X0 -> 5 `i e ]
+[; ;Controller_Protocol.h: 79: Processed RxData0[5];
 [; ;Controller_Protocol.h: 100: void Initialize_Parameters(void);
 [; ;Controller_Protocol.h: 101: void Organize_Datas(Processed *, Untreated *, int, int);
 [; ;Controller_Protocol.h: 102: unsigned char Store_Datas(Untreated *, unsigned char, int, int, bool(*)(void));

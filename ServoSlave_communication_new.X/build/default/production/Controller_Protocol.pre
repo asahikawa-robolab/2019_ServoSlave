@@ -58,8 +58,8 @@ unsigned errors : 2;
 } Processed;
 
 # 78
-Untreated Buffer0[6 * 2 + 3];
-Processed RxData0[6];
+Untreated Buffer0[5 * 2 + 3];
+Processed RxData0[5];
 
 # 100
 void Initialize_Parameters(void);

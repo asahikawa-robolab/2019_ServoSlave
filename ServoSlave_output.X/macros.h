@@ -39,7 +39,7 @@ extern "C" {
     /* サーボの種類読み込み */
 #define SERVO_TYPE_0_1 (PORTB&0b00000111)
 #define SERVO_TYPE_2_3 ((PORTB&0b00111000)>>3)
-    
+
     /* サーボ出力ポート */
 #define SERVO_OUTPUT_1 LATCbits.LATC3
 #define SERVO_OUTPUT_2 LATCbits.LATC6
@@ -51,15 +51,20 @@ extern "C" {
 
     /* timer周期を設定する */
 #define time_20ms 25536
-#define calc_OK 45536
-    
+#define calc_OK 45536 /* 最新のDutyを計算してもよい時間 */
+
     /* サーボの種類ごとのタイマの時間設定 */
     /* 900us-2100us 180[deg] Hitec num:0*/
     //#define degree_sec 667E-8 
 #define time_900us 1800
+    /* ****************************************
+     * 
+     * HITECは1のパラメータでも動かすことができる
+     * 
+     * **************************************** */
 
     /* 500us-2.4ms 180[deg] sanwa erg-vb etc.num:1 */
-//#define degree_sec 1056E-8 /* sec/degree */
+    //#define degree_sec 1056E-8 /* sec/degree */
 #define time_500us 1000 //1
 
     /* 700us-2300us 270[deg] KONDO num:2 */

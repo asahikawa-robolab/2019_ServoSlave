@@ -3192,11 +3192,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Controller_Protocol.h: 56: };
 [; ;Controller_Protocol.h: 57: } Processed;
 "78 Controller_Protocol.h
-[v _Buffer0 `S357 ~T0 @X0 + * -> 6 `i -> 2 `i -> 3 `i e ]
-[; ;Controller_Protocol.h: 78: Untreated Buffer0[6 * 2 + 3];
+[v _Buffer0 `S357 ~T0 @X0 + * -> 5 `i -> 2 `i -> 3 `i e ]
+[; ;Controller_Protocol.h: 78: Untreated Buffer0[5 * 2 + 3];
 "79
-[v _RxData0 `S359 ~T0 @X0 -> 6 `i e ]
-[; ;Controller_Protocol.h: 79: Processed RxData0[6];
+[v _RxData0 `S359 ~T0 @X0 -> 5 `i e ]
+[; ;Controller_Protocol.h: 79: Processed RxData0[5];
 [; ;Controller_Protocol.h: 100: void Initialize_Parameters(void);
 [; ;Controller_Protocol.h: 101: void Organize_Datas(Processed *, Untreated *, int, int);
 [; ;Controller_Protocol.h: 102: unsigned char Store_Datas(Untreated *, unsigned char, int, int, bool(*)(void));
@@ -3272,9 +3272,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;communication.c: 37: static uint8_t Receive_data_count = 0;
 [; ;communication.c: 38: uint8_t error_complete = 0;
 [e = _error_complete -> -> 0 `i `uc ]
-[; ;communication.c: 53: error_complete = Store_Datas(Buffer0, RCREG, 6 * 2 + 3, 0, EUSART_ERROR_from_master);
+[; ;communication.c: 53: error_complete = Store_Datas(Buffer0, RCREG, 5 * 2 + 3, 0, EUSART_ERROR_from_master);
 "53
-[e = _error_complete ( _Store_Datas (4 , , , , &U _Buffer0 _RCREG + * -> 6 `i -> 2 `i -> 3 `i -> 0 `i &U _EUSART_ERROR_from_master ]
+[e = _error_complete ( _Store_Datas (4 , , , , &U _Buffer0 _RCREG + * -> 5 `i -> 2 `i -> 3 `i -> 0 `i &U _EUSART_ERROR_from_master ]
 [; ;communication.c: 56: if (error_complete == 1) {
 "56
 [e $ ! == -> _error_complete `i -> 1 `i 366  ]
@@ -3284,10 +3284,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = F2829 -> -> 0 `i `uc ]
 "58
 }
-[; ;communication.c: 58: } else if ((error_complete == 2) && (Receive_data_count != (6 * 2 + 3 - 1))) {
+[; ;communication.c: 58: } else if ((error_complete == 2) && (Receive_data_count != (5 * 2 + 3 - 1))) {
 [e $U 367  ]
 [e :U 366 ]
-[e $ ! && == -> _error_complete `i -> 2 `i != -> F2829 `i - + * -> 6 `i -> 2 `i -> 3 `i -> 1 `i 368  ]
+[e $ ! && == -> _error_complete `i -> 2 `i != -> F2829 `i - + * -> 5 `i -> 2 `i -> 3 `i -> 1 `i 368  ]
 {
 [; ;communication.c: 59: Receive_data_count = 0;
 "59
@@ -3309,9 +3309,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 369 ]
 [e :U 367 ]
 [; ;communication.c: 63: }
-[; ;communication.c: 65: if ((error_complete == 2) && (Receive_data_count == 6 * 2 + 3)) {
+[; ;communication.c: 65: if ((error_complete == 2) && (Receive_data_count == 5 * 2 + 3)) {
 "65
-[e $ ! && == -> _error_complete `i -> 2 `i == -> F2829 `i + * -> 6 `i -> 2 `i -> 3 `i 370  ]
+[e $ ! && == -> _error_complete `i -> 2 `i == -> F2829 `i + * -> 5 `i -> 2 `i -> 3 `i 370  ]
 {
 [; ;communication.c: 66: Receive_flag = 0;
 "66
@@ -3400,9 +3400,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "93
 [e $ ! == -> _slave_different_flag `i -> 1 `i 378  ]
 {
-[; ;communication.c: 94: Organize_Datas(RxData0, Buffer0, 6, 0);
+[; ;communication.c: 94: Organize_Datas(RxData0, Buffer0, 5, 0);
 "94
-[e ( _Organize_Datas (4 , , , &U _RxData0 &U _Buffer0 -> 6 `i -> 0 `i ]
+[e ( _Organize_Datas (4 , , , &U _RxData0 &U _Buffer0 -> 5 `i -> 0 `i ]
 [; ;communication.c: 95: slave_different_flag = 2;
 "95
 [e = _slave_different_flag -> -> 2 `i `uc ]

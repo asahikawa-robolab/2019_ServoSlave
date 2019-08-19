@@ -41,7 +41,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "Controller_Protocol.h"
-#include "communication.h"
+#include  "communication.h"
 #include "variable.h"
 
 /* プロトタイプ宣言---------------------*/
@@ -73,7 +73,6 @@ void Write_data(Processed);
 #define servo2_data RxData0[2]
 #define servo3_data RxData0[3]
 #define servo4_data RxData0[4]
-#define EmergencyStop RxData0[5].all_data
 #define stop 0x0
 #define start 0x1
 
@@ -130,7 +129,7 @@ int main(int argc, char** argv) {
 }
 
 void SetData() {
-    debug^=1;
+    debug ^= 1;
     /*1->none->2->none->3->none->4->none->1->...*/
     ChangeAddress();
     ChangeData();
@@ -180,17 +179,13 @@ void ChangeData(void) {
     /*データ変更*/
 
     if (address.all_data == 1) {
-        if (EmergencyStop == stop)Write_data(zero);
-        else Write_data(servo1_data);
+        Write_data(servo1_data);
     } else if (address.all_data == 2) {
-        if (EmergencyStop == stop)Write_data(zero);
-        else Write_data(servo2_data);
+        Write_data(servo2_data);
     } else if (address.all_data == 3) {
-        if (EmergencyStop == stop)Write_data(zero);
-        else Write_data(servo3_data);
+        Write_data(servo3_data);
     } else if (address.all_data == 4) {
-        if (EmergencyStop == stop)Write_data(zero);
-        else Write_data(servo4_data);
+        Write_data(servo4_data);
     } else;
 
 }
@@ -245,8 +240,8 @@ void Pin_Initialize() {
     TRISBbits.TRISB1 = 0;
     TRISBbits.TRISB0 = 0;
     TRISCbits.TRISC5 = 0;
-    
-    TRISCbits.TRISC4=0;  //debug
+
+    TRISCbits.TRISC4 = 0; //debug
 }
 
 void UART_Initialize() {

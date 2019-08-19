@@ -43,12 +43,12 @@
 #include <stdbool.h>
 #include "macros.h"
 
-/*defines*/
 #define num_comb 6 /* サーボの種類の組み合わせ(combination)の数 */
-#define num_port 4
-#define num_type 3
+#define num_port 4 /* ポート数 */
+#define num_type 3 /* サーボの種類の数 */
 
-typedef struct {
+typedef struct
+{
     double conv; /* deg->sec　の変換(conversion)の係数 */
     int min; /* duty最小値 */
 } type;
@@ -56,42 +56,43 @@ typedef struct {
 type port[num_port];
 type param[num_type];
 
-
-/* 0:Hitec 1:sanwa 2:KONDO */
-
 /*関数マクロ*/
 #define sec_duty 2000000 //Fosc*pre/4 = 8000000/4
 
 /*prototype declarations*/
-//*initializes*/
 void Initialize();
 void Oscillator_Initialize();
 void Pin_Initialize();
 void Timer_Initialize();
-
-/*Servo*/
 void Renew_Raw_Data();
 void Calc_Duty();
 void Servo_Output_OFF();
 void Servo_Initialize();
 
 /*flags*/
-int Timer1_time = time_500us;
-bool data_renew[4] = {0, 0, 0, 0};
+bool data_renew[num_port] = {0, 0, 0, 0};
 
 /* values & array */
-unsigned char servo_raw_data[5];
-unsigned int servo_duty[5]; // 5:number of servo + 1
+unsigned char servo_raw_data[5]; /* パラレル通信で受け取った生データ */
+unsigned int servo_duty[5]; /* 指定の角度を出力するためのDutyを格納する */
+/* ***************
+ * 
+ *  5: num_port+1
+ * SERVO_ADDRESS が　1から始まるため
+ * 
+ * *************** */
 
 /*
  * 
  */
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
     Initialize();
 
-    /*最初のカウント値を計算するまでは待たないといけない*/
-    while (1) {
+    /* 最初のカウント値を計算するまで待つ */
+    while (1)
+    {
         Renew_Raw_Data();
         if (
                 data_renew[0] ==
@@ -102,25 +103,33 @@ int main(int argc, char** argv) {
     }
     Calc_Duty();
 
-    /*出力ON*/
+    /* 出力ON */
     SERVO_OUTPUT_1 = on;
     SERVO_OUTPUT_2 = on;
     SERVO_OUTPUT_3 = on;
     SERVO_OUTPUT_4 = on;
 
-    /*メインループ*/
-    while (1) {
+    /* メインループ */
+    while (1)
+    {
 
         TMR1 = time_20ms;
         timer1_ON = on;
 
-        while (!timer_InterruptFlag) {
+        while (!timer_InterruptFlag)
+        {
+            /* TMR1 の値が 計算した目標値を超えたら出力OFF */
             Servo_Output_OFF();
-            if (TMR1 >= calc_OK) {
+            
+            /* 次の目標値を計算する */
+            if (TMR1 >= calc_OK) /* 全てのポートが確実にOFFになったら */
+            {
+                /* 目標値の更新 */
                 Renew_Raw_Data();
                 Calc_Duty();
             }
         }
+        /* 20ms 経過したら割り込みフラグをクリアし出力をONにする */
         timer_InterruptFlag = CLEAR;
 
         SERVO_OUTPUT_1 = on;
@@ -131,40 +140,31 @@ int main(int argc, char** argv) {
     return (EXIT_SUCCESS);
 }
 
-void Renew_Raw_Data() {
-    /*・アドレスに応じて配列に角度データ格納
-     * ・変換かける
-     * ・レジスタ代入*/
+void Renew_Raw_Data()
+{
 
     servo_raw_data[SERVO_ADDRESS] = SERVO_DATA;
 
+    /* 初回のみ使用。全てのポートのデータが更新されたかどうかの確認 */
     data_renew[SERVO_ADDRESS] ^= 1;
 }
 
-void Calc_Duty() {
+void Calc_Duty()
+{
     int i;
     /*変換式*/
 
 
-    for (i = 1; i < 5; i++) {
-
+    for (i = 1; i < 5; i++)
+    {
         servo_duty[i] = ((servo_raw_data[i] * port[i - 1].conv) * sec_duty);
     }
-    //     servo_duty[1] = ((servo_raw_data[1] * port[1 - 1].conv) * sec_duty);
+
 }
 
-void Servo_Output_OFF() {
-    //    if (TMR1 >= (time_1_9ms + servo_duty[1])) SERVO_OUTPUT_1 = off;
-    //    if (TMR1 >= (time_1_9ms + servo_duty[2])) SERVO_OUTPUT_2 = off;
-    //    if (TMR1 >= (time_1_9ms + servo_duty[3])) SERVO_OUTPUT_3 = off;
-    //    if (TMR1 >= (time_1_9ms + servo_duty[4])) SERVO_OUTPUT_4 = off;
-    //    else;
-
-    //        if (TMR1 >= (time_20ms + time_500us + servo_duty[1])) SERVO_OUTPUT_1 = off;
-    //        if (TMR1 >= (time_20ms + time_500us + servo_duty[2])) SERVO_OUTPUT_2 = off;
-    //        if (TMR1 >= (time_20ms + time_500us + servo_duty[3])) SERVO_OUTPUT_3 = off;
-    //        if (TMR1 >= (time_20ms + time_500us + servo_duty[4])) SERVO_OUTPUT_4 = off;
-
+void Servo_Output_OFF()
+{
+ 
     if (TMR1 >= (time_20ms + port[0].min + servo_duty[1])) SERVO_OUTPUT_1 = off;
     if (TMR1 >= (time_20ms + port[1].min + servo_duty[2])) SERVO_OUTPUT_2 = off;
     if (TMR1 >= (time_20ms + port[2].min + servo_duty[3])) SERVO_OUTPUT_3 = off;
@@ -177,54 +177,59 @@ void Servo_Output_OFF() {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void Initialize() {
+void Initialize()
+{
     Oscillator_Initialize();
     Pin_Initialize();
     Timer_Initialize();
     Servo_Initialize();
 }
 
-void Oscillator_Initialize() {
+void Oscillator_Initialize()
+{
     OSCCON = 0x73; //Fosc:8MHz
 }
 
-void Pin_Initialize() {
+void Pin_Initialize()
+{
 
-    /*data,address*/
+    /* data,address */
     ANSELA = 0x00; //digital
     ANSELB = 0x00;
 
     TRISA = 0xFF;
     TRISB = 0xFF; /* パラメータ選択用DIPスイッチ入力 */
 
-    /*address*/
+    /* address */
     TRISCbits.TRISC0 = 1;
     TRISCbits.TRISC1 = 1;
     TRISCbits.TRISC2 = 1;
 
-    /*output*/
+    /* output */
     TRISCbits.TRISC3 = 0;
     TRISCbits.TRISC4 = 0;
     TRISCbits.TRISC5 = 0;
     TRISCbits.TRISC6 = 0;
 
-    /*debug*/
+    /* debug */
     TRISCbits.TRISC7 = 0;
 }
 
-void Timer_Initialize() {
+void Timer_Initialize()
+{
 
-    /*pre:1:1 source:Fosc/4*/
+    /* pre:1:1 source:Fosc/4 */
     T1CON = 0x00;
 
-    /*enable interrupts*/
+    /* enable interrupts */
     INTCONbits.GIE = disable;
     INTCONbits.PEIE = disable;
 
     PIE1bits.TMR1IE = disable;
 }
 
-void Servo_Initialize() {
+void Servo_Initialize()
+{
     const int num[2][num_comb] = {
         {0, 0, 0, 1, 1, 2},
         {0, 1, 2, 1, 2, 2}
@@ -235,9 +240,9 @@ void Servo_Initialize() {
     param[0].min = time_900us;
 
     param[1].conv = 1056E-8; /* sanwa */
-    param[1].min = time_500us;
+    param[1].min = time_500us; //time_900us;
 
-    param[2].conv = 5926E-9; /* kondo */
+    param[2].conv = 5926E-9; /* kondo(270[deg]) */
     param[2].min = time_700us;
 
 
@@ -254,7 +259,8 @@ void Servo_Initialize() {
     port[3].conv = param[num[1][SERVO_TYPE_2_3]].conv;
     port[3].min = param[num[1][SERVO_TYPE_2_3]].min;
 
-    if(num[0][SERVO_TYPE_0_1]==2)debug_LED1=1;
-    else debug_LED1=0;
+    /* デバッグ */
+    if (num[0][SERVO_TYPE_0_1] == 2)debug_LED1 = 1;
+    else debug_LED1 = 0;
 }
 

@@ -3,11 +3,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [s S354 `d 1 `i 1 ]
 [n S354 . conv min ]
 [p mainexit ]
-"67
+"63
 [v _Initialize `(v ~T0 @X0 0 ef ]
-"73
+"67
 [v _Renew_Raw_Data `(v ~T0 @X0 0 ef ]
-"74
+"68
 [v _Calc_Duty `(v ~T0 @X0 0 ef ]
 "2323 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f1933.h
 [s S114 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -30,7 +30,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S48 . . . ]
 "890
 [v _T1CONbits `VS48 ~T0 @X0 0 e@24 ]
-"75 main.c
+"69 main.c
 [v _Servo_Output_OFF `(v ~T0 @X0 0 ef ]
 "642 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f1933.h
 [s S37 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -50,13 +50,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PORTCbits `VS32 ~T0 @X0 0 e@14 ]
 "429
 [v _PORTA `Vuc ~T0 @X0 0 e@12 ]
-"68 main.c
+"64 main.c
 [v _Oscillator_Initialize `(v ~T0 @X0 0 ef ]
-"69
+"65
 [v _Pin_Initialize `(v ~T0 @X0 0 ef ]
-"70
+"66
 [v _Timer_Initialize `(v ~T0 @X0 0 ef ]
-"76
+"70
 [v _Servo_Initialize `(v ~T0 @X0 0 ef ]
 "1851 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f1933.h
 [v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
@@ -3244,7 +3244,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 289: typedef int16_t intptr_t;
 [; ;stdint.h: 294: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 13: typedef unsigned char bool;
-[; ;main.c: 51: typedef struct {
+[; ;main.c: 50: typedef struct
+[; ;main.c: 51: {
 [; ;main.c: 52: double conv;
 [; ;main.c: 53: int min;
 [; ;main.c: 54: } type;
@@ -3254,21 +3255,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 "57
 [v _param `S354 ~T0 @X0 -> 3 `i e ]
 [; ;main.c: 57: type param[3];
-[; ;main.c: 67: void Initialize();
-[; ;main.c: 68: void Oscillator_Initialize();
-[; ;main.c: 69: void Pin_Initialize();
-[; ;main.c: 70: void Timer_Initialize();
-[; ;main.c: 73: void Renew_Raw_Data();
-[; ;main.c: 74: void Calc_Duty();
-[; ;main.c: 75: void Servo_Output_OFF();
-[; ;main.c: 76: void Servo_Initialize();
-"79
-[v _Timer1_time `i ~T0 @X0 1 e ]
-[i _Timer1_time
--> 1000 `i
-]
-[; ;main.c: 79: int Timer1_time = 1000;
-"80
+[; ;main.c: 63: void Initialize();
+[; ;main.c: 64: void Oscillator_Initialize();
+[; ;main.c: 65: void Pin_Initialize();
+[; ;main.c: 66: void Timer_Initialize();
+[; ;main.c: 67: void Renew_Raw_Data();
+[; ;main.c: 68: void Calc_Duty();
+[; ;main.c: 69: void Servo_Output_OFF();
+[; ;main.c: 70: void Servo_Initialize();
+"73
 [v _data_renew `uc ~T0 @X0 -> 4 `i e ]
 [i _data_renew
 :U ..
@@ -3278,186 +3273,206 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-[; ;main.c: 80: bool data_renew[4] = {0, 0, 0, 0};
-"83
+[; ;main.c: 73: bool data_renew[4] = {0, 0, 0, 0};
+"76
 [v _servo_raw_data `uc ~T0 @X0 -> 5 `i e ]
-[; ;main.c: 83: unsigned char servo_raw_data[5];
-"84
+[; ;main.c: 76: unsigned char servo_raw_data[5];
+"77
 [v _servo_duty `ui ~T0 @X0 -> 5 `i e ]
-[; ;main.c: 84: unsigned int servo_duty[5];
+[; ;main.c: 77: unsigned int servo_duty[5];
 [v $root$_main `(v ~T0 @X0 0 e ]
-"90
+"89
 [v _main `(i ~T0 @X0 1 ef2`i`**uc ]
+"90
 {
-[; ;main.c: 90: int main(int argc, char** argv) {
+[; ;main.c: 89: int main(int argc, char** argv)
+[; ;main.c: 90: {
 [e :U _main ]
+"89
 [v _argc `i ~T0 @X0 1 r1 ]
 [v _argv `**uc ~T0 @X0 1 r2 ]
+"90
 [f ]
 [; ;main.c: 91: Initialize();
 "91
 [e ( _Initialize ..  ]
-[; ;main.c: 94: while (1) {
+[; ;main.c: 94: while (1)
 "94
 [e :U 357 ]
-{
-[; ;main.c: 95: Renew_Raw_Data();
+[; ;main.c: 95: {
 "95
+{
+[; ;main.c: 96: Renew_Raw_Data();
+"96
 [e ( _Renew_Raw_Data ..  ]
-[; ;main.c: 96: if (
-[; ;main.c: 97: data_renew[0] ==
-[; ;main.c: 98: data_renew[1] ==
-[; ;main.c: 99: data_renew[2] ==
-[; ;main.c: 100: data_renew[3]
-[; ;main.c: 101: )break;
-"101
+[; ;main.c: 97: if (
+[; ;main.c: 98: data_renew[0] ==
+[; ;main.c: 99: data_renew[1] ==
+[; ;main.c: 100: data_renew[2] ==
+[; ;main.c: 101: data_renew[3]
+[; ;main.c: 102: )break;
+"102
 [e $ ! == -> == -> == -> *U + &U _data_renew * -> -> -> 0 `i `ui `ux -> -> # *U &U _data_renew `ui `ux `i -> *U + &U _data_renew * -> -> -> 1 `i `ui `ux -> -> # *U &U _data_renew `ui `ux `i `i -> *U + &U _data_renew * -> -> -> 2 `i `ui `ux -> -> # *U &U _data_renew `ui `ux `i `i -> *U + &U _data_renew * -> -> -> 3 `i `ui `ux -> -> # *U &U _data_renew `ui `ux `i 359  ]
 [e $U 358  ]
 [e :U 359 ]
-"102
+"103
 }
 [e :U 356 ]
 "94
 [e $U 357  ]
 [e :U 358 ]
-[; ;main.c: 102: }
-[; ;main.c: 103: Calc_Duty();
-"103
+[; ;main.c: 103: }
+[; ;main.c: 104: Calc_Duty();
+"104
 [e ( _Calc_Duty ..  ]
-[; ;main.c: 106: LATCbits.LATC3 = 1;
-"106
-[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 107: LATCbits.LATC6 = 1;
+[; ;main.c: 107: LATCbits.LATC3 = 1;
 "107
-[e = . . _LATCbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 108: LATCbits.LATC5 = 1;
+[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 108: LATCbits.LATC6 = 1;
 "108
-[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 109: LATCbits.LATC4 = 1;
+[e = . . _LATCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 109: LATCbits.LATC5 = 1;
 "109
+[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 110: LATCbits.LATC4 = 1;
+"110
 [e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 112: while (1) {
-"112
+[; ;main.c: 113: while (1)
+"113
 [e :U 361 ]
-{
-[; ;main.c: 114: TMR1 = 25536;
+[; ;main.c: 114: {
 "114
+{
+[; ;main.c: 116: TMR1 = 25536;
+"116
 [e = _TMR1 -> -> 25536 `i `us ]
-[; ;main.c: 115: T1CONbits.TMR1ON = 1;
-"115
-[e = . . _T1CONbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 117: while (!PIR1bits.TMR1IF) {
+[; ;main.c: 117: T1CONbits.TMR1ON = 1;
 "117
+[e = . . _T1CONbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 119: while (!PIR1bits.TMR1IF)
+"119
 [e $U 363  ]
 [e :U 364 ]
-{
-[; ;main.c: 118: Servo_Output_OFF();
-"118
-[e ( _Servo_Output_OFF ..  ]
-[; ;main.c: 119: if (TMR1 >= 45536) {
-"119
-[e $ ! >= -> _TMR1 `l -> 45536 `l 366  ]
-{
-[; ;main.c: 120: Renew_Raw_Data();
+[; ;main.c: 120: {
 "120
-[e ( _Renew_Raw_Data ..  ]
-[; ;main.c: 121: Calc_Duty();
-"121
-[e ( _Calc_Duty ..  ]
+{
+[; ;main.c: 122: Servo_Output_OFF();
 "122
-}
-[e :U 366 ]
-"123
-}
-[e :U 363 ]
-"117
-[e $ ! != -> . . _PIR1bits 0 0 `i -> -> -> 0 `i `Vuc `i 364  ]
-[e :U 365 ]
-[; ;main.c: 122: }
-[; ;main.c: 123: }
-[; ;main.c: 124: PIR1bits.TMR1IF = 0;
-"124
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 126: LATCbits.LATC3 = 1;
+[e ( _Servo_Output_OFF ..  ]
+[; ;main.c: 125: if (TMR1 >= 45536)
+"125
+[e $ ! >= -> _TMR1 `l -> 45536 `l 366  ]
+[; ;main.c: 126: {
 "126
-[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 127: LATCbits.LATC6 = 1;
-"127
-[e = . . _LATCbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 128: LATCbits.LATC5 = 1;
+{
+[; ;main.c: 128: Renew_Raw_Data();
 "128
-[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 129: LATCbits.LATC4 = 1;
+[e ( _Renew_Raw_Data ..  ]
+[; ;main.c: 129: Calc_Duty();
 "129
-[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
+[e ( _Calc_Duty ..  ]
 "130
 }
+[e :U 366 ]
+"131
+}
+[e :U 363 ]
+"119
+[e $ ! != -> . . _PIR1bits 0 0 `i -> -> -> 0 `i `Vuc `i 364  ]
+[e :U 365 ]
+[; ;main.c: 130: }
+[; ;main.c: 131: }
+[; ;main.c: 133: PIR1bits.TMR1IF = 0;
+"133
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 135: LATCbits.LATC3 = 1;
+"135
+[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 136: LATCbits.LATC6 = 1;
+"136
+[e = . . _LATCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 137: LATCbits.LATC5 = 1;
+"137
+[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 138: LATCbits.LATC4 = 1;
+"138
+[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
+"139
+}
 [e :U 360 ]
-"112
+"113
 [e $U 361  ]
 [e :U 362 ]
-[; ;main.c: 130: }
-[; ;main.c: 131: return (0);
-"131
+[; ;main.c: 139: }
+[; ;main.c: 140: return (0);
+"140
 [e ) -> 0 `i ]
 [e $UE 355  ]
-[; ;main.c: 132: }
-"132
+[; ;main.c: 141: }
+"141
 [e :UE 355 ]
 }
-"134
+"143
 [v _Renew_Raw_Data `(v ~T0 @X0 1 ef ]
+"144
 {
-[; ;main.c: 134: void Renew_Raw_Data() {
+[; ;main.c: 143: void Renew_Raw_Data()
+[; ;main.c: 144: {
 [e :U _Renew_Raw_Data ]
 [f ]
-[; ;main.c: 139: servo_raw_data[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] = PORTA;
-"139
+[; ;main.c: 146: servo_raw_data[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] = PORTA;
+"146
 [e = *U + &U _servo_raw_data * -> -> | | << -> . . _PORTCbits 0 2 `i -> 2 `i << -> . . _PORTCbits 0 1 `i -> 1 `i -> . . _PORTCbits 0 0 `i `ui `ux -> -> # *U &U _servo_raw_data `ui `ux _PORTA ]
-[; ;main.c: 141: data_renew[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] ^= 1;
-"141
+[; ;main.c: 149: data_renew[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] ^= 1;
+"149
 [e =^ *U + &U _data_renew * -> -> | | << -> . . _PORTCbits 0 2 `i -> 2 `i << -> . . _PORTCbits 0 1 `i -> 1 `i -> . . _PORTCbits 0 0 `i `ui `ux -> -> # *U &U _data_renew `ui `ux -> -> 1 `i `uc ]
-[; ;main.c: 142: }
-"142
+[; ;main.c: 150: }
+"150
 [e :UE 367 ]
 }
-"144
+"152
 [v _Calc_Duty `(v ~T0 @X0 1 ef ]
+"153
 {
-[; ;main.c: 144: void Calc_Duty() {
+[; ;main.c: 152: void Calc_Duty()
+[; ;main.c: 153: {
 [e :U _Calc_Duty ]
 [f ]
-"145
+"154
 [v _i `i ~T0 @X0 1 a ]
-[; ;main.c: 145: int i;
-[; ;main.c: 149: for (i = 1; i < 5; i++) {
-"149
+[; ;main.c: 154: int i;
+[; ;main.c: 158: for (i = 1; i < 5; i++)
+"158
 {
 [e = _i -> 1 `i ]
 [e $ < _i -> 5 `i 369  ]
 [e $U 370  ]
+"159
 [e :U 369 ]
+[; ;main.c: 159: {
 {
-[; ;main.c: 151: servo_duty[i] = ((servo_raw_data[i] * port[i - 1].conv) * 2000000);
-"151
+[; ;main.c: 160: servo_duty[i] = ((servo_raw_data[i] * port[i - 1].conv) * 2000000);
+"160
 [e = *U + &U _servo_duty * -> -> _i `ui `ux -> -> # *U &U _servo_duty `ui `ux -> * * -> *U + &U _servo_raw_data * -> -> _i `ui `ux -> -> # *U &U _servo_raw_data `ui `ux `d . *U + &U _port * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _port `ui `ux 0 -> -> 2000000 `l `d `ui ]
-"152
+"161
 }
-"149
+"158
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 5 `i 369  ]
 [e :U 370 ]
-"152
+"161
 }
-[; ;main.c: 152: }
-[; ;main.c: 154: }
-"154
+[; ;main.c: 161: }
+[; ;main.c: 163: }
+"163
 [e :UE 368 ]
 }
-"156
+"165
 [v _Servo_Output_OFF `(v ~T0 @X0 1 ef ]
+"166
 {
-[; ;main.c: 156: void Servo_Output_OFF() {
+[; ;main.c: 165: void Servo_Output_OFF()
+[; ;main.c: 166: {
 [e :U _Servo_Output_OFF ]
 [f ]
 [; ;main.c: 168: if (TMR1 >= (25536 + port[0].min + servo_duty[1])) LATCbits.LATC3 = 0;
@@ -3490,119 +3505,129 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "180
 [v _Initialize `(v ~T0 @X0 1 ef ]
+"181
 {
-[; ;main.c: 180: void Initialize() {
+[; ;main.c: 180: void Initialize()
+[; ;main.c: 181: {
 [e :U _Initialize ]
 [f ]
-[; ;main.c: 181: Oscillator_Initialize();
-"181
-[e ( _Oscillator_Initialize ..  ]
-[; ;main.c: 182: Pin_Initialize();
+[; ;main.c: 182: Oscillator_Initialize();
 "182
-[e ( _Pin_Initialize ..  ]
-[; ;main.c: 183: Timer_Initialize();
+[e ( _Oscillator_Initialize ..  ]
+[; ;main.c: 183: Pin_Initialize();
 "183
-[e ( _Timer_Initialize ..  ]
-[; ;main.c: 184: Servo_Initialize();
+[e ( _Pin_Initialize ..  ]
+[; ;main.c: 184: Timer_Initialize();
 "184
-[e ( _Servo_Initialize ..  ]
-[; ;main.c: 185: }
+[e ( _Timer_Initialize ..  ]
+[; ;main.c: 185: Servo_Initialize();
 "185
+[e ( _Servo_Initialize ..  ]
+[; ;main.c: 186: }
+"186
 [e :UE 378 ]
 }
-"187
+"188
 [v _Oscillator_Initialize `(v ~T0 @X0 1 ef ]
+"189
 {
-[; ;main.c: 187: void Oscillator_Initialize() {
+[; ;main.c: 188: void Oscillator_Initialize()
+[; ;main.c: 189: {
 [e :U _Oscillator_Initialize ]
 [f ]
-[; ;main.c: 188: OSCCON = 0x73;
-"188
+[; ;main.c: 190: OSCCON = 0x73;
+"190
 [e = _OSCCON -> -> 115 `i `uc ]
-[; ;main.c: 189: }
-"189
+[; ;main.c: 191: }
+"191
 [e :UE 379 ]
 }
-"191
+"193
 [v _Pin_Initialize `(v ~T0 @X0 1 ef ]
+"194
 {
-[; ;main.c: 191: void Pin_Initialize() {
+[; ;main.c: 193: void Pin_Initialize()
+[; ;main.c: 194: {
 [e :U _Pin_Initialize ]
 [f ]
-[; ;main.c: 194: ANSELA = 0x00;
-"194
-[e = _ANSELA -> -> 0 `i `uc ]
-[; ;main.c: 195: ANSELB = 0x00;
-"195
-[e = _ANSELB -> -> 0 `i `uc ]
-[; ;main.c: 197: TRISA = 0xFF;
+[; ;main.c: 197: ANSELA = 0x00;
 "197
-[e = _TRISA -> -> 255 `i `uc ]
-[; ;main.c: 198: TRISB = 0xFF;
+[e = _ANSELA -> -> 0 `i `uc ]
+[; ;main.c: 198: ANSELB = 0x00;
 "198
-[e = _TRISB -> -> 255 `i `uc ]
-[; ;main.c: 201: TRISCbits.TRISC0 = 1;
+[e = _ANSELB -> -> 0 `i `uc ]
+[; ;main.c: 200: TRISA = 0xFF;
+"200
+[e = _TRISA -> -> 255 `i `uc ]
+[; ;main.c: 201: TRISB = 0xFF;
 "201
+[e = _TRISB -> -> 255 `i `uc ]
+[; ;main.c: 204: TRISCbits.TRISC0 = 1;
+"204
 [e = . . _TRISCbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 202: TRISCbits.TRISC1 = 1;
-"202
+[; ;main.c: 205: TRISCbits.TRISC1 = 1;
+"205
 [e = . . _TRISCbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 203: TRISCbits.TRISC2 = 1;
-"203
-[e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 206: TRISCbits.TRISC3 = 0;
+[; ;main.c: 206: TRISCbits.TRISC2 = 1;
 "206
-[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 207: TRISCbits.TRISC4 = 0;
-"207
-[e = . . _TRISCbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 208: TRISCbits.TRISC5 = 0;
-"208
-[e = . . _TRISCbits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 209: TRISCbits.TRISC6 = 0;
+[e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 209: TRISCbits.TRISC3 = 0;
 "209
-[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 212: TRISCbits.TRISC7 = 0;
+[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 210: TRISCbits.TRISC4 = 0;
+"210
+[e = . . _TRISCbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 211: TRISCbits.TRISC5 = 0;
+"211
+[e = . . _TRISCbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 212: TRISCbits.TRISC6 = 0;
 "212
+[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 215: TRISCbits.TRISC7 = 0;
+"215
 [e = . . _TRISCbits 0 7 -> -> 0 `i `uc ]
-[; ;main.c: 213: }
-"213
+[; ;main.c: 216: }
+"216
 [e :UE 380 ]
 }
-"215
+"218
 [v _Timer_Initialize `(v ~T0 @X0 1 ef ]
+"219
 {
-[; ;main.c: 215: void Timer_Initialize() {
+[; ;main.c: 218: void Timer_Initialize()
+[; ;main.c: 219: {
 [e :U _Timer_Initialize ]
 [f ]
-[; ;main.c: 218: T1CON = 0x00;
-"218
-[e = _T1CON -> -> 0 `i `uc ]
-[; ;main.c: 221: INTCONbits.GIE = 0;
-"221
-[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
-[; ;main.c: 222: INTCONbits.PEIE = 0;
+[; ;main.c: 222: T1CON = 0x00;
 "222
-[e = . . _INTCONbits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 224: PIE1bits.TMR1IE = 0;
-"224
-[e = . . _PIE1bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 225: }
+[e = _T1CON -> -> 0 `i `uc ]
+[; ;main.c: 225: INTCONbits.GIE = 0;
 "225
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 226: INTCONbits.PEIE = 0;
+"226
+[e = . . _INTCONbits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 228: PIE1bits.TMR1IE = 0;
+"228
+[e = . . _PIE1bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 229: }
+"229
 [e :UE 381 ]
 }
-"227
+"231
 [v _Servo_Initialize `(v ~T0 @X0 1 ef ]
+"232
 {
-[; ;main.c: 227: void Servo_Initialize() {
+[; ;main.c: 231: void Servo_Initialize()
+[; ;main.c: 232: {
 [e :U _Servo_Initialize ]
 [f ]
-[v F2759 `Ci ~T0 @X0 -> 6 `i t ]
-[v F2760 `F2759 ~T0 @X0 -> 2 `i s ]
-[i F2760
+[v F2758 `Ci ~T0 @X0 -> 6 `i t ]
+[v F2759 `F2758 ~T0 @X0 -> 2 `i s ]
+[i F2759
 :U ..
 :U ..
-"229
+"234
 -> 0 `i
 -> 0 `i
 -> 0 `i
@@ -3611,7 +3636,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 2 `i
 ..
 :U ..
-"230
+"235
 -> 0 `i
 -> 1 `i
 -> 2 `i
@@ -3621,67 +3646,67 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"228
-[v _num `F2759 ~T0 @X0 -> 2 `i a ]
-[; ;main.c: 228: const int num[2][6] = {
-[; ;main.c: 229: {0, 0, 0, 1, 1, 2},
-[; ;main.c: 230: {0, 1, 2, 1, 2, 2}
-[; ;main.c: 231: };
-"231
-[e = _num F2760 ]
-[; ;main.c: 234: param[0].conv = 667E-8;
-"234
+"233
+[v _num `F2758 ~T0 @X0 -> 2 `i a ]
+[; ;main.c: 233: const int num[2][6] = {
+[; ;main.c: 234: {0, 0, 0, 1, 1, 2},
+[; ;main.c: 235: {0, 1, 2, 1, 2, 2}
+[; ;main.c: 236: };
+"236
+[e = _num F2759 ]
+[; ;main.c: 239: param[0].conv = 667E-8;
+"239
 [e = . *U + &U _param * -> -> -> 0 `i `ui `ux -> -> # *U &U _param `ui `ux 0 .667e-8 ]
-[; ;main.c: 235: param[0].min = 1800;
-"235
-[e = . *U + &U _param * -> -> -> 0 `i `ui `ux -> -> # *U &U _param `ui `ux 1 -> 1800 `i ]
-[; ;main.c: 237: param[1].conv = 1056E-8;
-"237
-[e = . *U + &U _param * -> -> -> 1 `i `ui `ux -> -> # *U &U _param `ui `ux 0 .1056e-8 ]
-[; ;main.c: 238: param[1].min = 1000;
-"238
-[e = . *U + &U _param * -> -> -> 1 `i `ui `ux -> -> # *U &U _param `ui `ux 1 -> 1000 `i ]
-[; ;main.c: 240: param[2].conv = 5926E-9;
+[; ;main.c: 240: param[0].min = 1800;
 "240
-[e = . *U + &U _param * -> -> -> 2 `i `ui `ux -> -> # *U &U _param `ui `ux 0 .5926e-9 ]
-[; ;main.c: 241: param[2].min = 1400;
-"241
-[e = . *U + &U _param * -> -> -> 2 `i `ui `ux -> -> # *U &U _param `ui `ux 1 -> 1400 `i ]
-[; ;main.c: 245: port[0].conv = param[num[0][(PORTB&0b00000111)]].conv;
+[e = . *U + &U _param * -> -> -> 0 `i `ui `ux -> -> # *U &U _param `ui `ux 1 -> 1800 `i ]
+[; ;main.c: 242: param[1].conv = 1056E-8;
+"242
+[e = . *U + &U _param * -> -> -> 1 `i `ui `ux -> -> # *U &U _param `ui `ux 0 .1056e-8 ]
+[; ;main.c: 243: param[1].min = 1000;
+"243
+[e = . *U + &U _param * -> -> -> 1 `i `ui `ux -> -> # *U &U _param `ui `ux 1 -> 1000 `i ]
+[; ;main.c: 245: param[2].conv = 5926E-9;
 "245
-[e = . *U + &U _port * -> -> -> 0 `i `ui `ux -> -> # *U &U _port `ui `ux 0 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> & -> _PORTB `i -> 7 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 0 ]
-[; ;main.c: 246: port[0].min = param[num[0][(PORTB&0b00000111)]].min;
+[e = . *U + &U _param * -> -> -> 2 `i `ui `ux -> -> # *U &U _param `ui `ux 0 .5926e-9 ]
+[; ;main.c: 246: param[2].min = 1400;
 "246
-[e = . *U + &U _port * -> -> -> 0 `i `ui `ux -> -> # *U &U _port `ui `ux 1 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> & -> _PORTB `i -> 7 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 1 ]
-[; ;main.c: 248: port[1].conv = param[num[1][(PORTB&0b00000111)]].conv;
-"248
-[e = . *U + &U _port * -> -> -> 1 `i `ui `ux -> -> # *U &U _port `ui `ux 0 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> & -> _PORTB `i -> 7 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 0 ]
-[; ;main.c: 249: port[1].min = param[num[1][(PORTB&0b00000111)]].min;
-"249
-[e = . *U + &U _port * -> -> -> 1 `i `ui `ux -> -> # *U &U _port `ui `ux 1 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> & -> _PORTB `i -> 7 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 1 ]
-[; ;main.c: 251: port[2].conv = param[num[0][((PORTB&0b00111000)>>3)]].conv;
+[e = . *U + &U _param * -> -> -> 2 `i `ui `ux -> -> # *U &U _param `ui `ux 1 -> 1400 `i ]
+[; ;main.c: 250: port[0].conv = param[num[0][(PORTB&0b00000111)]].conv;
+"250
+[e = . *U + &U _port * -> -> -> 0 `i `ui `ux -> -> # *U &U _port `ui `ux 0 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> & -> _PORTB `i -> 7 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 0 ]
+[; ;main.c: 251: port[0].min = param[num[0][(PORTB&0b00000111)]].min;
 "251
-[e = . *U + &U _port * -> -> -> 2 `i `ui `ux -> -> # *U &U _port `ui `ux 0 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> >> & -> _PORTB `i -> 56 `i -> 3 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 0 ]
-[; ;main.c: 252: port[2].min = param[num[0][((PORTB&0b00111000)>>3)]].min;
-"252
-[e = . *U + &U _port * -> -> -> 2 `i `ui `ux -> -> # *U &U _port `ui `ux 1 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> >> & -> _PORTB `i -> 56 `i -> 3 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 1 ]
-[; ;main.c: 254: port[3].conv = param[num[1][((PORTB&0b00111000)>>3)]].conv;
+[e = . *U + &U _port * -> -> -> 0 `i `ui `ux -> -> # *U &U _port `ui `ux 1 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> & -> _PORTB `i -> 7 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 1 ]
+[; ;main.c: 253: port[1].conv = param[num[1][(PORTB&0b00000111)]].conv;
+"253
+[e = . *U + &U _port * -> -> -> 1 `i `ui `ux -> -> # *U &U _port `ui `ux 0 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> & -> _PORTB `i -> 7 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 0 ]
+[; ;main.c: 254: port[1].min = param[num[1][(PORTB&0b00000111)]].min;
 "254
-[e = . *U + &U _port * -> -> -> 3 `i `ui `ux -> -> # *U &U _port `ui `ux 0 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> >> & -> _PORTB `i -> 56 `i -> 3 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 0 ]
-[; ;main.c: 255: port[3].min = param[num[1][((PORTB&0b00111000)>>3)]].min;
-"255
-[e = . *U + &U _port * -> -> -> 3 `i `ui `ux -> -> # *U &U _port `ui `ux 1 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> >> & -> _PORTB `i -> 56 `i -> 3 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 1 ]
-[; ;main.c: 257: if(num[0][(PORTB&0b00000111)]==2)LATCbits.LATC7=1;
+[e = . *U + &U _port * -> -> -> 1 `i `ui `ux -> -> # *U &U _port `ui `ux 1 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> & -> _PORTB `i -> 7 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 1 ]
+[; ;main.c: 256: port[2].conv = param[num[0][((PORTB&0b00111000)>>3)]].conv;
+"256
+[e = . *U + &U _port * -> -> -> 2 `i `ui `ux -> -> # *U &U _port `ui `ux 0 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> >> & -> _PORTB `i -> 56 `i -> 3 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 0 ]
+[; ;main.c: 257: port[2].min = param[num[0][((PORTB&0b00111000)>>3)]].min;
 "257
+[e = . *U + &U _port * -> -> -> 2 `i `ui `ux -> -> # *U &U _port `ui `ux 1 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> >> & -> _PORTB `i -> 56 `i -> 3 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 1 ]
+[; ;main.c: 259: port[3].conv = param[num[1][((PORTB&0b00111000)>>3)]].conv;
+"259
+[e = . *U + &U _port * -> -> -> 3 `i `ui `ux -> -> # *U &U _port `ui `ux 0 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> >> & -> _PORTB `i -> 56 `i -> 3 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 0 ]
+[; ;main.c: 260: port[3].min = param[num[1][((PORTB&0b00111000)>>3)]].min;
+"260
+[e = . *U + &U _port * -> -> -> 3 `i `ui `ux -> -> # *U &U _port `ui `ux 1 . *U + &U _param * -> -> *U + &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> >> & -> _PORTB `i -> 56 `i -> 3 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux `ui `ux -> -> # *U &U _param `ui `ux 1 ]
+[; ;main.c: 263: if (num[0][(PORTB&0b00000111)] == 2)LATCbits.LATC7 = 1;
+"263
 [e $ ! == *U + &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux * -> -> & -> _PORTB `i -> 7 `i `ui `ux -> -> # *U &U *U + &U _num * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _num `ui -> -> 6 `i `ui `ux `ui `ux -> 2 `i 383  ]
 [e = . . _LATCbits 0 7 -> -> 1 `i `uc ]
 [e $U 384  ]
-"258
+"264
 [e :U 383 ]
-[; ;main.c: 258: else LATCbits.LATC7=0;
+[; ;main.c: 264: else LATCbits.LATC7 = 0;
 [e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
 [e :U 384 ]
-[; ;main.c: 259: }
-"259
+[; ;main.c: 265: }
+"265
 [e :UE 382 ]
 }

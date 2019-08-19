@@ -19,23 +19,23 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"90 C:\Users\pguz1\Desktop\2019_ServoSlave\ServoSlave_output.X\main.c
+"89 C:\Users\pguz1\Desktop\2019_ServoSlave\ServoSlave_output.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"134
+"143
 [v _Renew_Raw_Data Renew_Raw_Data `(v  1 e 1 0 ]
-"144
+"152
 [v _Calc_Duty Calc_Duty `(v  1 e 1 0 ]
-"156
+"165
 [v _Servo_Output_OFF Servo_Output_OFF `(v  1 e 1 0 ]
 "180
 [v _Initialize Initialize `(v  1 e 1 0 ]
-"187
+"188
 [v _Oscillator_Initialize Oscillator_Initialize `(v  1 e 1 0 ]
-"191
+"193
 [v _Pin_Initialize Pin_Initialize `(v  1 e 1 0 ]
-"215
+"218
 [v _Timer_Initialize Timer_Initialize `(v  1 e 1 0 ]
-"227
+"231
 [v _Servo_Initialize Servo_Initialize `(v  1 e 1 0 ]
 [s S179 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
@@ -153,62 +153,62 @@
 [v _port port `[4]S22  1 e 20 0 ]
 "57
 [v _param param `[3]S22  1 e 15 0 ]
-"80
+"73
 [v _data_renew data_renew `[4]uc  1 e 4 0 ]
-"83
+"76
 [v _servo_raw_data servo_raw_data `[5]uc  1 e 5 0 ]
-"84
+"77
 [v _servo_duty servo_duty `[5]ui  1 e 10 0 ]
-"90
+"89
 [v _main main `(i  1 e 2 0 ]
 {
-"132
+"141
 } 0
-"156
+"165
 [v _Servo_Output_OFF Servo_Output_OFF `(v  1 e 1 0 ]
 {
 "174
 } 0
-"134
+"143
 [v _Renew_Raw_Data Renew_Raw_Data `(v  1 e 1 0 ]
 {
-"142
+"150
 } 0
 "180
 [v _Initialize Initialize `(v  1 e 1 0 ]
 {
-"185
+"186
 } 0
-"215
+"218
 [v _Timer_Initialize Timer_Initialize `(v  1 e 1 0 ]
 {
-"225
+"229
 } 0
-"227
+"231
 [v _Servo_Initialize Servo_Initialize `(v  1 e 1 0 ]
 {
-"228
+"233
 [v Servo_Initialize@num num `DC[2][6]i  1 a 24 0 ]
-"227
-[v Servo_Initialize@F2760 F2760 `DC[2][6]i  1 s 24 F2760 ]
-"259
+"232
+[v Servo_Initialize@F2759 F2759 `DC[2][6]i  1 s 24 F2759 ]
+"265
 } 0
-"191
+"193
 [v _Pin_Initialize Pin_Initialize `(v  1 e 1 0 ]
 {
-"213
+"216
 } 0
-"187
+"188
 [v _Oscillator_Initialize Oscillator_Initialize `(v  1 e 1 0 ]
 {
-"189
+"191
 } 0
-"144
+"152
 [v _Calc_Duty Calc_Duty `(v  1 e 1 0 ]
 {
-"145
-[v Calc_Duty@i i `i  1 a 2 37 ]
 "154
+[v Calc_Duty@i i `i  1 a 2 37 ]
+"163
 } 0
 "27 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c90\common\lbtoft.c
 [v ___lbtoft __lbtoft `(f  1 e 3 0 ]
