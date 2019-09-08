@@ -1,38 +1,17 @@
 
 # 1 "main.c"
 
-
-# 15
-#pragma config FOSC = INTOSC
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config CLKOUTEN = OFF
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-
-
-#pragma config WRT = OFF
-#pragma config VCAPEN = OFF
-#pragma config PLLEN = OFF
-#pragma config STVREN = OFF
-#pragma config BORV = HI
-#pragma config LVP = OFF
-
-# 18 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\xc.h"
+# 18 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
 
 
-# 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\xc8debug.h"
+# 13 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\xc8debug.h"
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 
-# 52 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f1933.h"
+# 52 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include\pic16f1933.h"
 extern volatile unsigned char INDF0 __at(0x000);
 
 asm("INDF0 equ 00h");
@@ -4804,7 +4783,7 @@ extern volatile __bit nTO __at(0x1C);
 extern volatile __bit nWPUEN __at(0x4AF);
 
 
-# 30 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic.h"
+# 30 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include\pic.h"
 #pragma intrinsic(__nop)
 extern void __nop(void);
 
@@ -4815,12 +4794,12 @@ __attribute__((__unsupported__("The " "FLASH_WRITE" " macro function is no longe
 
 __attribute__((__unsupported__("The " "FLASH_ERASE" " macro function is no longer supported. Please use the MPLAB X MCC."))) void __flash_erase(unsigned short addr);
 
-# 114 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\eeprom_routines.h"
+# 114 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include\eeprom_routines.h"
 extern void eeprom_write(unsigned char addr, unsigned char value);
 extern unsigned char eeprom_read(unsigned char addr);
 
 
-# 91 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic.h"
+# 91 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include\pic.h"
 #pragma intrinsic(_delay)
 extern __nonreentrant void _delay(unsigned long);
 #pragma intrinsic(_delaywdt)
@@ -4834,10 +4813,10 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 4 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\__size_t.h"
+# 4 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include\__size_t.h"
 typedef unsigned size_t;
 
-# 7 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdarg.h"
+# 7 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdarg.h"
 typedef void * va_list[1];
 
 #pragma intrinsic(__va_start)
@@ -4846,17 +4825,17 @@ extern void * __va_start(void);
 #pragma intrinsic(__va_arg)
 extern void * __va_arg(void *, ...);
 
-# 43 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdio.h"
+# 43 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdio.h"
 struct __prbuf
 {
 char * ptr;
 void (* func)(char);
 };
 
-# 29 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\errno.h"
+# 29 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\errno.h"
 extern int errno;
 
-# 12 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\conio.h"
+# 12 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\conio.h"
 extern void init_uart(void);
 
 extern char getch(void);
@@ -4870,7 +4849,7 @@ extern __bit kbhit(void);
 extern char * cgets(char *);
 extern void cputs(const char *);
 
-# 88 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdio.h"
+# 88 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdio.h"
 extern int cprintf(char *, ...);
 #pragma printf_check(cprintf)
 
@@ -4897,7 +4876,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 7 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdlib.h"
+# 7 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdlib.h"
 typedef unsigned short wchar_t;
 
 # 15
@@ -4970,7 +4949,7 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
-# 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdint.h"
+# 13 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdint.h"
 typedef signed char int8_t;
 
 # 20
@@ -5056,209 +5035,260 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 13 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\c90\stdbool.h"
+# 15 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdbool.h"
 typedef unsigned char bool;
 
-# 50 "main.c"
+
+# 10 "Config.h"
+#pragma config FOSC = INTOSC
+#pragma config WDTE = OFF
+#pragma config PWRTE = OFF
+#pragma config MCLRE = OFF
+#pragma config CP = OFF
+#pragma config CPD = OFF
+#pragma config BOREN = OFF
+#pragma config CLKOUTEN = OFF
+#pragma config IESO = OFF
+#pragma config FCMEN = OFF
+
+
+#pragma config WRT = OFF
+#pragma config VCAPEN = OFF
+#pragma config PLLEN = OFF
+#pragma config STVREN = OFF
+#pragma config BORV = HI
+#pragma config LVP = OFF
+
+# 4 "Init.h"
+void Init(void);
+void InitOsc(void);
+void InitPin(void);
+void InitTmr(void);
+void InitUART(void);
+
+# 6 "Interrupt.h"
+void Interrupt_TMR1(void);
+void Interrupt_TX(void);
+
+# 15 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdbool.h"
+typedef unsigned char bool;
+
+# 6 "Structures.h"
+typedef uint8_t SERVO_CH;
+
+
+
+
 typedef struct
 {
-double conv;
-int min;
-} type;
-
-type port[4];
-type param[3];
-
-# 63
-void Initialize();
-void Oscillator_Initialize();
-void Pin_Initialize();
-void Timer_Initialize();
-void Renew_Raw_Data();
-void Calc_Duty();
-void Servo_Output_OFF();
-void Servo_Initialize();
+int min, max;
+} PARAMETER;
 
 
-bool data_renew[4] = {0, 0, 0, 0};
-
-
-unsigned char servo_raw_data[5];
-unsigned int servo_duty[5];
-
-# 89
-int main(int argc, char** argv)
+typedef struct
 {
-Initialize();
+uint16_t angle;
+uint16_t width;
+SERVO_CH ch;
+} SERVO;
 
+# 7 "ShareFunc.h"
+void Output(SERVO_CH ch, bool value);
+
+# 15 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdbool.h"
+typedef unsigned char bool;
+
+# 8 "ExternalVariable.h"
+extern uint16_t _TMRCnt[4 + 1];
+extern uint8_t _DebugTxData[5];
+extern bool _isBusy;
+extern SERVO_CH _CHq[4];
+extern int _IntNum;
+extern const SERVO_CH _CHs[4];
+
+# 14 "Parameter.h"
+PARAMETER _Parameters[2][4] = {
+{{2200, 600}, {2200, 600}, {2200, 600}, {2200, 600}},
+{{1930, 900}, {1930, 900}, {1900, 800}, {1900, 800}}
+};
+
+# 14 "main.c"
+void ReceiveTargetAngle(SERVO Servo[]);
+void SetParameter(SERVO Servo[]);
+void CalcNextCnt(SERVO Servo[]);
+void Swap(SERVO *a, SERVO *b);
+uint16_t CalcWidth(uint8_t angle, PARAMETER Parameter);
+uint16_t CalcTMRCnt(uint16_t pulse_width);
+
+int main(void)
+{
+bool isFirst = 1;
+SERVO Servo[4];
+
+Init();
+Output(0b1111, 0);
 
 while (1)
 {
-Renew_Raw_Data();
-if (
-data_renew[0] ==
-data_renew[1] ==
-data_renew[2] ==
-data_renew[3]
-)break;
-}
-Calc_Duty();
 
-
-LATCbits.LATC3 = 1;
-LATCbits.LATC6 = 1;
-LATCbits.LATC5 = 1;
-LATCbits.LATC4 = 1;
-
-
-while (1)
+if (isFirst == 1)
 {
+isFirst = 0;
+ReceiveTargetAngle(Servo);
+SetParameter(Servo);
+_IntNum = 4 + 1;
+CalcNextCnt(Servo);
+}
 
-TMR1 = 25536;
-T1CONbits.TMR1ON = 1;
 
-while (!PIR1bits.TMR1IF)
+while (_isBusy == 0)
 {
+isFirst = 1;
+}
+}
+return 0;
+}
 
-Servo_Output_OFF();
-
-
-if (TMR1 >= 45536)
+# 55
+void ReceiveTargetAngle(SERVO Servo[])
 {
+static uint16_t pre_angle[4];
+bool rx[4] = {0, 0, 0, 0};
+uint16_t angle_buf[4];
 
-Renew_Raw_Data();
-Calc_Duty();
-}
-}
-
-PIR1bits.TMR1IF = 0;
-
-LATCbits.LATC3 = 1;
-LATCbits.LATC6 = 1;
-LATCbits.LATC5 = 1;
-LATCbits.LATC4 = 1;
-}
-return (0);
-}
-
-void Renew_Raw_Data()
+while (!(rx[0] & rx[1] & rx[2] & rx[3]))
 {
-
-servo_raw_data[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] = PORTA;
-
-
-data_renew[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0))] ^= 1;
+if (((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0)) > 0)
+{
+angle_buf[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0)) - 1] = PORTA;
+rx[((PORTCbits.RC2 << 2) | (PORTCbits.RC1 << 1) | (PORTCbits.RC0)) - 1] = 1;
+}
 }
 
-void Calc_Duty()
+int i;
+for (i = 0; i < 4; i++)
 {
+if (angle_buf[i] == pre_angle[i])
+{
+Servo[i].angle = angle_buf[i];
+}
+pre_angle[i] = angle_buf[i];
+}
+}
+
+# 86
+void SetParameter(SERVO Servo[])
+{
+static PARAMETER Parameter[4];
+static bool isFirst = 1;
 int i;
 
 
-
-for (i = 1; i < 5; i++)
+if (isFirst == 1)
 {
-servo_duty[i] = ((servo_raw_data[i] * port[i - 1].conv) * 2000000);
-}
-
-}
-
-void Servo_Output_OFF()
+isFirst = 0;
+uint8_t Mode = (PORTB & 0b00111111);
+for (i = 0; i < 4; i++)
 {
-
-if (TMR1 >= (25536 + port[0].min + servo_duty[1])) LATCbits.LATC3 = 0;
-if (TMR1 >= (25536 + port[1].min + servo_duty[2])) LATCbits.LATC6 = 0;
-if (TMR1 >= (25536 + port[2].min + servo_duty[3])) LATCbits.LATC5 = 0;
-if (TMR1 >= (25536 + port[3].min + servo_duty[4])) LATCbits.LATC4 = 0;
-
-else;
+Parameter[i] = _Parameters[Mode][i];
+}
 }
 
-# 180
-void Initialize()
+
+for (i = 0; i < 4; i++)
 {
-Oscillator_Initialize();
-Pin_Initialize();
-Timer_Initialize();
-Servo_Initialize();
+Servo[i].width = CalcWidth(Servo[i].angle, Parameter[i]);
+
+Servo[i].ch = _CHs[i];
+}
 }
 
-void Oscillator_Initialize()
+# 117
+void CalcNextCnt(SERVO Servo[])
 {
-OSCCON = 0x73;
-}
+int i, j;
 
-void Pin_Initialize()
+
+SERVO Tmp[4];
+for (i = 0; i < 4; i++)
 {
-
-
-ANSELA = 0x00;
-ANSELB = 0x00;
-
-TRISA = 0xFF;
-TRISB = 0xFF;
-
-
-TRISCbits.TRISC0 = 1;
-TRISCbits.TRISC1 = 1;
-TRISCbits.TRISC2 = 1;
-
-
-TRISCbits.TRISC3 = 0;
-TRISCbits.TRISC4 = 0;
-TRISCbits.TRISC5 = 0;
-TRISCbits.TRISC6 = 0;
-
-
-TRISCbits.TRISC7 = 0;
+Tmp[i] = Servo[i];
 }
 
-void Timer_Initialize()
+
+for (i = 0; i < 4; i++)
 {
-
-
-T1CON = 0x00;
-
-
-INTCONbits.GIE = 0;
-INTCONbits.PEIE = 0;
-
-PIE1bits.TMR1IE = 0;
-}
-
-void Servo_Initialize()
+for (j = i + 1; j < 4; j++)
 {
-const int num[2][6] = {
-{0, 0, 0, 1, 1, 2},
-{0, 1, 2, 1, 2, 2}
-};
-
-
-param[0].conv = 667E-8;
-param[0].min = 1800;
-
-param[1].conv = 1056E-8;
-param[1].min = 1000;
-
-param[2].conv = 5926E-9;
-param[2].min = 1400;
-
-
-
-port[0].conv = param[num[0][(PORTB&0b00000111)]].conv;
-port[0].min = param[num[0][(PORTB&0b00000111)]].min;
-
-port[1].conv = param[num[1][(PORTB&0b00000111)]].conv;
-port[1].min = param[num[1][(PORTB&0b00000111)]].min;
-
-port[2].conv = param[num[0][((PORTB&0b00111000)>>3)]].conv;
-port[2].min = param[num[0][((PORTB&0b00111000)>>3)]].min;
-
-port[3].conv = param[num[1][((PORTB&0b00111000)>>3)]].conv;
-port[3].min = param[num[1][((PORTB&0b00111000)>>3)]].min;
-
-
-if (num[0][(PORTB&0b00000111)] == 2)LATCbits.LATC7 = 1;
-else LATCbits.LATC7 = 0;
+if (Tmp[i].width == Tmp[j].width && Tmp[j].width != 65535)
+{
+Tmp[j].width = 65535;
+Tmp[i].ch |= Tmp[j].ch;
+_IntNum--;
+}
+}
 }
 
+
+for (i = 0; i < 4; i++)
+{
+for (j = i; j < 4; j++)
+{
+if (Tmp[i].width > Tmp[j].width)
+{
+Swap(&Tmp[i], &Tmp[j]);
+}
+}
+}
+
+
+for (i = 0; i < 4; i++)
+{
+_CHq[i] = Tmp[i].ch;
+}
+
+
+_TMRCnt[0] = CalcTMRCnt(Tmp[0].width);
+for (i = 1; i < _IntNum - 1; i++)
+{
+_TMRCnt[i] = CalcTMRCnt(Tmp[i].width - Tmp[i - 1].width);
+}
+_TMRCnt[_IntNum - 1] = CalcTMRCnt(20000 - Tmp[_IntNum - 2].width);
+}
+
+# 174
+void Swap(SERVO *a, SERVO *b)
+{
+SERVO tmp = *a;
+*a = *b;
+*b = tmp;
+}
+
+# 186
+uint16_t CalcWidth(uint8_t angle, PARAMETER Parameter)
+{
+uint16_t width = (uint16_t) ((Parameter.max - Parameter.min) / 180.0 * angle + Parameter.min);
+return width;
+}
+
+# 197
+uint16_t CalcTMRCnt(uint16_t pulse_width)
+{
+uint16_t cnt = (uint16_t) (65535 - 2 * pulse_width);
+return cnt;
+}
+
+# 208
+void interrupt INTERRUPT_HANDLER(void)
+{
+if (INTCONbits.PEIE & PIE1bits.TMR1IE & PIR1bits.TMR1IF)
+{
+TMR1IF = 0;
+Interrupt_TMR1();
+}
+else if (INTCONbits.PEIE & PIE1bits.TXIE & PIR1bits.TXIF)
+{
+TXIF = 0;
+Interrupt_TX();
+}
+}

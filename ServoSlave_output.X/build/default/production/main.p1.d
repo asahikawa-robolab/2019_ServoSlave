@@ -1,4 +1,10 @@
  build/default/production/main.d  \
  build/default/production/main.p1:  \
  main.c  \
-macros.h 
+ExternalVariable.h  \
+Config.h  \
+ShareFunc.h  \
+Init.h  \
+Parameter.h  \
+Structures.h  \
+Interrupt.h  \

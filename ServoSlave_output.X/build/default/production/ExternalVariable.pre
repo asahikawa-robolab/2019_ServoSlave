@@ -1,0 +1,163 @@
+
+# 1 "ExternalVariable.c"
+
+# 13 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdint.h"
+typedef signed char int8_t;
+
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef __int24 int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 52
+typedef unsigned char uint8_t;
+
+# 58
+typedef unsigned int uint16_t;
+
+# 65
+typedef __uint24 uint24_t;
+
+# 72
+typedef unsigned long int uint32_t;
+
+# 88
+typedef signed char int_least8_t;
+
+# 96
+typedef signed int int_least16_t;
+
+# 109
+typedef __int24 int_least24_t;
+
+# 118
+typedef signed long int int_least32_t;
+
+# 136
+typedef unsigned char uint_least8_t;
+
+# 143
+typedef unsigned int uint_least16_t;
+
+# 154
+typedef __uint24 uint_least24_t;
+
+# 162
+typedef unsigned long int uint_least32_t;
+
+# 181
+typedef signed char int_fast8_t;
+
+# 188
+typedef signed int int_fast16_t;
+
+# 200
+typedef __int24 int_fast24_t;
+
+# 208
+typedef signed long int int_fast32_t;
+
+# 224
+typedef unsigned char uint_fast8_t;
+
+# 230
+typedef unsigned int uint_fast16_t;
+
+# 240
+typedef __uint24 uint_fast24_t;
+
+# 247
+typedef unsigned long int uint_fast32_t;
+
+# 268
+typedef int32_t intmax_t;
+
+# 282
+typedef uint32_t uintmax_t;
+
+# 289
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+
+# 15 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdbool.h"
+typedef unsigned char bool;
+
+# 6 "Structures.h"
+typedef uint8_t SERVO_CH;
+
+
+
+
+typedef struct
+{
+int min, max;
+} PARAMETER;
+
+
+typedef struct
+{
+uint16_t angle;
+uint16_t width;
+SERVO_CH ch;
+} SERVO;
+
+
+# 10 "Config.h"
+#pragma config FOSC = INTOSC
+#pragma config WDTE = OFF
+#pragma config PWRTE = OFF
+#pragma config MCLRE = OFF
+#pragma config CP = OFF
+#pragma config CPD = OFF
+#pragma config BOREN = OFF
+#pragma config CLKOUTEN = OFF
+#pragma config IESO = OFF
+#pragma config FCMEN = OFF
+
+
+#pragma config WRT = OFF
+#pragma config VCAPEN = OFF
+#pragma config PLLEN = OFF
+#pragma config STVREN = OFF
+#pragma config BORV = HI
+#pragma config LVP = OFF
+
+# 15 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdbool.h"
+typedef unsigned char bool;
+
+# 8 "ExternalVariable.h"
+extern uint16_t _TMRCnt[4 + 1];
+extern uint8_t _DebugTxData[5];
+extern bool _isBusy;
+extern SERVO_CH _CHq[4];
+extern int _IntNum;
+extern const SERVO_CH _CHs[4];
+
+# 15 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdbool.h"
+typedef unsigned char bool;
+
+# 7 "ShareFunc.h"
+void Output(SERVO_CH ch, bool value);
+
+# 8 "ExternalVariable.c"
+uint16_t _TMRCnt[4 + 1];
+uint8_t _DebugTxData[5];
+bool _isBusy = 0;
+SERVO_CH _CHq[4];
+int _IntNum;
+
+
+const SERVO_CH _CHs[4] = {
+(1 << (0)),
+(1 << (1)),
+(1 << (2)),
+(1 << (3))
+};

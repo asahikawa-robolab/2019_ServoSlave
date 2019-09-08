@@ -1,266 +1,220 @@
-/* 
- * File:   main.c
- * Author: pguz1
- *
- * Created on 2019/06/05, 15:35
- */
-
-/*Configuration bits*/
-
-// PIC16F1933 Configuration Bit Settings
-
-// 'C' source line config statements
-
-// CONFIG1
-#pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
-#pragma config WDTE = OFF       // Watchdog Timer Enable (WDT disabled)
-#pragma config PWRTE = OFF      // Power-up Timer Enable (PWRT disabled)
-#pragma config MCLRE = OFF      // MCLR Pin Function Select (MCLR/VPP pin function is digital input)
-#pragma config CP = OFF         // Flash Program Memory Code Protection (Program memory code protection is disabled)
-#pragma config CPD = OFF        // Data Memory Code Protection (Data memory code protection is disabled)
-#pragma config BOREN = OFF      // Brown-out Reset Enable (Brown-out Reset disabled)
-#pragma config CLKOUTEN = OFF   // Clock Out Enable (CLKOUT function is disabled. I/O or oscillator function on the CLKOUT pin)
-#pragma config IESO = OFF       // Internal/External Switchover (Internal/External Switchover mode is disabled)
-#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enable (Fail-Safe Clock Monitor is disabled)
-
-// CONFIG2
-#pragma config WRT = OFF        // Flash Memory Self-Write Protection (Write protection off)
-#pragma config VCAPEN = OFF     // Voltage Regulator Capacitor Enable (All VCAP pin functionality is disabled)
-#pragma config PLLEN = OFF      // PLL Enable (4x PLL disabled)
-#pragma config STVREN = OFF     // Stack Overflow/Underflow Reset Enable (Stack Overflow or Underflow will not cause a Reset)
-#pragma config BORV = HI        // Brown-out Reset Voltage Selection (Brown-out Reset Voltage (Vbor), high trip point selected.)
-#pragma config LVP = OFF        // Low-Voltage Programming Enable (High-voltage on MCLR/VPP must be used for programming)
-
-// #pragma config statements should precede project file includes.
-// Use project enums instead of #define for ON and OFF.
-
-
-/*include files*/
 #include <xc.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "macros.h"
+#include "Config.h"
+#include "Init.h"
+#include "Interrupt.h"
+#include "ShareFunc.h"
+#include "Structures.h"
+#include "ExternalVariable.h"
+#include "Parameter.h"
 
-#define num_comb 6 /* ƒT[ƒ{‚Ìí—Ş‚Ì‘g‚İ‡‚í‚¹(combination)‚Ì” */
-#define num_port 4 /* ƒ|[ƒg” */
-#define num_type 3 /* ƒT[ƒ{‚Ìí—Ş‚Ì” */
+void ReceiveTargetAngle(SERVO Servo[]);
+void SetParameter(SERVO Servo[]);
+void CalcNextCnt(SERVO Servo[]);
+void Swap(SERVO *a, SERVO *b);
+uint16_t CalcWidth(uint8_t angle, PARAMETER Parameter);
+uint16_t CalcTMRCnt(uint16_t pulse_width);
 
-typedef struct
+int main(void)
 {
-    double conv; /* deg->sec@‚Ì•ÏŠ·(conversion)‚ÌŒW” */
-    int min; /* dutyÅ¬’l */
-} type;
+    bool isFirst = true;
+    SERVO Servo[SERVO_NUM];
 
-type port[num_port];
-type param[num_type];
+    Init();
+    Output(ALL, OFF);
 
-/*ŠÖ”ƒ}ƒNƒ*/
-#define sec_duty 2000000 //Fosc*pre/4 = 8000000/4
-
-/*prototype declarations*/
-void Initialize();
-void Oscillator_Initialize();
-void Pin_Initialize();
-void Timer_Initialize();
-void Renew_Raw_Data();
-void Calc_Duty();
-void Servo_Output_OFF();
-void Servo_Initialize();
-
-/*flags*/
-bool data_renew[num_port] = {0, 0, 0, 0};
-
-/* values & array */
-unsigned char servo_raw_data[5]; /* ƒpƒ‰ƒŒƒ‹’ÊM‚Åó‚¯æ‚Á‚½¶ƒf[ƒ^ */
-unsigned int servo_duty[5]; /* w’è‚ÌŠp“x‚ğo—Í‚·‚é‚½‚ß‚ÌDuty‚ğŠi”[‚·‚é */
-/* ***************
- * 
- *  5: num_port+1
- * SERVO_ADDRESS ‚ª@1‚©‚çn‚Ü‚é‚½‚ß
- * 
- * *************** */
-
-/*
- * 
- */
-
-int main(int argc, char** argv)
-{
-    Initialize();
-
-    /* Å‰‚ÌƒJƒEƒ“ƒg’l‚ğŒvZ‚·‚é‚Ü‚Å‘Ò‚Â */
     while (1)
     {
-        Renew_Raw_Data();
-        if (
-                data_renew[0] ==
-                data_renew[1] ==
-                data_renew[2] ==
-                data_renew[3]
-                )break;
-    }
-    Calc_Duty();
-
-    /* o—ÍON */
-    SERVO_OUTPUT_1 = on;
-    SERVO_OUTPUT_2 = on;
-    SERVO_OUTPUT_3 = on;
-    SERVO_OUTPUT_4 = on;
-
-    /* ƒƒCƒ“ƒ‹[ƒv */
-    while (1)
-    {
-
-        TMR1 = time_20ms;
-        timer1_ON = on;
-
-        while (!timer_InterruptFlag)
+        /* ãƒ‘ãƒ«ã‚¹ã‚’å‡ºåŠ›ã™ã‚‹ãŸã‚ã®ã‚¿ã‚¤ãƒã®ã‚«ã‚¦ãƒ³ãƒˆã‚’è¨ˆç®— */
+        if (isFirst == true)
         {
-            /* TMR1 ‚Ì’l‚ª ŒvZ‚µ‚½–Ú•W’l‚ğ’´‚¦‚½‚ço—ÍOFF */
-            Servo_Output_OFF();
-            
-            /* Ÿ‚Ì–Ú•W’l‚ğŒvZ‚·‚é */
-            if (TMR1 >= calc_OK) /* ‘S‚Ä‚Ìƒ|[ƒg‚ªŠmÀ‚ÉOFF‚É‚È‚Á‚½‚ç */
+            isFirst = false;
+            ReceiveTargetAngle(Servo); /* ç›®æ¨™è§’åº¦ã‚’å—ä¿¡ã™ã‚‹ */
+            SetParameter(Servo); /* SERVO ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨ˆç®—ã™ã‚‹ */
+            _IntNum = SERVO_NUM + 1; /* ã‚¿ã‚¤ãƒå‰²ã‚Šè¾¼ã¿ã®å›æ•°ã‚’è¨­å®š */
+            CalcNextCnt(Servo); /* ã‚¿ã‚¤ãƒã‚«ã‚¦ãƒ³ãƒˆã‚’è¨ˆç®— */
+        }
+
+        /* ãƒ‘ãƒ«ã‚¹ã®å‡ºåŠ›ãŒçµ‚ã‚ã‚‹ã¾ã§å¾…æ©Ÿ */
+        while (_isBusy == false)
+        {
+            isFirst = true;
+        }
+    }
+    return 0;
+}
+
+/*-----------------------------------------------
+ *
+ * ç›®æ¨™è§’åº¦ã‚’å—ä¿¡ã™ã‚‹
+ *
+-----------------------------------------------*/
+void ReceiveTargetAngle(SERVO Servo[])
+{
+    static uint16_t pre_angle[SERVO_NUM];
+    bool rx[4] = {false, false, false, false};
+    uint16_t angle_buf[SERVO_NUM];
+
+    while (!(rx[0] & rx[1] & rx[2] & rx[3]))
+    {
+        if (SERVO_ADDRESS > 0)
+        {
+            angle_buf[SERVO_ADDRESS - 1] = SERVO_INPUT;
+            rx[SERVO_ADDRESS - 1] = true;
+        }
+    }
+
+    int i;
+    for (i = 0; i < SERVO_NUM; i++)
+    {
+        if (angle_buf[i] == pre_angle[i])
+        {
+            Servo[i].angle = angle_buf[i];
+        }
+        pre_angle[i] = angle_buf[i];
+    }
+}
+
+/*-----------------------------------------------
+ *
+ * SERVO ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
+ *
+-----------------------------------------------*/
+void SetParameter(SERVO Servo[])
+{
+    static PARAMETER Parameter[SERVO_NUM];
+    static bool isFirst = true;
+    int i;
+
+    /* åˆå›ã®ã¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ */
+    if (isFirst == true)
+    {
+        isFirst = false;
+        uint8_t Mode = MODE_INPUT;
+        for (i = 0; i < SERVO_NUM; i++)
+        {
+            Parameter[i] = _Parameters[Mode][i];
+        }
+    }
+
+    /* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨ˆç®— */
+    for (i = 0; i < SERVO_NUM; i++)
+    {
+        Servo[i].width = CalcWidth(Servo[i].angle, Parameter[i]);
+        //        Servo[i].width = 800;
+        Servo[i].ch = _CHs[i];
+    }
+}
+
+/*-----------------------------------------------
+ *
+ * ã‚¿ã‚¤ãƒå‰²ã‚Šè¾¼ã¿ã«æ¸¡ã™ã‚¿ã‚¤ãƒã®å€¤ã‚’è¨ˆç®—ã™ã‚‹
+ *
+-----------------------------------------------*/
+void CalcNextCnt(SERVO Servo[])
+{
+    int i, j;
+
+    /* ã‚³ãƒ”ãƒ¼ */
+    SERVO Tmp[SERVO_NUM];
+    for (i = 0; i < SERVO_NUM; i++)
+    {
+        Tmp[i] = Servo[i];
+    }
+
+    /* ç›®æ¨™è§’åº¦ãŒãƒ€ãƒ–ã£ãŸã‚µãƒ¼ãƒœã‚’ã¾ã¨ã‚ã‚‹ */
+    for (i = 0; i < SERVO_NUM; i++)
+    {
+        for (j = i + 1; j < SERVO_NUM; j++)
+        {
+            if (Tmp[i].width == Tmp[j].width && Tmp[j].width != INVALID_WIDTH)
             {
-                /* –Ú•W’l‚ÌXV */
-                Renew_Raw_Data();
-                Calc_Duty();
+                Tmp[j].width = INVALID_WIDTH;
+                Tmp[i].ch |= Tmp[j].ch;
+                _IntNum--;
             }
         }
-        /* 20ms Œo‰ß‚µ‚½‚çŠ„‚è‚İƒtƒ‰ƒO‚ğƒNƒŠƒA‚µo—Í‚ğON‚É‚·‚é */
-        timer_InterruptFlag = CLEAR;
-
-        SERVO_OUTPUT_1 = on;
-        SERVO_OUTPUT_2 = on;
-        SERVO_OUTPUT_3 = on;
-        SERVO_OUTPUT_4 = on;
     }
-    return (EXIT_SUCCESS);
-}
 
-void Renew_Raw_Data()
-{
-
-    servo_raw_data[SERVO_ADDRESS] = SERVO_DATA;
-
-    /* ‰‰ñ‚Ì‚İg—pB‘S‚Ä‚Ìƒ|[ƒg‚Ìƒf[ƒ^‚ªXV‚³‚ê‚½‚©‚Ç‚¤‚©‚ÌŠm”F */
-    data_renew[SERVO_ADDRESS] ^= 1;
-}
-
-void Calc_Duty()
-{
-    int i;
-    /*•ÏŠ·®*/
-
-
-    for (i = 1; i < 5; i++)
+    /* ãƒ‘ãƒ«ã‚¹å¹…ã‚’å°ã•ã„é †ã«ä¸¦ã¹æ›¿ãˆã‚‹ */
+    for (i = 0; i < SERVO_NUM; i++)
     {
-        servo_duty[i] = ((servo_raw_data[i] * port[i - 1].conv) * sec_duty);
+        for (j = i; j < SERVO_NUM; j++)
+        {
+            if (Tmp[i].width > Tmp[j].width)
+            {
+                Swap(&Tmp[i], &Tmp[j]);
+            }
+        }
     }
 
+    /* ãƒãƒ£ãƒ³ãƒãƒ«ã‚­ãƒ¥ãƒ¼ã‚’è¨­å®š */
+    for (i = 0; i < SERVO_NUM; i++)
+    {
+        _CHq[i] = Tmp[i].ch;
+    }
+
+    /* ã‚¿ã‚¤ãƒã®ã‚«ã‚¦ãƒ³ãƒˆã‚’è¨ˆç®— */
+    _TMRCnt[0] = CalcTMRCnt(Tmp[0].width);
+    for (i = 1; i < _IntNum - 1; i++)
+    {
+        _TMRCnt[i] = CalcTMRCnt(Tmp[i].width - Tmp[i - 1].width);
+    }
+    _TMRCnt[_IntNum - 1] = CalcTMRCnt(20000 - Tmp[_IntNum - 2].width);
 }
 
-void Servo_Output_OFF()
+/*-----------------------------------------------
+ *
+ * å€¤ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
+ *
+-----------------------------------------------*/
+void Swap(SERVO *a, SERVO *b)
 {
- 
-    if (TMR1 >= (time_20ms + port[0].min + servo_duty[1])) SERVO_OUTPUT_1 = off;
-    if (TMR1 >= (time_20ms + port[1].min + servo_duty[2])) SERVO_OUTPUT_2 = off;
-    if (TMR1 >= (time_20ms + port[2].min + servo_duty[3])) SERVO_OUTPUT_3 = off;
-    if (TMR1 >= (time_20ms + port[3].min + servo_duty[4])) SERVO_OUTPUT_4 = off;
-
-    else;
+    SERVO tmp = *a;
+    *a = *b;
+    *b = tmp;
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-void Initialize()
+/*-----------------------------------------------
+ *
+ * å¼•æ•°ã«æŒ‡å®šã—ãŸè§’åº¦ã«ãªã‚‹ã‚ˆã†ãªãƒ‘ãƒ«ã‚¹å¹…ï¼ˆÎ¼sï¼‰ã‚’æ±‚ã‚ã‚‹
+ *
+-----------------------------------------------*/
+uint16_t CalcWidth(uint8_t angle, PARAMETER Parameter)
 {
-    Oscillator_Initialize();
-    Pin_Initialize();
-    Timer_Initialize();
-    Servo_Initialize();
+    uint16_t width = (uint16_t) ((Parameter.max - Parameter.min) / 180.0 * angle + Parameter.min);
+    return width;
 }
 
-void Oscillator_Initialize()
+/*-----------------------------------------------
+ *
+ * å¼•æ•°ã«æŒ‡å®šã•ã‚ŒãŸæ™‚é–“ï¼ˆÎ¼sï¼‰çµŒéã—ãŸã‚‰ã‚¿ã‚¤ãƒãŒã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ã™ã‚‹ã‚ˆã†ãªã‚¿ã‚¤ãƒã®å€¤ã‚’è¨ˆç®—ã™ã‚‹
+ *
+-----------------------------------------------*/
+uint16_t CalcTMRCnt(uint16_t pulse_width)
 {
-    OSCCON = 0x73; //Fosc:8MHz
+    uint16_t cnt = (uint16_t) (65535 - 2 * pulse_width);
+    return cnt;
 }
 
-void Pin_Initialize()
+/*-----------------------------------------------
+ *
+ * å‰²ã‚Šè¾¼ã¿
+ *
+-----------------------------------------------*/
+void interrupt INTERRUPT_HANDLER(void)
 {
-
-    /* data,address */
-    ANSELA = 0x00; //digital
-    ANSELB = 0x00;
-
-    TRISA = 0xFF;
-    TRISB = 0xFF; /* ƒpƒ‰ƒ[ƒ^‘I‘ğ—pDIPƒXƒCƒbƒ`“ü—Í */
-
-    /* address */
-    TRISCbits.TRISC0 = 1;
-    TRISCbits.TRISC1 = 1;
-    TRISCbits.TRISC2 = 1;
-
-    /* output */
-    TRISCbits.TRISC3 = 0;
-    TRISCbits.TRISC4 = 0;
-    TRISCbits.TRISC5 = 0;
-    TRISCbits.TRISC6 = 0;
-
-    /* debug */
-    TRISCbits.TRISC7 = 0;
+    if (INTCONbits.PEIE & PIE1bits.TMR1IE & PIR1bits.TMR1IF)
+    {
+        TMR1IF = false;
+        Interrupt_TMR1();
+    }
+    else if (INTCONbits.PEIE & PIE1bits.TXIE & PIR1bits.TXIF)
+    {
+        TXIF = false;
+        Interrupt_TX();
+    }
 }
-
-void Timer_Initialize()
-{
-
-    /* pre:1:1 source:Fosc/4 */
-    T1CON = 0x00;
-
-    /* enable interrupts */
-    INTCONbits.GIE = disable;
-    INTCONbits.PEIE = disable;
-
-    PIE1bits.TMR1IE = disable;
-}
-
-void Servo_Initialize()
-{
-    const int num[2][num_comb] = {
-        {0, 0, 0, 1, 1, 2},
-        {0, 1, 2, 1, 2, 2}
-    };
-
-    /* ƒT[ƒ{‚Ìí—Ş‚²‚Æ‚ÉˆÙ‚È‚éƒpƒ‰ƒ[ƒ^‚Ì’è‹` */
-    param[0].conv = 667E-8; /* hitec */
-    param[0].min = time_900us;
-
-    param[1].conv = 1056E-8; /* sanwa */
-    param[1].min = time_500us; //time_900us;
-
-    param[2].conv = 5926E-9; /* kondo(270[deg]) */
-    param[2].min = time_700us;
-
-
-    /* DIPƒXƒCƒbƒ`‚É‚æ‚éƒpƒ‰ƒ[ƒ^‚Ì‘I‘ğ */
-    port[0].conv = param[num[0][SERVO_TYPE_0_1]].conv;
-    port[0].min = param[num[0][SERVO_TYPE_0_1]].min;
-
-    port[1].conv = param[num[1][SERVO_TYPE_0_1]].conv;
-    port[1].min = param[num[1][SERVO_TYPE_0_1]].min;
-
-    port[2].conv = param[num[0][SERVO_TYPE_2_3]].conv;
-    port[2].min = param[num[0][SERVO_TYPE_2_3]].min;
-
-    port[3].conv = param[num[1][SERVO_TYPE_2_3]].conv;
-    port[3].min = param[num[1][SERVO_TYPE_2_3]].min;
-
-    /* ƒfƒoƒbƒO */
-    if (num[0][SERVO_TYPE_0_1] == 2)debug_LED1 = 1;
-    else debug_LED1 = 0;
-}
-
