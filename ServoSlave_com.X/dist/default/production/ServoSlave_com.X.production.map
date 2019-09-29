@@ -1,11 +1,11 @@
-Microchip MPLAB XC8 Compiler V2.10 ()
+Microchip MPLAB XC8 Compiler V2.05 ()
 
 Linker command line:
 
--W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.10\pic\dat\en_msgs.txt \
+-W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.05\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\ServoSlave_com.X.production.sym \
   --cmf=dist/default/production\ServoSlave_com.X.production.cmf -z \
-  -Q16F1933 -oC:\Users\JIBIKI~1\AppData\Local\Temp\stl4.2 \
+  -Q16F1933 -oC:\Users\shuic\AppData\Local\Temp\snso.2 \
   -Mdist/default/production/ServoSlave_com.X.production.map -E1 -ver=XC8 \
   -ASTACK=02053h-020EFh -pstack=STACK -ACODE=00h-07FFhx2 \
   -ASTRCODE=00h-0FFFh -ASTRING=00h-0FFhx16 -ACONST=00h-0FFhx16 \
@@ -27,7 +27,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=08007h-08008h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=08000h-08003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/0F000h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\JIBIKI~1\AppData\Local\Temp\stl4.obj \
+  -DENTRY=2 -k C:\Users\shuic\AppData\Local\Temp\snso.obj \
   dist/default/production\ServoSlave_com.X.production.obj 
 
 Object code version is 3.11
@@ -37,7 +37,7 @@ Machine type is 16F1933
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\JIBIKI~1\AppData\Local\Temp\stl4.obj
+C:\Users\shuic\AppData\Local\Temp\snso.obj
                 end_init                              E        E        2        8       0
                 reset_vec                             0        0        2        0       0
                 config                             8007     8007        2    1000E       0
@@ -1002,7 +1002,7 @@ Total ram usage:        1 bytes
 
  *************** function ___bmul *****************
  Defined at:
-		line 4 in file "C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c"
+		line 4 in file "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\Umul8.c"
  Parameters:    Size  Location     Type
   multiplier      1    wreg     unsigned char 
   multiplicand    1    6[BANK0 ] unsigned char 
@@ -1227,10 +1227,10 @@ Total ram usage:        1 bytes
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
-C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c
+C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\Umul8.c
 		___bmul        		CODE           	04E6	0000	18
 
-C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c estimated size: 18
+C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\Umul8.c estimated size: 18
 
 Init.c
 		_Pin_Initialize		CODE           	04C3	0000	19

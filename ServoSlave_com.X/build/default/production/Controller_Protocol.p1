@@ -31,7 +31,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F66 `(v ~T0 @X0 0 tf1`uc ]
 [v F72 `(v ~T0 @X0 0 tf1`uc ]
 [v F75 `(v ~T0 @X0 0 tf1`uc ]
-[; ;c90\stdbool.h: 15: typedef unsigned char bool;
+[; ;stdbool.h: 15: typedef unsigned char bool;
 [; ;Controller_Protocol.h: 7: typedef struct {
 [; ;Controller_Protocol.h: 8: int num;
 [; ;Controller_Protocol.h: 9: int count;

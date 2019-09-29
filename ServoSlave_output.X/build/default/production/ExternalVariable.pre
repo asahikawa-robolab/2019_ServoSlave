@@ -1,7 +1,7 @@
 
 # 1 "ExternalVariable.c"
 
-# 13 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdint.h"
+# 13 "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c90\stdint.h"
 typedef signed char int8_t;
 
 # 20
@@ -87,7 +87,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 15 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdbool.h"
+# 15 "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
 
 # 6 "Structures.h"
@@ -130,7 +130,7 @@ SERVO_CH ch;
 #pragma config BORV = HI
 #pragma config LVP = OFF
 
-# 15 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdbool.h"
+# 15 "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
 
 # 8 "ExternalVariable.h"
@@ -141,7 +141,7 @@ extern SERVO_CH _CHq[4];
 extern int _IntNum;
 extern const SERVO_CH _CHs[4];
 
-# 15 "C:/Program Files (x86)/Microchip/xc8/v2.10/pic/include/c90\stdbool.h"
+# 15 "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
 
 # 7 "ShareFunc.h"

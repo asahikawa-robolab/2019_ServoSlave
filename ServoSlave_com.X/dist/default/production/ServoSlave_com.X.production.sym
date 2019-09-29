@@ -364,7 +364,7 @@ bssBANK0 20 69 BANK0 20 1
 cstackBANK1 A0 A2 BANK1 A0 1
 %locals
 dist/default/production\ServoSlave_com.X.production.obj
-C:\Users\JIBIKI~1\AppData\Local\Temp\stl4.as
+C:\Users\shuic\AppData\Local\Temp\snso.
 1542 10 0 CODE 0
 1545 10 0 CODE 0
 1611 10 0 CODE 0
@@ -499,7 +499,7 @@ Controller_Protocol.c
 121 375 0 CODE 0
 122 385 0 CODE 0
 120 392 0 CODE 0
-C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c
+C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\Umul8.c
 4 4E6 0 CODE 0
 6 4E7 0 CODE 0
 43 4E8 0 CODE 0
