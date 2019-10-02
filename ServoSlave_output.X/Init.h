@@ -4,7 +4,8 @@
 void Init(void);
 void InitOsc(void);
 void InitPin(void);
-void InitTmr(void);
+void InitTmr1(void);
+void InitTmr2(void);
 void InitUART(void);
 
 #endif

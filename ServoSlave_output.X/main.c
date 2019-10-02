@@ -29,20 +29,10 @@ int main(void)
     while (1)
     {
         /* パルスを出力するためのタイマのカウントを計算 */
-        if (isFirst == true)
-        {
-            isFirst = false;
-            ReceiveTargetAngle(Servo); /* 目標角度を受信する */
-            SetParameter(Servo); /* SERVO のパラメータを計算する */
-            _IntNum = SERVO_NUM + 1; /* タイマ割り込みの回数を設定 */
-            CalcNextCnt(Servo); /* タイマカウントを計算 */
-        }
+        ReceiveTargetAngle(Servo); /* 目標角度を受信する */
+        SetParameter(Servo); /* SERVO のパラメータを計算する */
+        CalcNextCnt(Servo); /* タイマカウントを計算 */
 
-        /* パルスの出力が終わるまで待機 */
-        while (_isBusy == false)
-        {
-            isFirst = true;
-        }
     }
     return 0;
 }
@@ -116,54 +106,10 @@ void SetParameter(SERVO Servo[])
 -----------------------------------------------*/
 void CalcNextCnt(SERVO Servo[])
 {
-    int i, j;
-
-    /* コピー */
-    SERVO Tmp[SERVO_NUM];
-    for (i = 0; i < SERVO_NUM; i++)
-    {
-        Tmp[i] = Servo[i];
-    }
-
-    /* 目標角度がダブったサーボをまとめる */
-    for (i = 0; i < SERVO_NUM; i++)
-    {
-        for (j = i + 1; j < SERVO_NUM; j++)
-        {
-            if (Tmp[i].width == Tmp[j].width && Tmp[j].width != INVALID_WIDTH)
-            {
-                Tmp[j].width = INVALID_WIDTH;
-                Tmp[i].ch |= Tmp[j].ch;
-                _IntNum--;
-            }
-        }
-    }
-
-    /* パルス幅を小さい順に並べ替える */
-    for (i = 0; i < SERVO_NUM; i++)
-    {
-        for (j = i; j < SERVO_NUM; j++)
-        {
-            if (Tmp[i].width > Tmp[j].width)
-            {
-                Swap(&Tmp[i], &Tmp[j]);
-            }
-        }
-    }
-
-    /* チャンネルキューを設定 */
-    for (i = 0; i < SERVO_NUM; i++)
-    {
-        _CHq[i] = Tmp[i].ch;
-    }
-
-    /* タイマのカウントを計算 */
-    _TMRCnt[0] = CalcTMRCnt(Tmp[0].width);
-    for (i = 1; i < _IntNum - 1; i++)
-    {
-        _TMRCnt[i] = CalcTMRCnt(Tmp[i].width - Tmp[i - 1].width);
-    }
-    _TMRCnt[_IntNum - 1] = CalcTMRCnt(20000 - Tmp[_IntNum - 2].width);
+    _TMRCnt[0] = CalcTMRCnt(Servo[0].width);
+    _TMRCnt[1] = CalcTMRCnt(Servo[1].width);
+    _TMRCnt[2] = CalcTMRCnt(Servo[2].width);
+    _TMRCnt[3] = CalcTMRCnt(Servo[3].width);
 }
 
 /*-----------------------------------------------
@@ -211,6 +157,10 @@ void interrupt INTERRUPT_HANDLER(void)
     {
         TMR1IF = false;
         Interrupt_TMR1();
+    }else if(INTCONbits.PEIE & PIE1bits.TMR2IE & PIR1bits.TMR2IF)
+    {
+        TMR2IF = false;
+        Interrupt_TMR2();
     }
     else if (INTCONbits.PEIE & PIE1bits.TXIE & PIR1bits.TXIF)
     {

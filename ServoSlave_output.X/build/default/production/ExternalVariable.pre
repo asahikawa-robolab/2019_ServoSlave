@@ -1,85 +1,71 @@
 
 # 1 "ExternalVariable.c"
 
-# 13 "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c90\stdint.h"
+# 13 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\stdint.h"
 typedef signed char int8_t;
 
 # 20
 typedef signed int int16_t;
 
-# 28
-typedef __int24 int24_t;
-
-# 36
+# 38
 typedef signed long int int32_t;
 
-# 52
+# 45
 typedef unsigned char uint8_t;
 
-# 58
+# 51
 typedef unsigned int uint16_t;
 
-# 65
-typedef __uint24 uint24_t;
-
-# 72
+# 67
 typedef unsigned long int uint32_t;
 
-# 88
+# 75
 typedef signed char int_least8_t;
 
-# 96
+# 82
 typedef signed int int_least16_t;
 
-# 109
-typedef __int24 int_least24_t;
-
-# 118
+# 104
 typedef signed long int int_least32_t;
 
-# 136
+# 111
 typedef unsigned char uint_least8_t;
 
-# 143
+# 117
 typedef unsigned int uint_least16_t;
 
-# 154
-typedef __uint24 uint_least24_t;
-
-# 162
+# 136
 typedef unsigned long int uint_least32_t;
 
-# 181
+# 145
 typedef signed char int_fast8_t;
 
-# 188
+# 152
 typedef signed int int_fast16_t;
 
-# 200
-typedef __int24 int_fast24_t;
-
-# 208
+# 174
 typedef signed long int int_fast32_t;
 
-# 224
+# 181
 typedef unsigned char uint_fast8_t;
 
-# 230
+# 187
 typedef unsigned int uint_fast16_t;
 
-# 240
-typedef __uint24 uint_fast24_t;
-
-# 247
+# 206
 typedef unsigned long int uint_fast32_t;
 
-# 268
+# 212
 typedef int32_t intmax_t;
 
-# 282
+
+
+
 typedef uint32_t uintmax_t;
 
-# 289
+
+
+
 typedef int16_t intptr_t;
 
 
@@ -87,7 +73,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 15 "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c90\stdbool.h"
+# 12 "C:\Program Files (x86)\Microchip\xc8\v1.42\include\stdbool.h"
 typedef unsigned char bool;
 
 # 6 "Structures.h"
@@ -130,9 +116,6 @@ SERVO_CH ch;
 #pragma config BORV = HI
 #pragma config LVP = OFF
 
-# 15 "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
-
 # 8 "ExternalVariable.h"
 extern uint16_t _TMRCnt[4 + 1];
 extern uint8_t _DebugTxData[5];
@@ -140,9 +123,6 @@ extern bool _isBusy;
 extern SERVO_CH _CHq[4];
 extern int _IntNum;
 extern const SERVO_CH _CHs[4];
-
-# 15 "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c90\stdbool.h"
-typedef unsigned char bool;
 
 # 7 "ShareFunc.h"
 void Output(SERVO_CH ch, bool value);

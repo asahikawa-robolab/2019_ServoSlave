@@ -5,7 +5,8 @@ void Init()
 {
     InitOsc();
     InitPin();
-    InitTmr();
+    InitTmr1();
+    InitTmr2();
     //    InitUART();
 
     /* 割り込み許可 */
@@ -43,13 +44,22 @@ void InitPin()
     TRISCbits.TRISC7 = 0;
 }
 
-void InitTmr()
+void InitTmr1()
 {
     T1CONbits.TMR1CS = 0;    /* Fosc/4 */
     T1CONbits.T1CKPS = 0b00; /* pre 1:1 */
     PIE1bits.TMR1IE = 1;     /* 割り込み許可 */
     TMR1 = 0;
     TMR1ON = 1; /* タイマ有効化 */
+}
+
+void InitTmr2()
+{
+    //T1CONbits.TMR1CS = 0;    /* Fosc/4 */
+    T2CONbits.T2CKPS = 0b11; /* pre 1:64 */
+    PIE1bits.TMR2IE = 1;     /* 割り込み許可 */
+    TMR2 = 0;
+    TMR2ON = 1; /* タイマ有効化 */
 }
 
 void InitUART(void)
