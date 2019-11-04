@@ -14,7 +14,6 @@
 void ReceiveTargetAngle(SERVO Servo[]);
 void SetParameter(SERVO Servo[]);
 void CalcNextCnt(SERVO Servo[]);
-void Swap(SERVO *a, SERVO *b);
 uint16_t CalcWidth(uint8_t angle, PARAMETER Parameter);
 uint16_t CalcTMRCnt(uint16_t pulse_width);
 
@@ -114,18 +113,6 @@ void CalcNextCnt(SERVO Servo[])
 
 /*-----------------------------------------------
  *
- * 値を入れ替える
- *
------------------------------------------------*/
-void Swap(SERVO *a, SERVO *b)
-{
-    SERVO tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
-
-/*-----------------------------------------------
- *
  * 引数に指定した角度になるようなパルス幅（μs）を求める
  *
 -----------------------------------------------*/
@@ -157,7 +144,8 @@ void interrupt INTERRUPT_HANDLER(void)
     {
         TMR1IF = false;
         Interrupt_TMR1();
-    }else if(INTCONbits.PEIE & PIE1bits.TMR2IE & PIR1bits.TMR2IF)
+    }
+    else if(INTCONbits.PEIE & PIE1bits.TMR2IE & PIR1bits.TMR2IF)
     {
         TMR2IF = false;
         Interrupt_TMR2();

@@ -5,7 +5,7 @@
 #include "ExternalVariable.h"
 #include "ShareFunc.h"
 
-uint16_t _TMRCnt[SERVO_NUM + 1]; /* タイマにセットする値 */
+uint16_t _TMRCnt[SERVO_NUM]; /* タイマにセットする値 */
 uint8_t _DebugTxData[DATA_SIZE];
 bool _isBusy = false;
 SERVO_CH _CHq[SERVO_NUM]; /* パルスを出すサーボのキュー */

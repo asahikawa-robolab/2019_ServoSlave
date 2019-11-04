@@ -18,16 +18,17 @@ void WriteData(int Address);
 /*UART RX*/
 extern bool Receive_flag;
 
-/*slave address*//**********///
+/*slave address*/ /**********/ //
 #define SLAVE_ADDRESS 0x00
 ///*************************///
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     Initialize();
 
     /*初回受信*/
-    while (Receive_flag != reception_complete);
+    while (Receive_flag != reception_complete)
+        ;
     Organize_Datas(Data_from_master, Buffer_from_master, number_of_rxdata0, master_COM);
     Receive_flag = waiting_to_receive;
     /*初回受信終わり*/
@@ -45,9 +46,11 @@ int main(int argc, char** argv)
 
         /* データ */
         if (Address != 0)
-        {
             WriteData(Address);
-        }
+
+        /* デバッグ */
+        LED ^= 1;
+
         __delay_ms(1);
     }
     return (EXIT_SUCCESS);
@@ -60,9 +63,7 @@ int ChangeAddress(void)
 
     AddCnt++;
     if (AddCnt >= 8)
-    {
         AddCnt = 0;
-    }
 
     return Addresses[AddCnt];
 }
@@ -99,8 +100,5 @@ void WriteData(int Address)
 void interrupt INTERRUPT_HANDLER()
 {
     if (RX_InterruptFlag)
-    {
         Reception_from_master(SLAVE_ADDRESS);
-    }
-    else;
 }

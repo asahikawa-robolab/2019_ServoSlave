@@ -5,7 +5,7 @@
 #include "Structures.h"
 #include "Config.h"
 
-extern uint16_t _TMRCnt[SERVO_NUM + 1]; /* タイマにセットする値 */
+extern uint16_t _TMRCnt[SERVO_NUM]; /* タイマにセットする値 */
 extern uint8_t _DebugTxData[DATA_SIZE];
 extern bool _isBusy;
 extern SERVO_CH _CHq[SERVO_NUM];       /* パルスを出すサーボのキュー */
