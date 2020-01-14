@@ -29,9 +29,11 @@ int main(void)
     {
         /* パルスを出力するためのタイマのカウントを計算 */
         ReceiveTargetAngle(Servo); /* 目標角度を受信する */
-        SetParameter(Servo); /* SERVO のパラメータを計算する */
-        CalcNextCnt(Servo); /* タイマカウントを計算 */
+        SetParameter(Servo);       /* SERVO のパラメータを計算する */
+        CalcNextCnt(Servo);        /* タイマカウントを計算 */
 
+        /* debug */
+        LED ^= 1;
     }
     return 0;
 }
@@ -118,7 +120,7 @@ void CalcNextCnt(SERVO Servo[])
 -----------------------------------------------*/
 uint16_t CalcWidth(uint8_t angle, PARAMETER Parameter)
 {
-    uint16_t width = (uint16_t) ((Parameter.max - Parameter.min) / 180.0 * angle + Parameter.min);
+    uint16_t width = (uint16_t)((Parameter.max - Parameter.min) / 180.0 * angle + Parameter.min);
     return width;
 }
 
@@ -129,7 +131,7 @@ uint16_t CalcWidth(uint8_t angle, PARAMETER Parameter)
 -----------------------------------------------*/
 uint16_t CalcTMRCnt(uint16_t pulse_width)
 {
-    uint16_t cnt = (uint16_t) (65535 - 2 * pulse_width);
+    uint16_t cnt = (uint16_t)(65535 - 2 * pulse_width);
     return cnt;
 }
 
@@ -145,7 +147,7 @@ void interrupt INTERRUPT_HANDLER(void)
         TMR1IF = false;
         Interrupt_TMR1();
     }
-    else if(INTCONbits.PEIE & PIE1bits.TMR2IE & PIR1bits.TMR2IF)
+    else if (INTCONbits.PEIE & PIE1bits.TMR2IE & PIR1bits.TMR2IF)
     {
         TMR2IF = false;
         Interrupt_TMR2();
